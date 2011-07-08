@@ -34,7 +34,7 @@
 
 <li><p class="sponsorlogo"><a href="http://msn.com/"><img src="http://ona11.journalists.org/wp-content/uploads/ona11_sponsor_msn_bw_88.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://marketwire.com/"><img src="http://ona11.journalists.org/wp-content/uploads/ona11_sponsor_marketwire_bw_88.jpg"></a></p></li>
 
-<li><p class="sponsorlogo"><a href="http://gannettfoundation.org/"><img src="http://ona11.journalists.org/wp-content/uploads/ona11_sponsor_gannett_foundation_bw_88.jpg"></a></p></li>
+<li><p class="sponsorlogo"><a href="http://gannettfoundation.org/"><img src="http://ona11.journalists.org/wp-content/uploads/ona11_sponsor_gannett_foundation_bw_88.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://thomsonreuters.com/products_services/media/reuters_america_for_publishers/"><img src="http://ona11.journalists.org/wp-content/uploads/ona11_sponsor_reuters_bw_88.jpg"></a></p></li>
 
 <li><p class="frontpage">Reach the largest audience of digital journalists in the world at ONA11, hosted by the fastest-growing membership organization of online media.</p>
 <p class="frontpagejump"><a href="/overview"><strong>Learn more &#0187;</strong></a></p>
