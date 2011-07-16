@@ -518,7 +518,7 @@ function sandbox_widgets_init() {
 		'description'  =>  __( "A search form for your blog (Sandbox)", "sandbox" )
 	);
 	wp_register_sidebar_widget( 'search', __( 'Search', 'sandbox' ), 'widget_sandbox_search', $widget_ops );
-	unregister_widget_control('search'); // We're being Sandbox-specific; remove WP default
+	wp_unregister_widget_control('search'); // We're being Sandbox-specific; remove WP default
 	wp_register_widget_control( 'search', __( 'Search', 'sandbox' ), 'widget_sandbox_search_control' );
 
 	// Sandbox Meta widget
@@ -527,7 +527,7 @@ function sandbox_widgets_init() {
 		'description'  =>  __( "Log in/out and administration links (Sandbox)", "sandbox" )
 	);
 	wp_register_sidebar_widget( 'meta', __( 'Meta', 'sandbox' ), 'widget_sandbox_meta', $widget_ops );
-	unregister_widget_control('meta'); // We're being Sandbox-specific; remove WP default
+	wp_unregister_widget_control('meta'); // We're being Sandbox-specific; remove WP default
 	wp_register_widget_control( 'meta', __( 'Meta', 'sandbox' ), 'wp_widget_meta_control' );
 
 	//Sandbox RSS Links widget
@@ -546,7 +546,7 @@ load_theme_textdomain('sandbox');
 add_action( 'init', 'sandbox_widgets_init' );
 
 // Registers our function to filter default gallery shortcode
-add_filter( 'post_gallery', 'sandbox_gallery', $attr );
+add_filter( 'post_gallery', 'sandbox_gallery' );
 
 // Adds filters for the description/meta content in archives.php
 add_filter( 'archive_meta', 'wptexturize' );
