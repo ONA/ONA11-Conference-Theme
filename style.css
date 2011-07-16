@@ -33,19 +33,31 @@ h2.entry-title {color:rgb(65,84,99); font-size:28px; font-weight:normal;}
 h3 {color:rgb(26,167,223); font-size:14px; font-weight:normal;}
 h4 {color:rgb(146,163,170); font-size:12px; font-weight:bold;}
 
+.float-right {
+	float:right;
+}
+
+.float-left {
+	float:left;
+}
+
+a img {
+	border: none;
+}
+
 /* Header */
 div#header {
-background:#008ccd url('http://ona11.journalists.org/wp-content/uploads/bg-slice-311.jpg') top left repeat-x;
-height:311px;
-margin:0;
-padding:0;
-text-align:center;
+	background:#008ccd url('images/bg/bg-slice-311.jpg') top left repeat-x;
+	height:311px;
+	margin:0;
+	padding:0;
+	text-align:center;
 }
 
 div#header img {
-margin:0;
-padding:0;
-border:0;
+	margin:0;
+	padding:0;
+	border:0;
 }
 
 /* Menu Version 1
@@ -173,22 +185,10 @@ font-size:12px;
     color: #fff;
 }
 
-#menu img.ona-logo-menu {
-float:right;
-margin-top:6px;
-border:0;
-}
-
-#menu div.ona-logo-menu {
-width:62px;
-height:30px;
-float:right;
-padding:0;
-margin:0;
-}
-
-#menu div.ona-logo-menu a {
-border:0;
+#menu .ona-logo-menu {
+	width:62px;
+	height:30px;
+	margin-top:6px;
 }
 
 /* Content */

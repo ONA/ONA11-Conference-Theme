@@ -11,24 +11,27 @@
 
 <script type="text/javascript" src="http://use.typekit.com/fey8mly.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/jquery-1.5.1.min.js"></script>
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/twitter.js"></script>
 
+	<?php wp_head(); ?>
+	
 </head>
 
-<body class="<?php sandbox_body_class() ?>">
+<body <?php body_class(); ?>>
 
-<div id="wrapper" class="hfeed">
+<div id="wrapper">
 
 	<div id="header">
-<div class="center">
-<a href="<?php bloginfo('home') ?>/" title="<?php echo wp_specialchars( get_bloginfo('name'), 1 ) ?>" rel="home"><img src="<?php bloginfo('url'); ?>/wp-content/uploads/header.jpg"></a>
-</div><!-- .center -->
-	</div><!--  #header -->
+		<div class="center">
+			<a href="<?php bloginfo('home') ?>/">
+				<img src="<?php bloginfo('template_directory'); ?>/images/header_h927.jpg">
+			</a>
+		</div><!-- .center -->
+	</div><!--	#header -->
 
 <div id="menu">
-<div class="center">
-<?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
-<div class="ona-logo-menu"><a href="http://journalists.org/"><img src="http://ona11.journalists.org/wp-content/uploads/bg-ona-logo.gif" class="ona-logo-menu"></a></div><!-- .ona-logo-menu -->
-</div><!-- .center -->
+	<div class="center">
+		<?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
+		<div class="ona-logo-menu float-right"><a href="http://journalists.org/"><img src="<?php bloginfo('template_directory'); ?>/images/bg-ona-logo.gif"></a></div>
+	</div><!-- .center -->
 </div><!-- #menu -->
