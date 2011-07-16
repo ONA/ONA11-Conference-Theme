@@ -9,6 +9,46 @@ SANDBOX is distributed in the hope that it will be useful, but WITHOUT ANY WARRA
 You should have received a copy of the GNU General Public License along with SANDBOX. If not, see http://www.gnu.org/licenses/.
 */
 
+define( 'ONA11_VERSION', '1.0' );
+
+if ( !class_exists( 'ona11' ) ) {
+	
+class ona11
+{
+	
+	function __construct() {
+		
+		add_action( 'init', array( &$this, 'enqueue_resources' ) );
+		add_action( 'wp_head', array( &$this, 'wp_head' ) );
+		
+	}
+	
+	/**
+	 * Enqueue any resources we need
+	 */
+	function enqueue_resources() {
+		if ( !is_admin() ) {
+			wp_enqueue_style( 'ona11_primary_css', get_bloginfo('stylesheet_url'), false, ONA11_VERSION );
+			wp_enqueue_script( 'jquery' );
+			wp_enqueue_script( 'ona11_twitter', get_bloginfo( 'template_directory' ) . '/js/twitter.js', array( 'jquery' ), ONA11_VERSION );
+		}
+	}
+	
+	/**
+	 * Other resources to add to the head
+	 */
+	function wp_head() {
+		echo '<script type="text/javascript" src="http://use.typekit.com/fey8mly.js"></script>';
+		echo '<script type="text/javascript">try{Typekit.load();}catch(e){}</script>';
+	}
+	
+}	
+	
+}
+
+global $ona11;
+$ona11 = new ona11();
+
 // Produces a list of pages in the header without whitespace
 function sandbox_globalnav() {
 	if ( $menu = str_replace( array( "\r", "\n", "\t" ), '', wp_list_pages('title_li=&sort_column=menu_order&echo=0') ) )

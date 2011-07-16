@@ -1,14 +1,14 @@
-	$(document).ready( function() {
+jQuery(document).ready( function() {
 	
 		var url = "http://twitter.com/status/user_timeline/ONAConf.json?count=3&callback=?";
-		$.getJSON(url,
+		jQuery.getJSON(url,
         function(data){
-			$.each(data, function(i, item) {
-				$("img#tprofile").attr("src", item.user["profile_image_url"]);
-				$("h2#tname").html('<a href="http://twitter.com/' + item.user["screen_name"] + '">@' + item.user["screen_name"]);
-				$("h3#tname").text(item.user["name"]);
-				$("#ttweets").append('<p><strong>@' + item.user["screen_name"] + "</strong>: " + item.text.replace(/(http\:\/\/[A-Za-z0-9\/\.\?\=\-]*)/g,'<a href="$1">$1</a>').replace(/@([A-Za-z0-9\/_]*)/g,'<a href="http://twitter.com/$1">@$1</a>').replace(/#([A-Za-z0-9\/\.]*)/g,'<a href="http://twitter.com/search?q=$1">#$1</a>') + "<br><i>" + relative_time(item.created_at) + "</i></p>");
-				$("p#tmore").html('<a href="http://twitter.com/' + item.user["screen_name"] + '"><strong>More Twitter messages &#0187;</strong></a>');
+			jQuery.each(data, function(i, item) {
+				jQuery("img#tprofile").attr("src", item.user["profile_image_url"]);
+				jQuery("h2#tname").html('<a href="http://twitter.com/' + item.user["screen_name"] + '">@' + item.user["screen_name"]);
+				jQuery("h3#tname").text(item.user["name"]);
+				jQuery("#ttweets").append('<p><strong>@' + item.user["screen_name"] + "</strong>: " + item.text.replace(/(http\:\/\/[A-Za-z0-9\/\.\?\=\-]*)/g,'<a href="$1">$1</a>').replace(/@([A-Za-z0-9\/_]*)/g,'<a href="http://twitter.com/$1">@$1</a>').replace(/#([A-Za-z0-9\/\.]*)/g,'<a href="http://twitter.com/search?q=$1">#$1</a>') + "<br><i>" + relative_time(item.created_at) + "</i></p>");
+				jQuery("p#tmore").html('<a href="http://twitter.com/' + item.user["screen_name"] + '"><strong>More Twitter messages &#0187;</strong></a>');
 			});
         });
 	});
