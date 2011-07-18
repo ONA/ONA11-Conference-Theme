@@ -30,6 +30,8 @@
 
 <li><p class="sponsorlogo"><a href="http://wbur.org/"><img src="http://ona11.journalists.org/wp-content/uploads/ona11_sponsor_wbur_bw_176.jpg"></a></p></li>	
 
+<li><p class="sponsorlogo"><a href="http://english.aljazeera.net/"><img src="http://ona11.journalists.org/wp-content/uploads/ona11_sponsor_aljazeera_bw_176.jpg"></a></p></li>
+
 <li><p class="sponsorlogo"><a href="http://google.com/"><img src="http://ona11.journalists.org/wp-content/uploads/ona11_sponsor_google_bw_88.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://cnn.com/"><img src="http://ona11.journalists.org/wp-content/uploads/ona11_sponsor_cnn2_bw_88.jpg"></a></p></li>
 
 <li><p class="sponsorlogo"><a href="http://msn.com/"><img src="http://ona11.journalists.org/wp-content/uploads/ona11_sponsor_msn_bw_88.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://marketwire.com/"><img src="http://ona11.journalists.org/wp-content/uploads/ona11_sponsor_marketwire_bw_88.jpg"></a></p></li>
