@@ -100,7 +100,7 @@
 
 <h1>Hotel</h1>
 
-<p><img src="<?php bloginfo('url'); ?>/wp-content/uploads/boston-marriott-copley-place.jpg" class="content"></p>
+<p><img src="<?php echo get_bloginfo('template_directory'); ?>/images/boston-marriott-copley-place.jpg" class="content"></p>
 
 <p class="frontpage" style="font-size:12px;"><em>The 2011 ONA Conference and Online Journalism Awards Banquet will be hosted at the:</em></p>
 

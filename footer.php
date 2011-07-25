@@ -1,7 +1,7 @@
 	<div id="footer">
 <div class="center">
 			<div class="footercontent" id="gencontact">
-<p><img src="<?php bloginfo('url'); ?>/wp-content/uploads/ona11-contact.png"></p>
+<p><img src="<?php echo get_bloginfo('template_directory'); ?>/images/ona11-contact.png"></p>
 <p class="footertext">Have a question but don't know who to ask?</p>
 <p class="footertext">Send us a note at <a href="mailto:ONA11@journalists.org"><strong>ONA11@journalists.org</strong></a>.</p>
 </div>
@@ -55,6 +55,8 @@
 
 <div id="bottom">
 <div class="center">
+
+<p class="nomargin">Site development by Daniel Bachhuber and Sean Connolly.</p>
 
 <p class="nomargin">Site design by Dan Essrow, Pamela Sarian and Scott Dasse.</p>
 

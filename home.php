@@ -56,13 +56,6 @@
 <ul class="dateblocks">
 
 <li><div class="dateblock"> 
-	<span class="month">June</span>
-	<span class="day">27</span>
-</div><!-- #dateblock -->
-	<strong>Online Journalism Awards</strong><br /><em>Deadline for entries</em>
-</li>
-
-<li><div class="dateblock"> 
 	<span class="month">July</span>
 	<span class="day">31</span>
 </div><!-- #dateblock -->
@@ -100,7 +93,7 @@
 
 <h1>Hotel</h1>
 
-<p><img src="<?php bloginfo('url'); ?>/wp-content/uploads/boston-marriott-copley-place.jpg" class="content"></p>
+<p><img src="<?php echo get_bloginfo('template_directory'); ?>/images/boston-marriott-copley-place.jpg" class="content"></p>
 
 <p class="frontpage" style="font-size:12px;"><em>The 2011 ONA Conference and Online Journalism Awards Banquet will be hosted at the:</em></p>
 
