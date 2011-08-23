@@ -14,6 +14,12 @@ class ona11
 		add_action( 'init', array( &$this, 'enqueue_resources' ) );
 		add_action( 'wp_head', array( &$this, 'wp_head' ) );
 		
+		if ( !is_admin() ) {
+			require_once( 'php/template_tags.php' );
+			
+			add_action( 'wp_head', 'ona11_head_title' );
+		}
+		
 		$this->session = new ona11_session();
 		
 	}
