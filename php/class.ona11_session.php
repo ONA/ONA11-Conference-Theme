@@ -93,7 +93,8 @@ class ona11_session
 	function add_post_meta_boxes() {
 		
 		add_meta_box( 'ona11-session', 'Session Information', array( &$this, 'post_meta_box' ), 'ona11_session', 'normal', 'high');
-		add_meta_box( 'ona11-session-date-time-location', 'Date, Time &amp; Location', array( &$this, 'date_time_location_meta_box' ), 'ona11_session', 'side', 'high');
+		add_meta_box( 'ona11-session-date-time-location', 'Session Date, Time &amp; Location', array( &$this, 'date_time_location_meta_box' ), 'ona11_session', 'side', 'default');
+		remove_meta_box( 'ona11_locationsdiv', 'ona11_session', 'side' );
 		
 	}
 	
@@ -106,6 +107,9 @@ class ona11_session
 			
 		$end_timestamp = get_post_meta( $post->ID, '_ona11_end_timestamp', true );
 		$end_time = ( $end_timestamp ) ? date( $time_format, $end_timestamp ) : '';
+		
+		$location_tax = wp_get_object_terms( $post->ID, 'ona11_locations', array( 'fields' => 'ids' ) );
+		$location = ( !empty( $location_tax ) ) ? (int)$location_tax[0] : 0;
 		
 		?>
 		<div class="inner">
@@ -125,6 +129,23 @@ class ona11_session
 				<input id="ona11-end" name="ona11-end" class="ona11-date-picker" size="25" value="<?php echo esc_attr( $end_time ); ?>" />
 			</div>
 			</div><!-- END .line-item -->
+			
+			<div class="line-item pick-location">
+				<label for="ona11-location">Location:</label>
+				<?php
+					$args = array(
+						'name' => 'ona11-location',
+						'taxonomy' => 'ona11_locations',
+						'hide_if_empty' => true,
+						'echo' => false,
+						'hide_empty' => false,
+						'hierarchical' => true,
+						'show_option_none' => '-- Pick a Location --',
+						'selected' => $location,
+					);
+					echo ( $location_dropdown = wp_dropdown_categories( $args ) ) ? $location_dropdown : 'Please register locations';
+				?>
+			</div>
 			
 			<div class="clear-both"></div>
 		</div>
@@ -219,7 +240,10 @@ class ona11_session
 		update_post_meta( $post_id, '_ona11_start_timestamp', $start_timestamp );
 		
 		$end_timestamp = strtotime( $_POST['ona11-end'] );
-		update_post_meta( $post_id, '_ona11_end_timestamp', $end_timestamp );			
+		update_post_meta( $post_id, '_ona11_end_timestamp', $end_timestamp );
+		
+		$location = (int)$_POST['ona11-location'];
+		wp_set_object_terms( $post_id, $location, 'ona11_locations' );		
 		
 	}
 	

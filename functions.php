@@ -9,15 +9,20 @@ if ( !class_exists( 'ona11' ) ) {
 class ona11
 {
 	
+	var $theme_taxonomies = array();
+	var $options_group = 'ona11_';
+	var $options_group_name = 'ona11_options';
+	var $settings_page = 'ona11_settings';
+	
 	function __construct() {
 		
-		add_action( 'init', array( &$this, 'enqueue_resources' ) );
-		add_action( 'wp_head', array( &$this, 'wp_head' ) );
+		add_action( 'after_setup_theme', array( &$this, 'enqueue_resources' ) );
+		add_action( 'after_setup_theme', array( &$this, 'register_custom_taxonomies' ) );
 		
 		if ( !is_admin() ) {
 			require_once( 'php/template_tags.php' );
-			
 			add_action( 'wp_head', 'ona11_head_title' );
+			add_action( 'wp_head', array( &$this, 'wp_head' ) );			
 		}
 		
 		$this->session = new ona11_session();
@@ -33,6 +38,35 @@ class ona11
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'ona11_twitter', get_bloginfo( 'template_directory' ) . '/js/twitter.js', array( 'jquery' ), ONA11_VERSION );
 		}
+	}
+	
+	/**
+	 * Register the custom taxonomies we're using
+	 */
+	function register_custom_taxonomies() {
+		
+		// Register the Locations taxonomy
+		$args = array(
+			'label' => 'Locations',
+			'labels' => array(
+				'name' => 'Locations',
+				'singular_name' => 'Location',
+			),
+			'hierarchical' => true,
+			'show_tagcloud' => false,
+			'rewrite' => array(
+				'slug' => 'locations',
+				'hierarchical' => true,
+			),
+		);
+
+		$post_types = array(
+			'post',
+			'ona11_session',
+		);
+		register_taxonomy( 'ona11_locations', $post_types, $args );
+		$this->theme_taxonomies[] = 'ona11_locations';
+		
 	}
 	
 	/**
