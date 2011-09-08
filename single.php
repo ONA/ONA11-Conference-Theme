@@ -1,9 +1,9 @@
-<?php get_header() ?>
+<?php get_header(); ?>
 
-	<div id="container">
-		<div id="content">
+<div id="container">
+	<div id="content">
 
-<?php the_post() ?>
+		<?php the_post() ?>
 
 			<div id="post-<?php the_ID() ?>" class="<?php sandbox_post_class() ?>">
 				<h1 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h1>
