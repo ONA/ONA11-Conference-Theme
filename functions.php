@@ -16,16 +16,17 @@ class ona11
 	
 	function __construct() {
 		
+		$this->session = new ona11_session();
+				
 		add_action( 'after_setup_theme', array( &$this, 'enqueue_resources' ) );
 		add_action( 'after_setup_theme', array( &$this, 'register_custom_taxonomies' ) );
+		add_action( 'after_setup_theme', array( &$this, 'associate_post_types' ) );
 		
 		if ( !is_admin() ) {
 			require_once( 'php/template_tags.php' );
 			add_action( 'wp_head', 'ona11_head_title' );
 			add_action( 'wp_head', array( &$this, 'wp_head' ) );			
 		}
-		
-		$this->session = new ona11_session();
 		
 	}
 	
@@ -67,6 +68,17 @@ class ona11
 		register_taxonomy( 'ona11_locations', $post_types, $args );
 		$this->theme_taxonomies[] = 'ona11_locations';
 		
+	}
+	
+	function associate_post_types() {
+		if ( !function_exists( 'p2p_register_connection_type' ) )
+	        return;
+
+		// Writers should be able to associate posts with sessions
+	    p2p_register_connection_type( array( 
+			'from' => 'post',
+	        'to' => 'ona11_session'
+	    ) );
 	}
 	
 	/**

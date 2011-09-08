@@ -15,7 +15,7 @@ class ona11_session
 	 */
 	function __construct() {
 		
-		add_action( 'init', array( &$this, 'create_post_type' ) );
+		add_action( 'after_setup_theme', array( &$this, 'create_post_type' ) );
 		
 		// Load necessary scripts and stylesheets
 		add_action( 'admin_enqueue_scripts', array( &$this, 'add_admin_resources' ) );
