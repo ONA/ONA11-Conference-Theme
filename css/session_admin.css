@@ -27,35 +27,42 @@
 	padding-bottom: 15px;
 }
 
-#ona11-session .inner .line-item {
+#ona11-session .inner .line-item,
+#ona11-session-date-time-location .inner .line-item {
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
 
-#ona11-session .inner .line-item label {
+#ona11-session .inner .line-item label,
+#ona11-session-date-time-location .inner .line-item label {
 	padding-bottom: 5px;
 }
 
 #ona11-session .inner .line-item .pick-date,
-#ona11-session .inner .line-item .pick-time {
+#ona11-session .inner .line-item .pick-time,
+#ona11-session-date-time-location .inner .line-item .pick-time {
 	display: inline-block;
 }
 
-#ona11-session .inner .line-item .pick-date {
+#ona11-session .inner .line-item .pick-date,
+#ona11-session-date-time-location .inner .line-item .pick-time {
 	padding-right: 10px;
 }
 
 #ona11-session .inner .line-item .pick-date label,
-#ona11-session .inner .line-item .pick-time label {
+#ona11-session .inner .line-item .pick-time label,
+#ona11-session-date-time-location .inner .line-item .pick-time label {
 	display: block;
 	padding-bottom: 5px;
 }
 
-#ona11-session .inner .required {
+#ona11-session .inner .required,
+#ona11-session-date-time-location .inner .required {
 	color: #FF0000;
 }
 
-#ona11-session .inner label {
+#ona11-session .inner label,
+#ona11-session-date-time-location .inner label {
 	display: block;
 }
 

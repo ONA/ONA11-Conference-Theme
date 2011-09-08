@@ -100,66 +100,34 @@ class ona11_session
 	function date_time_location_meta_box() {
 		global $post;
 		
-		$all_day_session = get_post_meta( $post->ID, '_ona11_all_day_session', true );
-		
-		$date_format = 'm/d/y';
-		$time_format = 'g:i A';		
+		$time_format = 'm/d/y g:i A';
 		$start_timestamp = get_post_meta( $post->ID, '_ona11_start_timestamp', true );
-		if ( $start_timestamp ) {
-			$start_date = date( $date_format, $start_timestamp );
-			$start_time = date( $time_format, $start_timestamp );			
-		} else {
-			$start_date = '';
-			$start_time = '';
-		}
+		$start_time = ( $start_timestamp ) ? date( $time_format, $start_timestamp ) : '';
 			
 		$end_timestamp = get_post_meta( $post->ID, '_ona11_end_timestamp', true );
-		if ( $end_timestamp ) {
-			$end_date = date( $date_format, $end_timestamp );
-			$end_time = date( $time_format, $end_timestamp );			
-		} else {
-			$end_date = '';
-			$end_time = '';
-		}
+		$end_time = ( $end_timestamp ) ? date( $time_format, $end_timestamp ) : '';
 		
 		?>
 		<div class="inner">
 			
 		<div class="date-time-wrap option-item hide-if-no-js">
 			
-			<h4>Date &amp; Time</h4>
-			
-			<div class="line-item">
-				<label for="ona11-all-day-session" class="float-left">All day session</label>
-				<input id="ona11-all-day-session" name="ona11-all-day-session" type="checkbox"<?php if ( $all_day_session == 'on' ) echo ' checked="checked"'; ?> />
-			</div>
-			
 			<div class="line-item">
 			<div class="pick-date">
-				<label for="ona11-start-date" class="primary-label">Start date <span class="required">*</span></label>
-				<input id="ona11-start-date" name="ona11-start-date" class="ona11-date-picker" size="25" value="<?php echo $start_date; ?>" />
-			</div>
-			<div class="pick-time<?php if ( $all_day_session == 'on' ) echo ' display-none'; ?>">
-				<label for="ona11-start-time" class="secondary-label">Start time <span class="required">*</span></label>
-				<input id="ona11-start-time" name="ona11-start-time" class="ona11-time-picker" size="25" value="<?php echo $start_time; ?>" />
+				<label for="ona11-start" class="primary-label">Start<span class="required">*</span>:</label>
+				<input id="ona11-start" name="ona11-start" class="ona11-date-picker" size="25" value="<?php echo esc_attr( $start_time ); ?>" />
 			</div>
 			</div><!-- END .line-item -->
 			
 			<div class="line-item">
 			<div class="pick-date">
-				<label for="ona11-end-date" class="primary-label">End date <span class="required">*</span></label>
-				<input id="ona11-end-date" name="ona11-end-date" class="ona11-date-picker" size="25" value="<?php echo $end_date; ?>" />
-			</div>
-			<div class="pick-time<?php if ( $all_day_event == 'on' ) echo ' display-none'; ?>">
-				<label for="ona11-end-time" class="secondary-label">End time <span class="required">*</span></label>
-				<input id="ona11-end-time" name="ona11-end-time" class="ona11-time-picker" size="25" value="<?php echo $end_time; ?>" />
+				<label for="ona11-end" class="primary-label">End<span class="required">*</span>:</label>
+				<input id="ona11-end" name="ona11-end" class="ona11-date-picker" size="25" value="<?php echo esc_attr( $end_time ); ?>" />
 			</div>
 			</div><!-- END .line-item -->
 			
 			<div class="clear-both"></div>
-			
 		</div>
-		
 		</div>
 		<?
 	}
@@ -231,36 +199,29 @@ class ona11_session
 	} // END post_meta_box()
 	
 	/**
-	 * save_post_meta_box()
+	 * Save the data from our metaboxes
 	 */
 	function save_post_meta_box( $post_id ) {
 		global $post, $ona11;
 		
-		if ( !isset( $_POST['ona11-session-nonce'] ) || !wp_verify_nonce( $_POST['ona11-session-nonce'], 'ona11-session-nonce' ) ) {
-			return $post_id;  
-		}
+		if ( !isset( $_POST['ona11-session-nonce'] ) || !wp_verify_nonce( $_POST['ona11-session-nonce'], 'ona11-session-nonce' ) )
+			return $post_id; 
 		
-		if ( !wp_is_post_revision( $post ) && !wp_is_post_autosave( $post ) ) {
+		if ( wp_is_post_revision( $post ) || wp_is_post_autosave( $post ) )
+			return $post_id;
 			
-			$session_active = $_POST['ona11-session-active'];
-			if ( $session_active != 'off' )
-				$session_active = 'on';
-			update_post_meta( $post_id, '_ona11_session_active', $session_active );
-			
-			$all_day_session = $_POST['ona11-all-day-session'];
-			if ( $all_day_session != 'on' )
-				$all_day_session = 'off';
-			update_post_meta( $post_id, '_ona11_all_day_session', $all_day_session );
-			
-			$start_timestamp = strtotime( $_POST['ona11-start-date'] . ' ' . $_POST['ona11-start-time'] );
-			update_post_meta( $post_id, '_ona11_start_timestamp', $start_timestamp );
-			
-			$end_timestamp = strtotime( $_POST['ona11-end-date'] . ' ' . $_POST['ona11-end-time'] );
-			update_post_meta( $post_id, '_ona11_end_timestamp', $end_timestamp );			
+		$session_active = $_POST['ona11-session-active'];
+		if ( $session_active != 'off' )
+			$session_active = 'on';
+		update_post_meta( $post_id, '_ona11_session_active', $session_active );
 		
-		} // END if ( !wp_is_post_revision( $post ) && !wp_is_post_autosave( $post ) )
+		$start_timestamp = strtotime( $_POST['ona11-start'] );
+		update_post_meta( $post_id, '_ona11_start_timestamp', $start_timestamp );
 		
-	} // END save_post_meta_box()
+		$end_timestamp = strtotime( $_POST['ona11-end'] );
+		update_post_meta( $post_id, '_ona11_end_timestamp', $end_timestamp );			
+		
+	}
 	
 } // END class ona11_session
 	
