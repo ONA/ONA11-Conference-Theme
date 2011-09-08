@@ -58,11 +58,8 @@ class ona11_session
 				),
 				'supports' => array(
 					'title',
-					'editor',
 					'comments',
-					'excerpt',
 					'thumbnail',
-					'revisions',
 				),
 		    )
 		);
@@ -92,7 +89,7 @@ class ona11_session
 	 */
 	function add_post_meta_boxes() {
 		
-		add_meta_box( 'ona11-session', 'Session Information', array( &$this, 'post_meta_box' ), 'ona11_session', 'normal', 'high');
+		add_meta_box( 'ona11-session-information', 'Session Information', array( &$this, 'session_information_meta_box' ), 'ona11_session', 'normal', 'high');
 		add_meta_box( 'ona11-session-date-time-location', 'Session Date, Time &amp; Location', array( &$this, 'date_time_location_meta_box' ), 'ona11_session', 'side', 'default');
 		remove_meta_box( 'ona11_locationsdiv', 'ona11_session', 'side' );
 		
@@ -156,18 +153,42 @@ class ona11_session
 	/**
 	 * Session information metabox
 	 */
-	function post_meta_box() {
+	function session_information_meta_box() {
 		global $post;
+		
+		// post_content and post_excerpt are included in the post object
+		
+		$hashtag = get_post_meta( $post->ID, '_ona11_hashtag', true );
 
 		$session_active = get_post_meta( $post->ID, '_ona11_session_active', true );
 		if ( $session_active != 'off' )
-			$session_active = 'on';	
+			$session_active = 'on';
+			
 		
 		?>
 		
 		<div class="inner">
 			
+			<div class="option-item">
+				<h4>Full Description<span class="required">*</span>:</h4>
+				<textarea id="content" name="content" rows="6" cols="60"><?php esc_html_e( $post->post_content ); ?></textarea>
+				<p class="description">Basic HTML is allowed. This extended description appears on the single session page and can be as long as you'd like.</p>
+			</div>
+			
+			<div class="option-item">
+				<h4>Short Description (optional):</h4>
+				<textarea id="excerpt" name="excerpt" rows="2" cols="60"><?php esc_html_e( $post->post_excerpt ); ?></textarea>
+				<p class="description">Basic HTML is allowed. If filled out, this short description will appear on pages other than the single session page. One to two sentences is a great length.</p>
+			</div>
+			
 			<div class="session-active-wrap option-item">
+				<h4>Details</h4>
+				
+				<div class="line-item">
+					<label for="ona11-hashtag">Hashtag:</label>
+					<input type="text" id="ona11-hashtag" name="ona11-hashtag" size="30" value="<?php esc_attr_e( $hashtag ); ?>" />
+				</div>
+							
 				<div class="line-item">
 					<label for="ona11-session-active">This session is:</label>
 					<select id="ona11-session-active" name="ona11-session-active">
@@ -175,40 +196,6 @@ class ona11_session
 						<option value="off"<?php if ( $session_active == 'off' ) { echo ' selected="selected"'; } ?>>Inactive, and should be hidden</option>
 					</select>
 				</div>
-			</div>
-			
-			<div class="presenters-wrap option-item hide-if-no-js">
-			
-			<h4>Presenters(s)</h4>
-					
-				<p>tk</p>
-				<div class="clear-both"></div>
-			
-			</div><!-- END .instructors-wrap -->
-				
-			
-			<div class="location option-item">
-				
-				<h4>Location</h4>
-				
-				<?php
-					/* $args = array(
-						'hide_empty' => false,
-						'taxonomy' => 'cunyjcamp_locations',
-						'name' => 'cunyjcamp-locations[]',
-						'id' => 'cunyjcamp-locations',
-						'hierarchical' => true,
-						'depth' => 2,
-						'class' => 'term-selector',
-						'selected' => $event_location,
-						'echo' => true,
-					);
-					wp_dropdown_categories( $args ); */
-				?>
-				<p>Tk</p>
-				
-				<div class="clear-both"></div>
-				
 			</div>
 			
 			<input type="hidden" id="ona11-session-nonce" name="ona11-session-nonce" value="<?php echo wp_create_nonce('ona11-session-nonce'); ?>" />
@@ -223,7 +210,7 @@ class ona11_session
 	 * Save the data from our metaboxes
 	 */
 	function save_post_meta_box( $post_id ) {
-		global $post, $ona11;
+		global $post, $ona11, $wpdb;
 		
 		if ( !isset( $_POST['ona11-session-nonce'] ) || !wp_verify_nonce( $_POST['ona11-session-nonce'], 'ona11-session-nonce' ) )
 			return $post_id; 
@@ -231,11 +218,7 @@ class ona11_session
 		if ( wp_is_post_revision( $post ) || wp_is_post_autosave( $post ) )
 			return $post_id;
 			
-		$session_active = $_POST['ona11-session-active'];
-		if ( $session_active != 'off' )
-			$session_active = 'on';
-		update_post_meta( $post_id, '_ona11_session_active', $session_active );
-		
+		// Date, Time & Location settings to save
 		$start_timestamp = strtotime( $_POST['ona11-start'] );
 		update_post_meta( $post_id, '_ona11_start_timestamp', $start_timestamp );
 		
@@ -244,6 +227,14 @@ class ona11_session
 		
 		$location = (int)$_POST['ona11-location'];
 		wp_set_object_terms( $post_id, $location, 'ona11_locations' );		
+		
+		$hashtag = sanitize_title( $_POST['ona11-hashtag'] );
+		update_post_meta( $post_id, '_ona11_hashtag', $hashtag );
+		
+		$session_active = $_POST['ona11-session-active'];
+		if ( $session_active != 'off' )
+			$session_active = 'on';
+		update_post_meta( $post_id, '_ona11_session_active', $session_active );
 		
 	}
 	

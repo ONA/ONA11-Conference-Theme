@@ -1,40 +1,40 @@
-#ona11-session .float-left { 
+#ona11-session-information .float-left { 
 	float: left;
 }
 
-#ona11-session .float-right { 
+#ona11-session-information .float-right { 
 	float: right;
 }
 
-#ona11-session .clear-both {
+#ona11-session-information .clear-both {
 	clear: both;
 }
 
-#ona11-session .display-none {
+#ona11-session-information .display-none {
 	display: none !important;
 }
 
-#ona11-session .inner {
+#ona11-session-information .inner {
 	padding-top: 5px;
 	padding-left: 15px;
 	padding-right: 15px;
 	padding-bottom: 5px;
 }
 
-#ona11-session .inner h4 {
+#ona11-session-information .inner h4 {
 	margin-top: 0;
 	margin-bottom: 0;
 	padding-bottom: 15px;
 }
 
-#ona11-session .inner .line-item,
+#ona11-session-information .inner .line-item,
 #ona11-session-date-time-location .inner .line-item {
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
 
 
-#ona11-session .inner .line-item label {
+#ona11-session-information .inner .line-item label {
 	padding-bottom: 5px;
 }
 
@@ -53,25 +53,26 @@
 	margin-left: 20px;
 }
 
-#ona11-session .inner .required,
+#ona11-session-information .inner .required,
 #ona11-session-date-time-location .inner .required {
 	color: #FF0000;
 }
 
-#ona11-session .date-time-wrap div.float-left {
-	margin-right: 20px;
+#ona11-session-information textarea {
+	width: 100%;
 }
 
-#ona11-session .option-item {
+
+#ona11-session-information .option-item {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
 
-#ona11-session .option-item .term-selector {
+#ona11-session-information .option-item .term-selector {
 	float: left;
 }
 
-#ona11-session .selectlist-list {
+#ona11-session-information .selectlist-list {
 	list-style: none;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -79,7 +80,7 @@
 	margin-left: 200px	;
 }
 
-#ona11-session .selectlist-item {
+#ona11-session-information .selectlist-item {
 	border-left: solid 1px #eee;
 	border-top: solid 1px #eee;
 	border-right: solid 2px #ccc;
@@ -95,7 +96,7 @@
 	text-shadow: 0 1px 0 #FFFFFF;
 }
 
-#ona11-session .selectlist-item:hover {
+#ona11-session-information .selectlist-item:hover {
 	background-color: #FF0000;
 	background-image: none;
 	color: #FFFFFF;
