@@ -94,7 +94,7 @@ class ona11_session
 		remove_meta_box( 'ona11_locationsdiv', 'ona11_session', 'side' );
 		
 		if ( function_exists( 'p2p_register_connection_type' ) )
-			add_meta_box( 'ona11-session-associated-posts', 'Associated Posts', array( &$this, 'associated_posts_meta_box' ), 'ona11_session', 'side', 'default');		
+			add_meta_box( 'ona11-session-associated-posts', 'Associations', array( &$this, 'associated_posts_meta_box' ), 'ona11_session', 'side', 'default');		
 		
 	}
 	
