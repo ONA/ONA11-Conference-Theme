@@ -90,8 +90,11 @@ class ona11_session
 	function add_post_meta_boxes() {
 		
 		add_meta_box( 'ona11-session-information', 'Session Information', array( &$this, 'session_information_meta_box' ), 'ona11_session', 'normal', 'high');
-		add_meta_box( 'ona11-session-date-time-location', 'Session Date, Time &amp; Location', array( &$this, 'date_time_location_meta_box' ), 'ona11_session', 'side', 'default');
+		add_meta_box( 'ona11-session-date-time-location', 'Session Date, Time &amp; Location', array( &$this, 'date_time_location_meta_box' ), 'ona11_session', 'side', 'default');				
 		remove_meta_box( 'ona11_locationsdiv', 'ona11_session', 'side' );
+		
+		if ( function_exists( 'p2p_register_connection_type' ) )
+			add_meta_box( 'ona11-session-associated-posts', 'Associated Posts', array( &$this, 'associated_posts_meta_box' ), 'ona11_session', 'side', 'default');		
 		
 	}
 	
@@ -204,7 +207,37 @@ class ona11_session
 		
 		<?php
 		
-	} // END post_meta_box()
+	}
+	
+	/**
+	 * Show posts that have been associated to this session
+	 */
+	function associated_posts_meta_box() {
+		global $post, $wpdb;
+		
+		$query = $wpdb->prepare( "SELECT p2p_from FROM $wpdb->p2p WHERE p2p_to=$post->ID;" );
+		$results = $wpdb->get_results( $query );
+		
+		echo "<p>Posts associated with this session:</p>";
+		
+		if ( count( $results ) ) {
+			$post_ids = array();
+			foreach( $results as $result )
+				$post_ids[] = $result->p2p_from;
+			$results_str = implode( ', ', $post_ids );
+			$query = $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE ID in(%s);", $results_str );
+			$posts = $wpdb->get_results( $query );
+			echo '<ul class="show-list">';
+			foreach( $posts as $post ) {
+				echo '<li>' . esc_html( $post->post_title ) . '</li>';
+			}
+			echo '</ul>';
+		} else {
+			?>
+			<div class="message info">No posts have been associated with this session yet</div>
+			<?php
+		}
+	}
 	
 	/**
 	 * Save the data from our metaboxes
