@@ -5,7 +5,7 @@
 			<p><img src="<?php echo get_bloginfo('template_directory'); ?>/images/ona11-latest-updates.gif"></p>
 				
 			<ul>
-				<?php global $post; $myposts = get_posts('numberposts=4&category=1'); foreach($myposts as $post) : setup_postdata($post); ?>
+				<?php global $post; $myposts = get_posts('numberposts=4&cat_name=updates'); foreach($myposts as $post) : setup_postdata($post); ?>
 					<h5 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
 					<div class="entry-date"><abbr class="published" title="<?php the_time('Y-m-d\TH:i:sO') ?>"><?php the_time('M. j, Y') ?> &ndash; <?php the_time('g:i a') ?></abbr></div>
 			 	<?php endforeach; ?>
