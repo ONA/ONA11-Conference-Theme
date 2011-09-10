@@ -6,9 +6,7 @@
 
 <div id="maintop">
 
-<h1><a href="http://ona11.journalists.org/ona11-schedule" style="text-decoration:none;color:#415463;">Schedule released</a></h1>
-
-<h2><a href="http://ona11.journalists.org/ona11-schedule" style="text-decoration:none; color:#B3D235">Preview ONA11's workshops, general sessions and more</a></h2>
+<h2><a href="http://ona11.journalists.org/ona11-schedule/">Schedule released &mdash; <span class="highlight">Preview ONA11's workshops, general sessions and more</span></a></h2>
 
 <p class="frontpage"><img src="http://ona11.journalists.org/wp-content/uploads/designers-coders2.jpg" class="content" width="600"></p>
 <p class="wp-caption-text"><em>NPR's David Wright talks design during ONA10's "Coders Are from Mars, Designers Are from Venus" general session.<br />Photo by Denny Gainer for ONA.</em></p>
@@ -21,12 +19,12 @@
 
 <div id="mainone">
 
-<h1><a href="http://ona11.journalists.org/ona11-registration" style="text-decoration:none;color:#415463;">Register</a></h1>
+<h3><a href="http://ona11.journalists.org/ona11-registration" style="text-decoration:none;color:#415463;">Register</a></h3>
 
 <p class="frontpage"><img src="http://ona11.journalists.org/wp-content/uploads/register.jpg" class="content"></p>
 <p class="wp-caption-text"><em>Audience members settle in for an ONA10 keynote.<br />Photo by Julia Schmalz for ONA.</em></p>
 
-<h2><a href="http://ona11.journalists.org/ona11-registration" style="text-decoration:none; color:#B3D235">Registration is open for ONA11</a></h2>
+<h3><a href="http://ona11.journalists.org/ona11-registration" style="text-decoration:none; color:#B3D235">Registration is open for ONA11</a></h3>
 
 <p class="frontpage">We've restructured our fee timeline to avoid the last-minute crunch. Bottom line: the earlier you register, the lower your fee.</p>
 
@@ -36,12 +34,12 @@
 
 <div id="maintwo">
 
-<h1>Student newsroom</h1>
+<h3>Student newsroom</h3>
 
 <p class="frontpage"><img src="http://ona11.journalists.org/wp-content/uploads/newsroom4a.jpg" class="content"></p>
 <p class="wp-caption-text"><em>Lauren Slavin of Towson University checks out a video camera in the ONA10 Student Newsroom. Photo by Julia Schmalz for ONA.</em></p>
 
-<h2>Meet the students</h2>
+<h4>Meet the students</h4>
 
 <p class="frontpage">Google has once again provided a scholarship bringing 20 students from across the country to cover the conference in Boston.</p>
 
@@ -51,7 +49,7 @@
 
 <div id="mainleft">
 
-<h1>Important dates</h1>
+<h3>Important dates</h3>
 
 <ul class="dateblocks">
 
