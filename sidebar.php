@@ -14,7 +14,7 @@
 			<?php while( $latest_updates->have_posts() ): $latest_updates->the_post(); ?>
 				<li>
 					<h4 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-					<div class="entry-meta"><?php the_time('M. j, Y') ?> &ndash; <?php the_time('g:i a') ?></div>
+					<div class="entry-meta"><?php ona11_timestamp( 'short', 'false'); ?></div>
  				</li>
 			<?php endwhile; ?>
 			</ul>
