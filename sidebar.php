@@ -22,19 +22,18 @@
  			<p class="more"><a href="<?php bloginfo('url'); ?>/category/updates/"><strong>More updates &#0187;</strong></a></p>
 		</div>
 		
-	<div id="sponsors" class="widget">
+	<div id="sidebar-sponsors" class="widget">
 		<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ona11-sponsors-exhibitors.gif" />
-		<ul id="sidebar-sponsors">
-			<li>
-				<p class="sponsorlogo"><a href="http://espn.com/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_espn_bw_176.jpg"></a></p></li>
-			<li><p class="sponsorlogo"><a href="http://npr.org/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_npr_bw_176.jpg"></a></p></li>
-			<li><p class="sponsorlogo"><a href="http://pbs.org/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_pbs_bw_176.jpg"></a></p></li>
-			<li><p class="sponsorlogo"><a href="http://bu.edu/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_bu_bw_176.jpg"></a></p></li>	
-			<li><p class="sponsorlogo"><a href="http://wbur.org/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_wbur_bw_176.jpg"></a></p></li>	
-			<li><p class="sponsorlogo"><a href="http://english.aljazeera.net/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_aljazeera_bw_176.jpg"></a></p></li>
-			<li><p class="sponsorlogo"><a href="http://google.com/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_google_bw_88.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://cnn.com/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_cnn2_bw_88.jpg"></a></p></li>
-			<li><p class="sponsorlogo"><a href="http://msn.com/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_msn_bw_88.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://marketwire.com/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_marketwire_bw_88.jpg"></a></p></li>
-			<li><p class="sponsorlogo"><a href="http://gannettfoundation.org/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_gannett_foundation_bw_88.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://thomsonreuters.com/products_services/media/reuters_america_for_publishers/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_reuters_bw_88.jpg"></a></p></li>
+		<ul>
+			<li><a href="http://espn.com/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_espn_bw_176.jpg"></a></li>
+			<li><a href="http://npr.org/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_npr_bw_176.jpg"></a></li>
+			<li><a href="http://pbs.org/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_pbs_bw_176.jpg"></a></li>
+			<li><a href="http://bu.edu/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_bu_bw_176.jpg"></a></li>	
+			<li><a href="http://wbur.org/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_wbur_bw_176.jpg"></a></li>	
+			<li><a href="http://english.aljazeera.net/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_aljazeera_bw_176.jpg"></a></li>
+			<li><a href="http://google.com/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_google_bw_88.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://cnn.com/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_cnn2_bw_88.jpg"></a></li>
+			<li><a href="http://msn.com/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_msn_bw_88.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://marketwire.com/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_marketwire_bw_88.jpg"></a></li>
+			<li><a href="http://gannettfoundation.org/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_gannett_foundation_bw_88.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://thomsonreuters.com/products_services/media/reuters_america_for_publishers/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_reuters_bw_88.jpg"></a></li>
 		</ul>
 		<p>Reach the largest audience of digital journalists in the world at ONA11, hosted by the fastest-growing membership organization of online media.</p>
 		<p class="more"><a href="/overview"><strong>Learn more &#0187;</strong></a></p>

@@ -553,9 +553,9 @@ div#content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 	color: #92A3AA;
 }
 
-p.sponsorlogo {
-text-align:center;
-margin:0 0 20px 0;
+.sidebar .widget#sidebar-sponsors ul li {
+	text-align:center;
+	margin:0 0 20px 0;
 }
 
 /* Footer */
