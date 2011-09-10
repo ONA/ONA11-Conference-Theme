@@ -22,14 +22,30 @@ font-size:12px;
 color:rgb(29,43,53);
 }
 
-a:link {color:rgb(26,167,223); text-decoration:underline;}
-a:visited {color:rgb(26,167,223); text-decoration:underline;}
-a:hover {color:rgb(26,167,223); text-decoration:none;}
-a:active {color:rgb(26,167,223); text-decoration:none;}
+a {
+	color: #1AA7DF;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	padding: 0;
+}
+
+h2 {
+	color: #415463;
+	font-size: 26px;
+	line-height: 36px;
+	padding-top: 5px;
+	padding-bottom: 8px;
+	font-weight: normal;
+}
 
 h1 {color:rgb(65,84,99); font-size:28px; font-weight:normal;}
-h2 {color:rgb(179,210,53); font-size:18px; font-weight:normal;}
-h2.entry-title {color:rgb(65,84,99); font-size:28px; font-weight:normal;}
 h3 {color:rgb(26,167,223); font-size:14px; font-weight:normal;}
 h4 {color:rgb(146,163,170); font-size:12px; font-weight:bold;}
 
@@ -448,10 +464,6 @@ p.nomargin {
 margin:0;
 }
 
-div.entry-meta {
-font-size:10px;
-}
-
 hr {
 border-top:0;
 border-left:0;
@@ -508,6 +520,15 @@ div#content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 	color: #92A3AA;
 }
 
+#content .post .entry-meta a {
+	color: #92A3AA;
+	text-decoration: none;
+}
+
+#content .post .entry-meta a:hover {
+	text-decoration: underline;
+}
+
 #content .post .entry-content {
 	font-size: 14px;
 	line-height: 20px;
@@ -539,6 +560,7 @@ div#content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 
 .sidebar .entry-meta {
 	font-size:12px;
+	line-height: 14px;
 	color: #92A3AA;
 	border:0;
 }
