@@ -216,11 +216,11 @@ margin-right:auto;
 
 div#content {
 	width:618px;
-margin:20px 0 0 0;
-float:left;
-border-right:dotted 2px rgb(200,209,212);
-padding:0 10px 0 10px;
-line-height:1.4;
+	margin:20px 0 0 0;
+	float:left;
+	border-right:dotted 2px rgb(200,209,212);
+	padding:0 10px 0 10px;
+	line-height:1.4;
 }
 
 .content {
@@ -257,16 +257,6 @@ border:2px solid rgb(146,163,170);
 span.name {
 font-size:16px;
 }
-
-p.frontpagejump a:link {font-weight:bold; text-decoration:none;}
-p.frontpagejump a:visited {font-weight:bold; text-decoration:none;}
-p.frontpagejump a:hover {font-weight:bold; text-decoration:underline;}
-p.frontpagejump a:active {font-weight:bold; text-decoration:none;}
-
-p.frontpage a:link {text-decoration:none;}
-p.frontpage a:visited {text-decoration:none;}
-p.frontpage a:hover {text-decoration:underline;}
-p.frontpage a:active {text-decoration:none;}
 
 h1.entry-title a:link {color:rgb(65,84,99); text-decoration:none;}
 h1.entry-title a:visited {color:rgb(65,84,99); text-decoration:none;}
@@ -486,11 +476,6 @@ div#sidebar input#s {
 width:7em;
 }
 
-div#sidebar li {
-list-style-type:none;
-margin:0 0 2em;
-}
-
 div#sidebar li form {
 margin:0.2em 0 0;
 padding:0;
@@ -513,36 +498,59 @@ div#sidebar ul ul ul li {
 list-style-type:none;;
 }
 
-div#sidebar h5.entry-title {
-font-size:16px;
-margin:8px 0 4px 0;
-}
-
-div#content h5.entry-title {
-font-family:Helvetica, Arial, sans-serif;
-font-size:16px;
-margin:8px 0 8px 0;
-}
-
 div#content h5.entry-title a:link {color:rgb(26,167,223); text-decoration:none;}
 div#content h5.entry-title a:visited {color:rgb(26,167,223); text-decoration:none;}
 div#content h5.entry-title a:hover {color:rgb(26,167,223); text-decoration:underline;}
 div#content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none;}
 
-div#content div.entry-date {
-font-size:12px;
-color:#92A3AA;
+#content .post .entry-meta {
+	font-size: 12px;
+	color: #92A3AA;
 }
 
-div#sidebar a:link {color:rgb(26,167,223); text-decoration:none;}
-div#sidebar a:visited {color:rgb(26,167,223); text-decoration:none;}
-div#sidebar a:hover {color:rgb(26,167,223); text-decoration:underline;}
-div#sidebar a:active {color:rgb(26,167,223); text-decoration:none;}
+#content .post .entry-content {
+	font-size: 14px;
+	line-height: 20px;
+}
 
-div#sidebar abbr.published {
-font-size:12px;
-color:rgb(146,163,170);
-border:0;
+.sidebar a {
+	text-decoration: none;
+}
+
+.sidebar a:hover {
+	text-decoration: underline;
+}
+
+.sidebar .widget ul {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.sidebar ul li {
+	list-style-type:none;
+}
+
+.sidebar .widget h4.entry-title {
+	font-size:16px;
+	line-height: 20px;
+	margin:8px 0 4px 0;	
+	font-family:Helvetica, Arial, sans-serif;
+}
+
+.sidebar .entry-meta {
+	font-size:12px;
+	color: #92A3AA;
+	border:0;
+}
+
+.sidebar .widget#latest-updates ul li {
+	margin-bottom: 10px;
+}
+
+.sidebar .widget .more {
+	text-align: right;
+	margin-right: 10px;
+	color: #92A3AA;
 }
 
 p.sponsorlogo {
