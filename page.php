@@ -5,7 +5,7 @@
 
 <?php the_post() ?>
 
-			<div id="post-<?php the_ID() ?>" class="<?php sandbox_post_class() ?>">
+			<div id="post-<?php the_ID() ?>" <?php post_class(); ?>>
 				<h2 class="entry-title"><?php the_title() ?></h2>
 				<div class="entry-content">
 <?php the_content() ?>
