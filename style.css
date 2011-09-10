@@ -543,22 +543,27 @@ div#content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 	display: none;
 }
 
-.clickable-date:hover span {
+.clickable-date:hover {
 	cursor: pointer;
 }
 
-#content .post .entry-meta {
+.post .entry-meta {
 	font-size: 12px;
 	color: #92A3AA;
+	line-height: 18px;
 }
 
-#content .post .entry-meta a {
+.post .entry-meta a {
 	color: #92A3AA;
 	text-decoration: none;
 }
 
-#content .post .entry-meta a:hover {
+.post .entry-meta a:hover {
 	text-decoration: underline;
+}
+
+.post .entry-meta .post-modified-date {
+	color: #BBBBBB;
 }
 
 #content .post .entry-content {
