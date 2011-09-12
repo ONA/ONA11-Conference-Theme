@@ -57,6 +57,15 @@ class ona11
 			'labels' => array(
 				'name' => 'Locations',
 				'singular_name' => 'Location',
+				'search_items' => 'Search Locations',
+				'all_items' => 'All Locations',
+				'parent_item' => 'Parent Location',
+				'parent_item_colon' => 'Parent Location:',
+				'edit_item' => 'Edit Location',
+				'update_item' => 'Update Location',
+				'add_new_item' => 'Add New Location',
+				'new_item_name' => 'New Location',
+				'menu_name' => 'Locations',
 			),
 			'hierarchical' => true,
 			'show_tagcloud' => false,
@@ -67,7 +76,6 @@ class ona11
 		);
 
 		$post_types = array(
-			'post',
 			'ona11_session',
 		);
 		register_taxonomy( 'ona11_locations', $post_types, $args );
@@ -98,7 +106,6 @@ class ona11
 		);
 
 		$post_types = array(
-			'post',
 			'ona11_session',
 		);
 		register_taxonomy( 'ona11_session_types', $post_types, $args );
