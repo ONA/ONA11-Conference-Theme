@@ -217,7 +217,10 @@ class ona11_session
 			$posts = $wpdb->get_results( $query );
 			echo '<ul class="show-list">';
 			foreach( $posts as $post ) {
-				echo '<li>' . esc_html( $post->post_title ) . '</li>';
+				echo '<li><strong>' . esc_html( $post->post_title ) . '</strong>';
+				echo ' <a href="' . get_edit_post_link( $post->ID ) . '">Edit</a> |';
+				echo ' <a target="_blank" href="' . get_permalink( $post->ID ) . '">View</a>';				
+				echo '</li>';
 			}
 			echo '</ul>';
 		} else {
