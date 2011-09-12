@@ -73,6 +73,37 @@ class ona11
 		register_taxonomy( 'ona11_locations', $post_types, $args );
 		$this->theme_taxonomies[] = 'ona11_locations';
 		
+		// Register the Locations taxonomy
+		$args = array(
+			'label' => 'Session Types',
+			'labels' => array(
+				'name' => 'Session Types',
+				'singular_name' => 'Session Type',
+				'search_items' => 'Search Session Types',
+				'all_items' => 'All Session Types',
+				'parent_item' => 'Parent Session Type',
+				'parent_item_colon' => 'Parent Session Type:',
+				'edit_item' => 'Edit Session Type',
+				'update_item' => 'Update Session Type',
+				'add_new_item' => 'Add New Session Type',
+				'new_item_name' => 'New Session Type',
+				'menu_name' => 'Session Types',
+			),
+			'hierarchical' => true,
+			'show_tagcloud' => false,
+			'rewrite' => array(
+				'slug' => 'session-type',
+				'hierarchical' => true,
+			),
+		);
+
+		$post_types = array(
+			'post',
+			'ona11_session',
+		);
+		register_taxonomy( 'ona11_session_types', $post_types, $args );
+		$this->theme_taxonomies[] = 'ona11_session_types';		
+		
 	}
 	
 	function associate_post_types() {

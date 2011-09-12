@@ -90,8 +90,9 @@ class ona11_session
 	function add_post_meta_boxes() {
 		
 		add_meta_box( 'ona11-session-information', 'Session Information', array( &$this, 'session_information_meta_box' ), 'ona11_session', 'normal', 'high');
-		add_meta_box( 'ona11-session-date-time-location', 'Session Date, Time &amp; Location', array( &$this, 'date_time_location_meta_box' ), 'ona11_session', 'side', 'default');				
+		add_meta_box( 'ona11-session-date-time-location', 'Session Date, Time, &amp; Location', array( &$this, 'date_time_location_meta_box' ), 'ona11_session', 'side', 'default');				
 		remove_meta_box( 'ona11_locationsdiv', 'ona11_session', 'side' );
+		remove_meta_box( 'ona11_session_typesdiv', 'ona11_session', 'side' );
 		
 		if ( function_exists( 'p2p_register_connection_type' ) )
 			add_meta_box( 'ona11-session-associated-posts', 'Associations', array( &$this, 'associated_posts_meta_box' ), 'ona11_session', 'side', 'default');		
@@ -143,8 +144,9 @@ class ona11_session
 						'show_option_none' => '-- Pick a Location --',
 						'selected' => $location,
 					);
-					echo ( $location_dropdown = wp_dropdown_categories( $args ) ) ? $location_dropdown : 'Please register locations';
+					echo ( $location_dropdown = wp_dropdown_categories( $args ) ) ? $location_dropdown : 'Please add locations before selecting';
 				?>
+				<p><span class="description">You can easily <a href="<?php echo add_query_arg( array( 'post_type' => 'ona11_session', 'taxonomy' => 'ona11_session_types' ), get_admin_url( null, 'edit-tags.php' ) ); ?>">add or edit session types</a>.</span></p>
 			</div>
 			
 			<div class="clear-both"></div>
@@ -160,6 +162,9 @@ class ona11_session
 		global $post;
 		
 		// post_content and post_excerpt are included in the post object
+		
+		$session_type_tax = wp_get_object_terms( $post->ID, 'ona11_session_types', array( 'fields' => 'ids' ) );
+		$session_type = ( !empty( $session_type_tax ) ) ? (int)$session_type_tax[0] : 0;
 		
 		$hashtag = get_post_meta( $post->ID, '_ona11_hashtag', true );
 		
@@ -181,6 +186,24 @@ class ona11_session
 			
 			<div class="session-active-wrap option-item">
 				<h4>Details</h4>
+				
+				<div class="line-item pick-session-type">
+					<label for="ona11-location">Session Type:</label>
+					<?php
+						$args = array(
+							'name' => 'ona11-session-type',
+							'taxonomy' => 'ona11_session_types',
+							'hide_if_empty' => true,
+							'echo' => false,
+							'hide_empty' => false,
+							'hierarchical' => true,
+							'show_option_none' => '-- Pick a Session Type --',
+							'selected' => $session_type,
+						);
+						echo ( $session_type_dropdown = wp_dropdown_categories( $args ) ) ? $session_type_dropdown : 'Please add session types before selecting';
+					?>
+					<p><span class="description">You can easily <a href="<?php echo add_query_arg( array( 'post_type' => 'ona11_session', 'taxonomy' => 'ona11_session_types' ), get_admin_url( null, 'edit-tags.php' ) ); ?>">add or edit session types</a>.</p>
+				</div>
 				
 				<div class="line-item">
 					<label for="ona11-hashtag">Hashtag:</label>
@@ -250,7 +273,10 @@ class ona11_session
 		update_post_meta( $post_id, '_ona11_end_timestamp', $end_timestamp );
 		
 		$location = (int)$_POST['ona11-location'];
-		wp_set_object_terms( $post_id, $location, 'ona11_locations' );		
+		wp_set_object_terms( $post_id, $location, 'ona11_locations' );
+		
+		$session_type = (int)$_POST['ona11-session-type'];
+		wp_set_object_terms( $post_id, $session_type, 'ona11_session_types' );		
 		
 		$hashtag = sanitize_title( $_POST['ona11-hashtag'] );
 		update_post_meta( $post_id, '_ona11_hashtag', $hashtag );
