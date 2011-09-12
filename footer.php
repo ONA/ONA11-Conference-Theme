@@ -1,5 +1,5 @@
-	<div id="footer">
-<div class="center">
+<div id="footer">
+	<div class="wrap">
 			<div class="footercontent" id="gencontact">
 <p><img src="<?php echo get_bloginfo('template_directory'); ?>/images/ona11-contact.png"></p>
 <p class="footertext">Have a question but don't know who to ask?</p>
@@ -54,7 +54,7 @@
 </div><!-- #footer -->
 
 <div id="bottom">
-<div class="center">
+<div class="wrap">
 
 <p class="nomargin">Site development by Daniel Bachhuber and Sean Connolly.</p>
 

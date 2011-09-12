@@ -1,7 +1,7 @@
 <?php get_header() ?>
 
 	<div id="container">
-		<div id="content">
+		<div class="content">
 
 			<h1 class="page-title"><span><?php single_cat_title() ?></span></h1>
 			<?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>

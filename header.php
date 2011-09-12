@@ -21,14 +21,16 @@
 <div id="wrapper">
 
 	<div id="header">
-		<div class="center">
-			<a href="<?php bloginfo('url') ?>/"><img src="<?php bloginfo('template_directory'); ?>/images/header_h927.jpg" /></a>
-		</div><!-- .center -->
+		<div class="wrap">
+			<?php if ( is_home() ): ?>
+			<a href="<?php bloginfo('url') ?>/"><img height="331px" src="<?php bloginfo('template_directory'); ?>/images/header_h927.jpg" /></a>
+			<?php endif; ?>
+		</div>
 	</div><!--	#header -->
 
-<div id="menu">
-	<div class="center">
+	<div class="primary-navigation">
+		<div class="wrap">
 		<?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
 		<div class="ona-logo-menu float-right"><a href="http://journalists.org/"><img src="<?php bloginfo('template_directory'); ?>/images/bg-ona-logo.gif" /></a></div>
-	</div><!-- .center -->
-</div><!-- #menu -->
+		</div><!-- .center -->
+	</div><!-- #menu -->

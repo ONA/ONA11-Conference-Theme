@@ -1,8 +1,8 @@
 <?php get_header() ?>
 
 	<div id="container">
-		<div class="center">
-		<div id="content">
+		<div class="wrap">
+		<div class="content">
 
 <div id="maintop">
 

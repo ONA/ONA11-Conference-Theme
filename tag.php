@@ -1,7 +1,7 @@
 <?php get_header() ?>
 
 	<div id="container">
-		<div id="content">
+		<div class="content">
 
 			<h2 class="page-title"><?php _e( 'Tag Archives:', 'sandbox' ) ?> <span><?php single_tag_title() ?></span></h2>
 

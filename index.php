@@ -2,7 +2,7 @@
 
 	<div id="container">
 		<div class="center">
-		<div id="content">
+		<div class="content">
 
 <div id="maintop">
 
