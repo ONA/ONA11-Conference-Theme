@@ -36,7 +36,7 @@ function ona11_timestamp( $type = 'long', $show_updated = true ) {
 	if ( get_post_time( 'l, F j, Y', true, $post_id ) == date( 'l, F j, Y' ) ) {
 		$html .= human_time_diff( $post_timestamp ) . ' ago';
 	} else if ( $post_timestamp > ( $current_timestamp - 518400 ) ) {
-		$html .= get_the_time( 'l' ) . ' at ' . get_the_time( 'g:i a T' );
+		$html .= get_the_time( 'l' ) . ' at ' . get_the_time( 'g:i a' );
 	} else if ( $post_timestamp > ( $current_timestamp - 220752000 ) ) {
 		$html .= get_the_time( 'F jS' );
 	} else {
@@ -53,7 +53,7 @@ function ona11_timestamp( $type = 'long', $show_updated = true ) {
 	if ( get_post_modified_time( 'l, F j, Y', true, $post_id ) == date( 'l, F j, Y' ) ) {
 		$html .= human_time_diff( $post_modified_timestamp ) . ' ago';
 	} else if ( $post_modified_timestamp > ( $current_timestamp - 518400 ) ) {
-		$html .= get_the_modified_time( 'l' ) . ' at ' . get_the_modified_time( 'g:i a T' );
+		$html .= get_the_modified_time( 'l' ) . ' at ' . get_the_modified_time( 'g:i a' );
 	} else if ( $post_modified_timestamp > ( $current_timestamp - 220752000 ) ) {
 		$html .= get_the_modified_time( 'F jS' );
 	} else {
