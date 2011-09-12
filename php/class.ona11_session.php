@@ -162,11 +162,6 @@ class ona11_session
 		// post_content and post_excerpt are included in the post object
 		
 		$hashtag = get_post_meta( $post->ID, '_ona11_hashtag', true );
-
-		$session_active = get_post_meta( $post->ID, '_ona11_session_active', true );
-		if ( $session_active != 'off' )
-			$session_active = 'on';
-			
 		
 		?>
 		
@@ -191,14 +186,7 @@ class ona11_session
 					<label for="ona11-hashtag">Hashtag:</label>
 					<input type="text" id="ona11-hashtag" name="ona11-hashtag" size="30" value="<?php esc_attr_e( $hashtag ); ?>" />
 				</div>
-							
-				<div class="line-item">
-					<label for="ona11-session-active">This session is:</label>
-					<select id="ona11-session-active" name="ona11-session-active">
-						<option value="on"<?php if ( $session_active == 'on' ) { echo ' selected="selected"'; } ?>>Active, and should be visible across the site</option>
-						<option value="off"<?php if ( $session_active == 'off' ) { echo ' selected="selected"'; } ?>>Inactive, and should be hidden</option>
-					</select>
-				</div>
+
 			</div>
 			
 			<input type="hidden" id="ona11-session-nonce" name="ona11-session-nonce" value="<?php echo wp_create_nonce('ona11-session-nonce'); ?>" />
@@ -263,11 +251,6 @@ class ona11_session
 		
 		$hashtag = sanitize_title( $_POST['ona11-hashtag'] );
 		update_post_meta( $post_id, '_ona11_hashtag', $hashtag );
-		
-		$session_active = $_POST['ona11-session-active'];
-		if ( $session_active != 'off' )
-			$session_active = 'on';
-		update_post_meta( $post_id, '_ona11_session_active', $session_active );
 		
 	}
 	
