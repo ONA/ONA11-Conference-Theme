@@ -2,8 +2,9 @@
 
 <div id="container">
 
-	<div id="content">
+	<div class="content">
 		
+		<?php get_template_part( 'loop', 'single_session' ); ?>
 		
 	</div>
 
