@@ -174,7 +174,7 @@ class ona11_session
 			</div>
 			
 			<div class="option-item">
-				<h4>Short Description (optional):</h4>
+				<h4>Short Description:</h4>
 				<textarea id="excerpt" name="excerpt" rows="2" cols="60"><?php esc_html_e( $post->post_excerpt ); ?></textarea>
 				<p class="description">Basic HTML is allowed. If filled out, this short description will appear on pages other than the single session page. One to two sentences is a great length.</p>
 			</div>
