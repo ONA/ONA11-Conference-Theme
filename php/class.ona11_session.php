@@ -101,7 +101,7 @@ class ona11_session
 	function date_time_location_meta_box() {
 		global $post;
 		
-		$time_format = 'm/d/y g:i A';
+		$time_format = 'm/d/Y g:i A';
 		$start_timestamp = get_post_meta( $post->ID, '_ona11_start_timestamp', true );
 		$start_time = ( $start_timestamp ) ? date( $time_format, $start_timestamp ) : '';
 			
@@ -169,7 +169,7 @@ class ona11_session
 			
 			<div class="option-item">
 				<h4>Full Description<span class="required">*</span>:</h4>
-				<textarea id="content" name="content" rows="6" cols="60"><?php esc_html_e( $post->post_content ); ?></textarea>
+				<textarea id="content" name="content" rows="8" cols="60"><?php esc_html_e( $post->post_content ); ?></textarea>
 				<p class="description">Basic HTML is allowed. This extended description appears on the single session page and can be as long as you'd like.</p>
 			</div>
 			
