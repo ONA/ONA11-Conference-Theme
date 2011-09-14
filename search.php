@@ -1,6 +1,11 @@
-<?php get_header() ?>
+<?php get_header(); ?>
 
-	<div id="container">
+	<div class="main">
+		
+		<div class="wrap">
+			
+		<?php get_sidebar(); ?>			
+			
 		<div class="content">
 
 <?php if ( have_posts() ) : ?>
@@ -61,7 +66,9 @@
 <?php endif; ?>
 
 		</div><!-- #content -->
+		
+		</div>
+		
 	</div><!-- #container -->
 
-<?php get_sidebar() ?>
 <?php get_footer() ?>

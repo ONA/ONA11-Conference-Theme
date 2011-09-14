@@ -1,9 +1,14 @@
 <?php get_header() ?>
 
-	<div id="container">
+	<div class="main">
+		
+		<div class="wrap">
+			
+		<?php get_sidebar(); ?>			
+		
 		<div class="content">
 
-			<h1 class="page-title"><span><?php single_cat_title() ?></span></h1>
+			<h2 class="page-title"><span><?php single_cat_title() ?></span></h2>
 			<?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
 
 
@@ -40,6 +45,8 @@
 			</div>
 
 		</div><!-- #content -->
-<?php get_sidebar() ?>
+
+		</div>
+
 	</div><!-- #container -->
 <?php get_footer() ?>

@@ -1,6 +1,11 @@
 <?php get_header() ?>
 
-	<div id="container">
+	<div class="main">
+		
+		<div class="wrap">
+		
+			<?php get_sidebar(); ?>				
+		
 		<div class="content">
 
 			<div id="post-0" class="post error404 not-found">
@@ -11,7 +16,9 @@
 			</div><!-- .post -->
 
 		</div><!-- #content -->
-<?php get_sidebar() ?>
-	</div><!-- #container -->
+		
+		</div>
+		
+		</div>
 
 <?php get_footer() ?>

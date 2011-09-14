@@ -496,35 +496,35 @@ width:100%;
 }
 /* Sidebar */
 
-div#sidebar {
-width:280px;
-float:right;
-padding-left:10px;
+div.sidebar.float-right {
+	width:280px;
+	float:right;
+	padding-left:10px;
 }
 
-div#sidebar input#s {
+.sidebar input#s {
 width:7em;
 }
 
-div#sidebar li form {
+.sidebar li form {
 margin:0.2em 0 0;
 padding:0;
 }
 
-div#sidebar ul ul, #ttweets, #tmore {
+.sidebar ul ul, #ttweets, #tmore {
 margin:0 0 0 1em;
 }
 
-div#sidebar ul ul li {
+.sidebar ul ul li {
 list-style-type:none;
 margin:0;
 }
 
-div#sidebar ul ul ul {
+.sidebar ul ul ul {
 margin:0 0 0 0.5em;
 }
 
-div#sidebar ul ul ul li {
+.sidebar ul ul ul li {
 list-style-type:none;;
 }
 

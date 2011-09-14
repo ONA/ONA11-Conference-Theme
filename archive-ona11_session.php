@@ -1,13 +1,13 @@
 <?php get_header(); ?>
 
-<div class="wrap">
+<div class="main">
 	
-	<div class="main">
-
-	<div class="content">
+	<div class="wrap">
 		
-		<?php get_template_part( 'loop', 'archive_session' ); ?>
+	<div class="content">				
 		
+	<?php get_template_part( 'loop', 'archive_session' ); ?>
+	
 	</div>
 	
 	</div>

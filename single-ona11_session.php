@@ -1,14 +1,18 @@
 <?php get_header(); ?>
 
-<div id="container">
+<div class="main">
+	
+	<div class="wrap">
+	
+	<?php get_sidebar( 'single_session' ); ?>	
 
 	<div class="content">
 		
 		<?php get_template_part( 'loop', 'single_session' ); ?>
 		
 	</div>
-
-	<?php get_sidebar( 'single_session' ); ?>
+	
+	</div>
 	
 </div>
 

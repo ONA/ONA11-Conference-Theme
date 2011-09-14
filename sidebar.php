@@ -1,4 +1,4 @@
-<div id="sidebar" class="sidebar">
+<div id="primary-sidebar" class="sidebar float-right">
 		
 		<div id="latest-updates" class="widget">
 			<p><img src="<?php echo get_bloginfo('template_directory'); ?>/images/ona11-latest-updates.gif"></p>

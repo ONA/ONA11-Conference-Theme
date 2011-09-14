@@ -1,6 +1,11 @@
 <?php get_header() ?>
 
-	<div id="container">
+	<div class="main">
+		
+		<div class="wrap">
+			
+		<?php get_sidebar(); ?>			
+		
 		<div class="content">
 
 <?php the_post() ?>
@@ -41,7 +46,9 @@
 			</div>
 
 		</div><!-- #content -->
-<?php get_sidebar() ?>
+		
+		</div>
+		
 	</div><!-- #container -->
 
 <?php get_footer() ?>

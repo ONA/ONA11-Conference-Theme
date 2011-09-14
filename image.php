@@ -1,6 +1,8 @@
 <?php get_header() ?>
 
-	<div id="container">
+	<div class="main">
+		
+		<div class="wrap">
 		
 		<div class="content">
 
@@ -69,6 +71,8 @@
 					<div class="clear-both"></div>
 
 		</div><!-- .content -->
+		
+		<div>
 		
 	</div><!-- #container -->
 

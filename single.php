@@ -1,6 +1,10 @@
 <?php get_header(); ?>
 
-<div id="container">
+<div class="main">
+	
+	<div class="wrap">
+		
+	<?php get_sidebar(); ?>		
 	
 	<div class="content">
 		
@@ -14,8 +18,8 @@
 		<?php comments_template(); ?>
 
 	</div><!-- #content -->
-
-	<?php get_sidebar(); ?>
+	
+	</div>
 	
 	</div><!-- #container -->
 	

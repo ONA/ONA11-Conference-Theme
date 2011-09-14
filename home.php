@@ -1,7 +1,11 @@
 <?php get_header() ?>
-
-	<div id="container">
-		<div class="wrap">
+		
+		<div class="main">
+			
+			<div class="wrap">
+				
+				<?php get_sidebar(); ?>
+			
 		<div class="content">
 
 <div id="maintop">
@@ -107,8 +111,7 @@ Fax: 617-236-5885</p>
 
 		</div><!-- #content -->
 
-
-<?php get_sidebar() ?>
 	</div><!-- .clearfix -->
 	</div><!-- #container -->
-<?php get_footer() ?>
+	
+<?php get_footer(); ?>
