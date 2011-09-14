@@ -4,6 +4,7 @@ define( 'ONA11_VERSION', '1.0' );
 
 require_once( 'php/class.ona11_session.php' );
 require_once( 'php/class.ona11_person.php' );
+require_once( 'php/class.ona11_quote.php' );
 
 if ( !class_exists( 'ona11' ) ) {
 	
@@ -19,6 +20,7 @@ class ona11
 		
 		$this->session = new ona11_session();
 		$this->person = new ona11_person();
+		$this->quote = new ona11_quote();
 				
 		add_action( 'after_setup_theme', array( &$this, 'enqueue_resources' ) );
 		add_action( 'after_setup_theme', array( &$this, 'register_custom_taxonomies' ) );
@@ -126,6 +128,16 @@ class ona11
 		// Sessions should be able to have speakers
 		p2p_register_connection_type( array( 
 			'from' => 'ona11_session',
+	        'to' => 'ona11_person'
+	    ) );
+		
+		// Quotes should be able to be associated with sessions and people
+		p2p_register_connection_type( array( 
+			'from' => 'ona11_quote',
+	        'to' => 'ona11_session'
+	    ) );
+		p2p_register_connection_type( array( 
+			'from' => 'ona11_quote',
 	        'to' => 'ona11_person'
 	    ) );
 		
