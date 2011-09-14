@@ -25,7 +25,7 @@
 			<?php if ( is_home() ): ?>
 			<a href="<?php bloginfo('url') ?>/"><img height="331px" src="<?php bloginfo('template_directory'); ?>/images/header_h927.jpg" /></a>
 			<?php else: ?>
-			<a href="<?php bloginfo('url') ?>/"><img height="150px" src="<?php bloginfo('template_directory'); ?>/images/header_h1051.jpg" /></a>	
+			<a href="<?php bloginfo('url') ?>/"><img height="150px" src="<?php bloginfo('template_directory'); ?>/images/header_small_h930.png" /></a>	
 			<?php endif; ?>
 		</div>
 	</div><!--	#header -->
