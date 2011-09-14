@@ -67,6 +67,8 @@ h2 {
 h3 {
 	font-size: 18px;
 	line-height: 24px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 h4 {
@@ -77,6 +79,10 @@ h4 {
 	margin-left: auto;
 	margin-right: auto;
 	width: 930px;
+}
+
+.main {
+	padding-bottom: 30px;
 }
 
 .highlight {
@@ -149,13 +155,12 @@ div.primary-navigation ul li a:hover {
 .primary-navigation {
     background: rgb(33,53,67);
     display: block;
-    float: left;
-margin:0;
-padding:0;
-width:100%;
-height:38px;
-border-top:solid 2px rgb(57,76,90);
-font-weight:normal;
+	margin:0;
+	padding:0;
+	width:100%;
+	height:38px;
+	border-top:solid 2px rgb(57,76,90);
+	font-weight:normal;
 }
 
 .primary-navigation .menu-header-menu-container,
@@ -251,8 +256,7 @@ div#container {
 div.content {
 	width:618px;
 	margin:20px 0 0 0;
-	float:left;
-	border-right:dotted 2px rgb(200,209,212);
+	border-right: dotted 2px #C8D1D4;
 	padding:0 10px 0 10px;
 	line-height:1.4;
 }
@@ -569,6 +573,33 @@ div.content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 body.single .session-meta {
 	font-size: 20px;
 	line-height: 26px;
+}
+
+body.post-type-archive-ona11_session .day-sessions {
+	border: 2px dotted #C8D1D4;
+}
+
+body.post-type-archive-ona11_session .day-sessions .session-time-block {
+	border-top: 2px dotted #C8D1D4;
+}
+
+body.post-type-archive-ona11_session .day-sessions .session-time-block:first-child {
+	border-top: none;
+}
+
+body.post-type-archive-ona11_session .day-sessions .session-time-block .session-start-time {
+	float: left;
+	margin-left: -115px;
+	width: 100px;
+	text-align: right;
+}
+
+body.post-type-archive-ona11_session .day-sessions .session-time-block ul {
+	list-style-type: none;
+}
+
+body.post-type-archive-ona11_session .day-sessions .session-time-block ul li {
+	display: inline;
 }
 
 .sidebar a {

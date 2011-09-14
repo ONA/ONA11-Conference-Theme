@@ -38,8 +38,8 @@
 	<h3><?php echo $day_full_name; ?></h3>
 	<div class="day-sessions">
 	<?php foreach( $days_sessions as $start_time => $posts ): ?>
-		<div class="session-start-time"><?php echo $start_time; ?></div>
 		<div class="session-time-block">
+			<div class="session-start-time"><?php echo $start_time; ?></div>			
 			<ul>
 			<?php foreach( $posts as $post ): ?>
 				<?php setup_postdata( $post ); ?>
