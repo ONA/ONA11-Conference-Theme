@@ -43,7 +43,7 @@
 			<ul>
 			<?php foreach( $posts as $post ): ?>
 				<?php setup_postdata( $post ); ?>
-				<li><?php the_title(); ?></li>
+				<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
 			<?php endforeach; ?>
 			</ul>
 		</div>

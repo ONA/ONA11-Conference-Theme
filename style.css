@@ -110,8 +110,8 @@ a img {
 }
 
 /* Header */
-div#header {
-	background: #008ccd url('images/bg/bg-slice-311.jpg') bottom left repeat-x;
+div.header {
+	background: #008ccd url('images/bg/bg-slice-311.jpg') top left repeat-x;
 }
 
 /* Menu Version 1
