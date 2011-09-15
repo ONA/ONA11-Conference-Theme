@@ -6,6 +6,18 @@
 		'orderby' => 'meta_value',
 		'order' => 'asc',
 	);
+	
+	if ( is_tax() ) {
+		$queried_term = get_queried_object();	
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'ona11_session_types',
+				'field' => 'id',
+				'terms' => $queried_term->term_id,
+			),
+		);
+	}
+	
 	$sessions = new WP_Query( $args );
 	
 	$session_days = array(
@@ -26,6 +38,24 @@
 	
 	
 ?>
+
+<?php if ( is_tax() ): ?>
+	<?php $track = get_queried_object(); ?>
+	<h2><a href="<?php echo get_site_url( null, '/sessions/' ); ?>"><?php _e( 'All Sessions' ); ?></a>
+	<?php
+		$track_title_html = ' &rarr; <a href="' . get_term_link( $track ) . '">' . esc_html( $track->name ) . '</a>';
+		if ( $track->parent ) {
+			$parent_track = get_term_by( 'id', $track->parent, 'ona11_session_types' );
+			$track_title_html = ' &rarr; <a href="' . get_term_link( $parent_track ) . '">' . esc_html( $parent_track->name ) . '</a>' . $track_title_html;
+		}
+		echo $track_title_html;
+	?></h2>
+	<?php if ( $track->description ): ?>
+	<div class="track-description">
+	<?php echo wpautop( $track->description ); ?>	
+	</div>
+	<?php endif; ?>
+<?php endif; ?>
 
 <?php foreach( $all_sessions as $session_day => $days_sessions ):
 	$day_full_name = date( 'l', strtotime( $session_day ) );
