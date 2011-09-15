@@ -66,8 +66,20 @@
 ?>
 
 <div id="session-day-<?php echo $day_slugify; ?>" class="session-day">
+	<?php
+		$day_title = '';
+		foreach( $all_sessions as $sd => $ds ) {
+			$sd_full = date( 'l', strtotime( $sd ) );
+			$sd_slugify = sanitize_title( $sd_full );
+			$day_title .= '<a class="day-title';
+			if ( $sd_slugify == $day_slugify )
+				$day_title .= ' active';
+			$day_title .= '" href="#' . $sd_slugify . '">' . $sd_full . '</a>';
+		}
+	
+	?>
 	<a id="<?php echo $day_slugify; ?>"></a>
-	<h3><?php echo $day_full_name; ?></h3>
+	<h3><?php echo $day_title; ?></h3>
 	<div class="day-sessions">
 	<?php foreach( $days_sessions as $start_time => $posts ): ?>
 		<div class="session-time-block">

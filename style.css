@@ -587,6 +587,15 @@ body.archive .session-day h3 {
     text-transform: uppercase;
 }
 
+body.archive .session-day h3 a {
+	margin-right: 10px;
+	color: #C8D1D4;
+}
+
+body.archive .session-day h3 a.active {
+	color: #415463;
+}
+
 body.archive .day-sessions .session-time-block {
 	border-top: 2px dotted #C8D1D4;
 	padding-top: 10px;
