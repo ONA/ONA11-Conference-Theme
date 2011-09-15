@@ -16,10 +16,10 @@ TAGS: white, microformats, fixed-width, flexible-width, one-column, two-columns,
 body {
 	margin:0;
 	padding:0;
-background-color:#fff;
-font-family:Helvetica, Arial, sans-serif;
-font-size:12px;
-color:rgb(29,43,53);
+	background-color:#fff;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:12px;
+	color:rgb(29,43,53);
 }
 
 a {
@@ -72,6 +72,16 @@ h3 {
 }
 
 h4 {
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: bold;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+h5 {
+	font-size: 12px;
+	line-height: 18px;
 	font-weight: bold;
 }
 
@@ -87,6 +97,11 @@ h4 {
 
 .highlight {
 	color: #B3D235;
+}
+
+.blue-background {
+	background-color: #415463;
+	color: white;
 }
 
 .float-right {
@@ -113,42 +128,6 @@ a img {
 div.header {
 	background: #008ccd url('images/bg/bg-slice-311.jpg') bottom left repeat-x;
 }
-
-/* Menu Version 1
-div.primary-navigation {
-margin:0;
-padding:0;
-background-color: rgb(29,43,53);
-width:100%;
-height:40px;
-border-top:solid 1px rgb(65,86,101);
-font-weight:normal;
-}
-
-div.primary-navigation ul {
-list-style-type:none;
-list-style-image:none;
-margin:0;
-padding:0;
-}
-
-div.primary-navigation ul li {
-display:inline;
-margin:10px 20px 0 0;
-color:#fff;
-}
-
-div.primary-navigation ul li a {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
-padding:6px;
-}
-
-div.primary-navigation ul li a:hover {
-    background: rgb(23,37,47);
-}
-*/
 
 /* Menu Version 2 */
 
@@ -560,7 +539,6 @@ div.content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 	color: #BBBBBB;
 }
 
-
 .content .post .entry-content,
 .content .post .session-content {
 	font-size: 14px;
@@ -573,6 +551,26 @@ div.content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 body.single .session-meta {
 	font-size: 20px;
 	line-height: 26px;
+}
+
+body.single .session-navigation {
+	text-align: right;
+	margin-left: -65px;
+	width: 50px;
+	float: left;
+}
+
+body.single .session-navigation {
+	color: #888888;
+}
+
+body.single .session-navigation-link {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+body.single .session-navigation a {
+
 }
 
 body.post-type-archive-ona11_session .day-sessions {
@@ -624,6 +622,18 @@ body.post-type-archive-ona11_session .day-sessions .session-time-block ul li {
 	line-height: 20px;
 	margin:8px 0 4px 0;	
 	font-family:Helvetica, Arial, sans-serif;
+}
+
+.sidebar .widget h4.orange-callout {
+	background-image: url( 'images/ona11-orange-box.png' );
+    background-repeat: no-repeat;
+    color: white;
+    font-size: 20px;
+    font-weight: normal;
+    height: 45px;
+    padding-left: 15px;
+    padding-top: 14px;
+    width: 271px;
 }
 
 .sidebar .entry-meta {
