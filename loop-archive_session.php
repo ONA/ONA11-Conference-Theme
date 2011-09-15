@@ -75,8 +75,21 @@
 			<ul>
 			<?php foreach( $posts as $post ): ?>
 				<?php setup_postdata( $post ); ?>
+				<?php
+					$session_location = wp_get_post_terms( get_the_id(), 'ona11_locations' );
+					if ( count( $session_location ) ) {
+						$session_where = '<span class="session-location float-right"><a href="' . get_term_link( $session_location[0] ) . '">' . esc_html( $session_location[0]->name ) . '</a>';
+						if ( $session_location[0]->parent ) {
+							$parent_location = get_term_by( 'id', $session_location[0]->parent, 'ona11_locations' );
+							$session_where .= ', <a href="' . get_term_link( $parent_location ) . '">' . esc_html( $parent_location->name ) . '</a>';
+						}
+						$session_where .= '</span>';
+					} else {
+						$session_where = '';
+					}
+				?>
 				<li>
-					<h4 class="session-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+					<h4 class="session-title"><?php echo $session_where; ?><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 					<div class="session-description"><?php the_excerpt(); ?></div>
 				</li>
 			<?php endforeach; ?>
