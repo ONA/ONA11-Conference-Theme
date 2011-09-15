@@ -73,7 +73,10 @@
 			<ul>
 			<?php foreach( $posts as $post ): ?>
 				<?php setup_postdata( $post ); ?>
-				<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+				<li>
+					<h4 class="session-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+					<div class="session-description"><?php the_excerpt(); ?></div>
+				</li>
 			<?php endforeach; ?>
 			</ul>
 		</div>
