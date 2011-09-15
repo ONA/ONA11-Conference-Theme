@@ -625,18 +625,21 @@ body.archive .day-sessions .session-time-block ul li h4 a {
 	text-decoration: underline;
 }
 
-body.archive .day-sessions .session-time-block ul li h4 .session-location {
+body.archive .day-sessions .session-time-block ul li h4 .session-location,
+body.archive .day-sessions .session-time-block ul li h4 .session-type {
 	font-size: 12px;
 	color: #666;	
 	font-weight: normal;
 }
 
-body.archive .day-sessions .session-time-block ul li h4 .session-location a {
+body.archive .day-sessions .session-time-block ul li h4 .session-location a,
+body.archive .day-sessions .session-time-block ul li h4 .session-type a {
 	text-decoration: none;
 	color: #666;	
 }
 
-body.archive .day-sessions .session-time-block ul li h4 .session-location a:hover {
+body.archive .day-sessions .session-time-block ul li h4 .session-location a:hover,
+body.archive .day-sessions .session-time-block ul li h4 .session-type a:hover {
 	text-decoration: underline;
 }
 

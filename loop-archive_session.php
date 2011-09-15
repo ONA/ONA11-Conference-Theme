@@ -76,6 +76,14 @@
 			<?php foreach( $posts as $post ): ?>
 				<?php setup_postdata( $post ); ?>
 				<?php
+					$session_types = wp_get_post_terms( get_the_id(), 'ona11_session_types' );
+					if ( count( $session_types ) ) {
+						$session_types_html = '<a href="' . get_term_link( $session_types[0] ) . '">' . esc_html( $session_types[0]->name ) . '</a>)</em></span>';
+						$session_types_html = '&nbsp;<span class="session-type"><em>(' . $session_types_html;
+					} else {
+						$session_types_html = '';
+					}
+					
 					$session_location = wp_get_post_terms( get_the_id(), 'ona11_locations' );
 					if ( count( $session_location ) ) {
 						$session_where = '<span class="session-location float-right"><a href="' . get_term_link( $session_location[0] ) . '">' . esc_html( $session_location[0]->name ) . '</a>';
@@ -89,7 +97,7 @@
 					}
 				?>
 				<li>
-					<h4 class="session-title"><?php echo $session_where; ?><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+					<h4 class="session-title"><?php echo $session_where; ?><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a><?php echo $session_types_html; ?></h4>
 					<div class="session-description"><?php the_excerpt(); ?></div>
 				</li>
 			<?php endforeach; ?>
