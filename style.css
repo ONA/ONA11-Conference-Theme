@@ -554,19 +554,8 @@ body.single .session-meta {
 }
 
 body.single .session-navigation {
-	text-align: right;
-	margin-left: -65px;
-	width: 50px;
-	float: left;
-}
-
-body.single .session-navigation {
-	color: #888888;
-}
-
-body.single .session-navigation-link {
-	margin-top: 5px;
 	margin-bottom: 5px;
+	color: #888888;	
 }
 
 body.single .session-navigation a {
