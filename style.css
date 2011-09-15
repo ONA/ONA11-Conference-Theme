@@ -562,7 +562,7 @@ body.single .session-navigation a {
 
 }
 
-body.archive .track-description {
+body.archive .term-description {
 	font-size: 16px;
 	line-height: 24px;
 	font-style: italic;
@@ -570,7 +570,7 @@ body.archive .track-description {
 	margin-bottom: 10px;
 }
 
-body.archive .track-description p {
+body.archive .term-description p {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	margin:0;
@@ -609,6 +609,10 @@ body.archive .day-sessions .session-time-block ul li {
 
 .sidebar a:hover {
 	text-decoration: underline;
+}
+
+.sidebar .widget {
+	margin-bottom: 30px;
 }
 
 .sidebar .widget ul {

@@ -11,7 +11,7 @@
 		$queried_term = get_queried_object();	
 		$args['tax_query'] = array(
 			array(
-				'taxonomy' => 'ona11_session_types',
+				'taxonomy' => $queried_term->taxonomy,
 				'field' => 'id',
 				'terms' => $queried_term->term_id,
 			),
@@ -40,19 +40,19 @@
 ?>
 
 <?php if ( is_tax() ): ?>
-	<?php $track = get_queried_object(); ?>
+	<?php $queried_object = get_queried_object(); ?>
 	<h2><a href="<?php echo get_site_url( null, '/sessions/' ); ?>"><?php _e( 'All Sessions' ); ?></a>
 	<?php
-		$track_title_html = ' &rarr; <a href="' . get_term_link( $track ) . '">' . esc_html( $track->name ) . '</a>';
-		if ( $track->parent ) {
-			$parent_track = get_term_by( 'id', $track->parent, 'ona11_session_types' );
-			$track_title_html = ' &rarr; <a href="' . get_term_link( $parent_track ) . '">' . esc_html( $parent_track->name ) . '</a>' . $track_title_html;
+		$term_title_html = ' &rarr; <a href="' . get_term_link( $queried_object ) . '">' . esc_html( $queried_object->name ) . '</a>';
+		if ( $queried_object->parent ) {
+			$parent_term = get_term_by( 'id', $queried_object->parent, $queried_object->taxonomy );
+			$term_title_html = ' &rarr; <a href="' . get_term_link( $parent_term ) . '">' . esc_html( $parent_term->name ) . '</a>' . $term_title_html;
 		}
-		echo $track_title_html;
+		echo $term_title_html;
 	?></h2>
-	<?php if ( $track->description ): ?>
-	<div class="track-description">
-	<?php echo wpautop( $track->description ); ?>	
+	<?php if ( $queried_object->description ): ?>
+	<div class="term-description">
+	<?php echo wpautop( $queried_object->description ); ?>	
 	</div>
 	<?php endif; ?>
 <?php endif; ?>
