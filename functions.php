@@ -24,6 +24,7 @@ class ona11
 				
 		add_action( 'after_setup_theme', array( &$this, 'register_custom_taxonomies' ) );
 		add_action( 'after_setup_theme', array( &$this, 'associate_post_types' ) );
+		add_action( 'after_setup_theme', array( &$this, 'register_menus' ) );		
 		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_resources' ) );
 		add_action( 'zoninator_pre_init', array( &$this, 'zoninator_pre_init' ) );	
 		
@@ -56,6 +57,15 @@ class ona11
 	 */
 	function zoninator_pre_init() {
 		add_post_type_support( 'ona11_session', 'zoninator_zones' );
+	}
+	
+	/**
+	 * Register any menus we need
+	 */
+	function register_menus() {
+		register_nav_menus(
+			array('header-menu' => __( 'Header Menu' ) )
+		);
 	}
 	
 	/**
@@ -167,23 +177,6 @@ class ona11
 
 global $ona11;
 $ona11 = new ona11();
-
-// Produces a list of pages in the header without whitespace
-function sandbox_globalnav() {
-	if ( $menu = str_replace( array( "\r", "\n", "\t" ), '', wp_list_pages('title_li=&sort_column=menu_order&echo=0') ) )
-		$menu = '<ul>' . $menu . '</ul>';
-	$menu = '<div id="menu">' . $menu . "</div>\n";
-	echo apply_filters( 'globalnav_menu', $menu ); // Filter to override default globalnav: globalnav_menu
-}
-
-// Adds custom menu support
-function register_my_menus() {
-  register_nav_menus(
-    array('header-menu' => __( 'Header Menu' ) )
-  );
-}
-
-add_action( 'init', 'register_my_menus' );
 
 // Define the num val for 'alt' classes (in post DIV and comment LI)
 $sandbox_post_alt = 1;
