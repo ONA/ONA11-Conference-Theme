@@ -64,3 +64,77 @@ function ona11_timestamp( $type = 'long', $show_updated = true ) {
 	echo $html;
 	
 }
+
+/**
+ * Helper method for whether the P2P plugin is enabled
+ *
+ * @return bool $p2p_enabled Whether or not the plugin is enabled
+ */
+function ona11_p2p_enabled() {
+	if ( !function_exists( 'p2p_register_connection_type' ) )
+		return false;
+	else
+		return true;
+}
+
+/**
+ * Generate a link to the previous session in the track
+ */
+function ona11_get_previous_session_link() {
+	global $post;
+	$post_id = $post->ID;
+	$start_timestamp = (int)get_post_meta( $post_id, '_ona11_start_timestamp', true );
+	$args = array(
+		'posts_per_page' => 1,
+		'post_type' => 'ona11_session',
+		'meta_key' =>  '_ona11_start_timestamp',
+		'meta_value' => $start_timestamp,
+		'meta_compare' => '<',
+	);
+	
+	$session_type_tax = wp_get_object_terms( $post_id, 'ona11_session_types' );
+	if ( count( $session_type_tax ) )
+		$args['tax_query'] = array(
+			'taxonomy' => 'ona11_session_types',
+			'field' => 'id',
+			'terms' => $session_type_tax[0]->term_id,
+			'operator' => 'AND',
+		);
+	
+	$match_posts = get_posts( $args );
+	if ( count( $match_posts ) && wp_get_object_terms( $match_posts[0]->ID, 'ona11_session_types' ) )
+ 		return get_permalink( $match_posts[0]->ID );
+	else
+	 	return false;
+}
+
+/**
+ * Generate a link to the next session in the track
+ */
+function ona11_get_next_session_link() {
+	global $post;
+	$post_id = $post->ID;
+	$start_timestamp = (int)get_post_meta( $post_id, '_ona11_start_timestamp', true );
+	$args = array(
+		'posts_per_page' => 1,
+		'post_type' => 'ona11_session',
+		'meta_key' =>  '_ona11_start_timestamp',
+		'meta_value' => $start_timestamp,
+		'meta_compare' => '>',
+	);
+	
+	$session_type_tax = wp_get_object_terms( $post_id, 'ona11_session_types' );
+	if ( count( $session_type_tax ) )
+		$args['tax_query'] = array(
+			'taxonomy' => 'ona11_session_types',
+			'field' => 'id',
+			'terms' => $session_type_tax[0]->term_id,
+			'operator' => 'IN',
+		);
+	
+	$match_posts = get_posts( $args );
+	if ( count( $match_posts ) && wp_get_object_terms( $match_posts[0]->ID, 'ona11_session_types' ) )
+ 		return get_permalink( $match_posts[0]->ID );
+	else
+	 	return false;
+}
