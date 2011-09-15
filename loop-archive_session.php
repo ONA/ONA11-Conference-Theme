@@ -55,6 +55,8 @@
 	<?php echo wpautop( $queried_object->description ); ?>	
 	</div>
 	<?php endif; ?>
+<?php else: ?>
+	<h2><?php _e( 'All Sessions' ); ?></h2>
 <?php endif; ?>
 
 <?php foreach( $all_sessions as $session_day => $days_sessions ):
