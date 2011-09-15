@@ -576,20 +576,21 @@ body.archive .term-description p {
 	margin:0;
 }
 
+body.archive .session-day {
+	padding-right: 10px;
+}
+
 body.archive .session-day h3 {
-	margin-bottom: -6px;
+	color: #888;
     margin-top: 15px;
     padding-bottom: 0;
     text-transform: uppercase;
 }
 
-body.archive .day-sessions {
-	border: 2px dotted #C8D1D4;
-}
-
 body.archive .day-sessions .session-time-block {
 	border-top: 2px dotted #C8D1D4;
-	padding: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 body.archive .day-sessions .session-time-block:first-child {
@@ -598,7 +599,8 @@ body.archive .day-sessions .session-time-block:first-child {
 
 body.archive .day-sessions .session-time-block .session-start-time {
 	float: left;
-	margin-left: -120px;
+	margin-left: -130px;
+	margin-top: 5px;
 	width: 100px;
 	text-align: right;
 }
@@ -618,7 +620,8 @@ body.archive .day-sessions .session-time-block ul li:first-child {
 }
 
 body.archive .day-sessions .session-time-block ul li h4 {
-
+	font-size: 16px;
+	line-height: 22px;
 }
 
 body.archive .day-sessions .session-time-block ul li h4 a {
@@ -645,6 +648,8 @@ body.archive .day-sessions .session-time-block ul li h4 .session-type a:hover {
 
 body.archive .day-sessions .session-time-block ul li .session-description {
 	color: #888;
+	font-size: 14px;
+	line-height: 21px;
 }
 
 body.archive .day-sessions .session-time-block ul li p {
