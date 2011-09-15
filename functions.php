@@ -22,9 +22,10 @@ class ona11
 		$this->person = new ona11_person();
 		$this->quote = new ona11_quote();
 				
-		add_action( 'after_setup_theme', array( &$this, 'enqueue_resources' ) );
 		add_action( 'after_setup_theme', array( &$this, 'register_custom_taxonomies' ) );
 		add_action( 'after_setup_theme', array( &$this, 'associate_post_types' ) );
+		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_resources' ) );
+		add_action( 'zoninator_pre_init', array( &$this, 'zoninator_pre_init' ) );	
 		
 		if ( !is_admin() ) {
 			require_once( 'php/template_tags.php' );
@@ -40,12 +41,21 @@ class ona11
 	function enqueue_resources() {
 		if ( !is_admin() ) {
 			wp_enqueue_style( 'ona11_primary_css', get_bloginfo('stylesheet_url'), false, ONA11_VERSION );
+			if ( is_home() )
+				wp_enqueue_style( 'ona11_home_css', get_bloginfo('template_directory') . '/css/home.css', false, ONA11_VERSION );			
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'ona11', get_bloginfo( 'template_directory' ) . '/js/ona11.js', array( 'jquery' ), ONA11_VERSION );
 			wp_enqueue_script( 'ona11_twitter', get_bloginfo( 'template_directory' ) . '/js/twitter.js', array( 'jquery' ), ONA11_VERSION );
 		} else {
 			wp_enqueue_style( 'ona_admin_css', get_bloginfo( 'template_url' ) . '/css/admin.css', false, ONA11_VERSION, 'all' );
 		}
+	}
+	
+	/**
+	 * Zoninato
+	 */
+	function zoninator_pre_init() {
+		add_post_type_support( 'ona11_session', 'zoninator_zones' );
 	}
 	
 	/**
