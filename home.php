@@ -24,12 +24,20 @@
 						$already_shown[] = get_the_id();
 						?>
 						<div id="post-<?php the_id(); ?>" <?php post_class(); ?>>
-							<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+							<?php if ( has_post_thumbnail() ) {
+								echo '<a href="' . get_permalink() . '">';							
+								the_post_thumbnail( 'home-featured' );
+								echo '</a>';
+								}
+							?>
+							<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>							
 							<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span></div>
 
+							<?php if ( !has_post_thumbnail() ): ?>
 							<div class="entry-excerpt">
 								<?php the_excerpt() ?>
 							</div>
+							<?php endif; ?>
 						</div>
 						<?php
 						endwhile;
@@ -50,6 +58,12 @@
 						$already_shown[] = get_the_id();
 						?>
 						<li id="post-<?php the_id(); ?>" <?php post_class(); ?>>
+							<?php if ( has_post_thumbnail() ) {
+								echo '<a href="' . get_permalink() . '">';								
+								the_post_thumbnail( 'thumbnail', array( 'class' => 'float-right' ) );
+								echo '</a>';
+							}
+							?>
 							<h4 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 						</li>
 						<?php
@@ -123,6 +137,12 @@
 				while ( $latest_stories->have_posts() ): $latest_stories->the_post();
 			?>
 				<div id="post-<?php the_id(); ?>" <?php post_class(); ?>>
+					<?php if ( has_post_thumbnail() ) {
+						echo '<a href="' . get_permalink() . '">';
+						the_post_thumbnail( 'thumbnail', array( 'class' => 'float-right' ) );
+						echo '</a>';
+					}
+					?>					
 					<h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 					<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span></div>
 
