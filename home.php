@@ -1,117 +1,147 @@
-<?php get_header() ?>
+<?php
+	get_header();
+	// Variable to store the IDs of posts already shown
+	$already_shown = array();
+?>
 		
-		<div class="main">
+<div class="main">
 			
-			<div class="wrap">
+	<div class="wrap">
+		
+		<div class="home-row">
+			
+			<div class="left-col float-left ona11-featured-stories">
+				<div class="ona11-main-featured float-left">
+				<?php
+					$args = array(
+						'posts_per_page' => 1,
+						'post__not_in' => $already_shown,						
+					);
+					$lead_story = new WP_Query( $args );
+				?>
+				<?php if ( $lead_story->have_posts() ):
+						while( $lead_story->have_posts() ): $lead_story->the_post();
+						$already_shown[] = get_the_id();
+						?>
+						<div id="post-<?php the_id(); ?>" <?php post_class(); ?>>
+							<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+							<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span></div>
+
+							<div class="entry-excerpt">
+								<?php the_excerpt() ?>
+							</div>
+						</div>
+						<?php
+						endwhile;
+					  endif;?>
+				</div>
 				
-				<?php get_sidebar(); ?>
+				<div class="ona11-secondary-featured float-right">
+				<?php
+					$args = array(
+						'posts_per_page' => 4,
+						'post__not_in' => $already_shown,
+					);
+					$secondary_leads = new WP_Query( $args );
+				?>
+				<?php if ( $secondary_leads->have_posts() ):
+							echo '<ul>';
+						while( $secondary_leads->have_posts() ): $secondary_leads->the_post();
+						$already_shown[] = get_the_id();
+						?>
+						<li id="post-<?php the_id(); ?>" <?php post_class(); ?>>
+							<h4 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+						</li>
+						<?php
+						endwhile;
+							echo '</ul>';
+					  endif;?>
+				</div>
+			</div>
 			
-		<div class="content">
+			<div class="right-col float-right ona11-sponsors">
+			
+				<h4>ONA is sponsored in part by:</h4>
+				<a href="<?php echo get_site_url( null, '/sponsors-exhibitors/' ); ?>">
+				<img src="<?php bloginfo( 'template_directory' ); ?>/images/tier1_sponsor_logos.jpg" width="252px" height="248px" />
+				</a>
+			</div>
+			
+			<div class="clear-both">
+			
+		</div>
+		
+		<div class="home-row">			
+			
+			<?php
+				$args = array(
+					'post_type' => 'ona11_session',
+					'orderby' => 'rand',
+					'posts_per_page' => 4,
+				);
+				$featured_sessions = new WP_Query( $args );
+			?>
+			<?php if ( $featured_sessions->have_posts() ): ?>
+			<ul class="featured-sessions float-right">
+			<?php while ( $featured_sessions->have_posts() ): $featured_sessions->the_post(); ?>
+				<li>
+					<?php
+					$session_type_tax = wp_get_object_terms( get_the_id(), 'ona11_session_types' );	
+					if ( count( $session_type_tax ) )
+						echo '<h5 class="session-track blue-background">' . esc_html( $session_type_tax[0]->name ) . '</h5>';
+					?>
+					<h3><a class="highlight" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+				</li>
+			<?php endwhile; ?>
+			</ul>
+			<?php endif; ?>
+			
+			<div class="clear-both"></div>
+			
+		</div>
+		
+		<div class="home-row">
+			
+			<div class="left-col float-left ona11-sponsors">
+				
+				<h4>ONA is also sponsored by:</h4>
+				<a href="<?php echo get_site_url( null, '/sponsors-exhibitors/' ); ?>">
+				<img src="<?php bloginfo( 'template_directory' ); ?>/images/tier1_sponsor_logos.jpg" width="252px" height="248px" />
+				</a>
+			</div>
+			
+			<div class="right-col float-right ona11-latest-stories">
+				<h3 class="orange-callout">Latest Stories</h3>
+			<?php
+				$args = array(
+					'posts_per_page' => 6,
+					'post__not_in' => $already_shown,
+				);
+				$latest_stories = new WP_Query( $args );
+				
+				if ( $latest_stories->have_posts() ):
+				while ( $latest_stories->have_posts() ): $latest_stories->the_post();
+			?>
+				<div id="post-<?php the_id(); ?>" <?php post_class(); ?>>
+					<h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+					<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span></div>
 
-<div id="maintop">
-
-<h2><a href="http://ona11.journalists.org/ona11-schedule/">Schedule released &mdash; <span class="highlight">Preview ONA11's workshops, general sessions and more</span></a></h2>
-
-<p class="frontpage"><img src="http://ona11.journalists.org/wp-content/uploads/designers-coders2.jpg" class="content" width="600"></p>
-<p class="wp-caption-text"><em>NPR's David Wright talks design during ONA10's "Coders Are from Mars, Designers Are from Venus" general session.<br />Photo by Denny Gainer for ONA.</em></p>
-
-<p class="frontpage">The ONA11 Program and Conference Chairs have been hard at work on the 2011 Online News Association Conference & Awards Banquet, building sessions and identifying speakers who will turn emerging technology into news gold, give you tools you can use and help you evolve in your digital media career.</p>
-
-<p class="frontpagejump"><a href="http://ona11.journalists.org/ona11-schedule/">Schedule &raquo;</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ona11.journalists.org/ona11-registration">Register &raquo;</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://ona.site-ym.com/general/register_member_type.asp">Join ONA &raquo;</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ona11.journalists.org/2011/05/ona11-schedule-drops-three-days-of-journalism-tech-and-togetherness-in-boston-2/">Read more &raquo;</a></p>
-
-</div><!-- #maintop -->
-
-<div id="mainone">
-
-<h3><a href="http://ona11.journalists.org/ona11-registration" style="text-decoration:none;color:#415463;">Register</a></h3>
-
-<p class="frontpage"><img src="http://ona11.journalists.org/wp-content/uploads/register.jpg" class="content"></p>
-<p class="wp-caption-text"><em>Audience members settle in for an ONA10 keynote.<br />Photo by Julia Schmalz for ONA.</em></p>
-
-<h3><a href="http://ona11.journalists.org/ona11-registration" style="text-decoration:none; color:#B3D235">Registration is open for ONA11</a></h3>
-
-<p class="frontpage">We've restructured our fee timeline to avoid the last-minute crunch. Bottom line: the earlier you register, the lower your fee.</p>
-
-<p class="frontpagejump"><a href="http://ona11.journalists.org/ona11-registration">Register &raquo;</a></p>
-
-</div><!-- #mainone -->
-
-<div id="maintwo">
-
-<h3>Student newsroom</h3>
-
-<p class="frontpage"><img src="http://ona11.journalists.org/wp-content/uploads/newsroom4a.jpg" class="content"></p>
-<p class="wp-caption-text"><em>Lauren Slavin of Towson University checks out a video camera in the ONA10 Student Newsroom. Photo by Julia Schmalz for ONA.</em></p>
-
-<h4>Meet the students</h4>
-
-<p class="frontpage">Google has once again provided a scholarship bringing 20 students from across the country to cover the conference in Boston.</p>
-
-<p class="frontpagejump"><a href="http://ona11.journalists.org/student-newsroom/">Students &raquo;</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ona11.journalists.org/2011/05/meet-the-ona11-student-newsroom-supported-by-google/">Read more &raquo;</a></p>
-
-</div><!-- #maintwo -->
-
-<div id="mainleft">
-
-<h3>Important dates</h3>
-
-<ul class="dateblocks">
-
-<li><div class="dateblock"> 
-	<span class="month">July</span>
-	<span class="day">31</span>
-</div><!-- #dateblock -->
-	<strong>ONA11 registration</strong><br /><em>Second phase registration deadline</em>
-</li>
-
-<li><div class="dateblock">
-	<span class="month">Sept.</span>
-	<span class="day">14</span></div>
-	<strong>Pre-Conference registration</strong><br /><em>Deadline for all Pre-Conference Workshops</em></strong>
-</li> 
-
-<li><div class="dateblock"> 
-	<span class="month">Sept.</span>
-	<span class="day">22</span></div>
-	<strong>Career Summit & Job Fair<br />Pre-Conference Workshops</strong>
-</li> 
-
-<li><div class="dateblock"> 
-	<span class="month">Sept.</span>
-	<span class="day smaller">23-24</span></div>
-	<strong>General Sessions</strong>
-</li>
-
-<li><div class="dateblock"> 
-	<span class="month">Sept.</span> 
-	<span class="day">24</span></div>
-<strong>Online Journalism Awards Presentation & Banquet</strong>
-</li>
-</ul>
-
-</div><!-- #mainleft -->
-
-<div id="mainright">
-
-<h1>Hotel</h1>
-
-<p><img src="<?php echo get_bloginfo('template_directory'); ?>/images/boston-marriott-copley-place.jpg" class="content"></p>
-
-<p class="frontpage" style="font-size:12px;"><em>The 2011 ONA Conference and Online Journalism Awards Banquet will be hosted at the:</em></p>
-
-<p class="frontpage"><a href="http://www.marriott.com/hotels/travel/bosco-boston-marriott-copley-place/" style="font-size:22px;">Boston Marriott Copley Place</a></p>
-<p class="frontpage">110 Huntington Ave.<br />
-Boston, MA 02116</p>
-<p class="frontpage">Phone: 617-236-5800<br />
-Fax: 617-236-5885</p>
-
-<p class="frontpagejump"><a href="https://resweb.passkey.com/Resweb.do?mode=welcome_ei_new&eventID=3192357"><strong>Reserve a room &#0187;</strong></a></p>
-
-</div><!-- #mainright -->
-
-		</div><!-- #content -->
-
-	</div><!-- .clearfix -->
-	</div><!-- #container -->
+					<div class="entry-excerpt">
+						<?php the_excerpt() ?>
+					</div>
+				</div>
+			<?php
+				endwhile;
+				endif;
+			?>
+			</div>
+			
+			<div class="clear-both"></div>
+			
+		</div>
+				
+	</div>
+	
+</div>
 	
 <?php get_footer(); ?>

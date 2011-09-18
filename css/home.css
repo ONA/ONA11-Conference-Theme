@@ -1,0 +1,100 @@
+h3.orange-callout {
+	background-image: url( '../images/ona11-orange-box.png' );
+    background-repeat: no-repeat;
+    color: white;
+    font-size: 20px;
+    font-weight: normal;
+    height: 47px;
+    padding-left: 15px;
+    padding-top: 12px;
+    width: 271px;
+}
+
+.ona11-main-featured {
+	width: 400px;
+}
+
+.ona11-secondary-featured {
+	width: 235px;
+	margin-left: 20px;
+}
+
+.ona11-secondary-featured ul {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+.ona11-secondary-featured ul li {
+	border-top: 1px solid #BBB;
+}
+
+.ona11-secondary-featured ul li:first-child {
+	border-top: none;
+}
+
+.ona11-secondary-featured ul li a {
+	display: block;
+	font-size: 16px;
+	line-height: 22px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+ul.featured-sessions {
+	list-style-type:none;
+    margin: 0;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 15px;
+	padding-bottom: 5px;
+	width: 100%;
+	background-color: #F3F3F3;
+}
+
+ul.featured-sessions li {
+	display: inline;
+	float: left;
+	width: 200px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+ul.featured-sessions li .session-track {
+	padding: 2px 8px;
+}
+
+.ona11-sponsors h4 {
+	color: #C8D1D4;
+	font-weight: normal;
+	border-bottom: 2px dotted #C8D1D4;
+}
+
+.ona11-sponsors img {
+	margin-top: 10px;
+}
+
+.home-row {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.ona11-sponsors.right-col {
+	width: 252px;
+}
+
+.ona11-latest-stories {
+	width: 600px;
+}
+
+.post .entry-excerpt {
+	font-size: 14px;
+	line-height: 22px;
+}
+
+.ona11-latest-stories .post {
+	border-bottom: 2px dotted #C8D1D4;
+	margin-bottom: 15px;
+}
