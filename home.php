@@ -137,9 +137,9 @@
 			
 			<div class="left-col float-left ona11-sponsors">
 				
-				<h4>ONA is also sponsored by:</h4>
-				<a href="<?php echo get_site_url( null, '/sponsors-exhibitors/' ); ?>">
-				<img src="<?php bloginfo( 'template_directory' ); ?>/images/tier1_sponsor_logos.jpg" width="252px" height="248px" />
+				<h4>Sponsored content:</h4>
+				<a href="http://news.yahoo.com/">
+				<img src="<?php bloginfo( 'template_directory' ); ?>/images/yahoo_news_ona_250x250.png" width="250px" height="250px" />
 				</a>
 			</div>
 			
