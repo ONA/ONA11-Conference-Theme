@@ -15,7 +15,7 @@ h3.orange-callout {
 }
 
 .ona11-main-featured a img.wp-post-image {
-	border: 3px solid #F3F3F3;	
+	border: 5px solid #F3F3F3;	
 }
 
 .ona11-secondary-featured {
@@ -55,12 +55,12 @@ h3.orange-callout {
 	margin-top: 5px;
 	margin-left: 5px;
 	margin-bottom: 5px;
-	border: 3px solid #F3F3F3;
+	border: 5px solid #F3F3F3;
 }
 
 .featured-sessions-row h3.section-title {
 	padding:0;
-	color: #FF9900;
+	color: #faa11b;
 	text-transform: uppercase;
 }
 
@@ -73,8 +73,8 @@ ul.featured-sessions {
 	padding-bottom: 10px;
 	margin-top: 5px;
 	width: 100%;
-	border-top: 3px solid #FF9900;
-	border-bottom: 3px solid #FF9900;	
+	border-top: 3px solid #faa11b;
+	border-bottom: 3px solid #faa11b;	
 }
 
 ul.featured-sessions li {
@@ -146,7 +146,7 @@ ul.featured-sessions li h3 a {
 	margin-left: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	border: 3px solid #F3F3F3;
+	border: 5px solid #F3F3F3;
 }
 
 .sidebar .widget#tweets {
