@@ -1,0 +1,6 @@
+ul.show-list li {
+	margin-left: 15px;
+	margin-right: 15px;
+	list-style-type: square;
+}
+

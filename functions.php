@@ -1,20 +1,41 @@
 <?php
 
-define( 'ONA11_VERSION', '1.0' );
+define( 'ONA11_VERSION', '1.0.2a' );
 
 require_once( 'php/class.ona11_session.php' );
+require_once( 'php/class.ona11_person.php' );
+require_once( 'php/class.ona11_quote.php' );
 
 if ( !class_exists( 'ona11' ) ) {
 	
 class ona11
 {
 	
+	var $theme_taxonomies = array();
+	var $options_group = 'ona11_';
+	var $options_group_name = 'ona11_options';
+	var $settings_page = 'ona11_settings';
+	
 	function __construct() {
 		
-		add_action( 'init', array( &$this, 'enqueue_resources' ) );
-		add_action( 'wp_head', array( &$this, 'wp_head' ) );
-		
 		$this->session = new ona11_session();
+		$this->person = new ona11_person();
+		$this->quote = new ona11_quote();
+		
+		add_theme_support( 'post-thumbnails' );
+		add_image_size( 'home-featured', 400, 300, true );		
+				
+		add_action( 'after_setup_theme', array( &$this, 'register_custom_taxonomies' ) );
+		add_action( 'after_setup_theme', array( &$this, 'associate_post_types' ) );
+		add_action( 'after_setup_theme', array( &$this, 'register_menus' ) );		
+		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_resources' ) );
+		add_action( 'zoninator_pre_init', array( &$this, 'zoninator_pre_init' ) );	
+		
+		if ( !is_admin() ) {
+			require_once( 'php/template_tags.php' );
+			add_action( 'wp_head', 'ona11_head_title' );
+			add_action( 'wp_head', array( &$this, 'wp_head' ) );			
+		}
 		
 	}
 	
@@ -24,9 +45,125 @@ class ona11
 	function enqueue_resources() {
 		if ( !is_admin() ) {
 			wp_enqueue_style( 'ona11_primary_css', get_bloginfo('stylesheet_url'), false, ONA11_VERSION );
+			if ( is_home() )
+				wp_enqueue_style( 'ona11_home_css', get_bloginfo('template_directory') . '/css/home.css', false, ONA11_VERSION );			
 			wp_enqueue_script( 'jquery' );
+			wp_enqueue_script( 'ona11', get_bloginfo( 'template_directory' ) . '/js/ona11.js', array( 'jquery' ), ONA11_VERSION );
 			wp_enqueue_script( 'ona11_twitter', get_bloginfo( 'template_directory' ) . '/js/twitter.js', array( 'jquery' ), ONA11_VERSION );
+		} else {
+			wp_enqueue_style( 'ona_admin_css', get_bloginfo( 'template_url' ) . '/css/admin.css', false, ONA11_VERSION, 'all' );
 		}
+	}
+	
+	/**
+	 * Zoninato
+	 */
+	function zoninator_pre_init() {
+		add_post_type_support( 'ona11_session', 'zoninator_zones' );
+	}
+	
+	/**
+	 * Register any menus we need
+	 */
+	function register_menus() {
+		register_nav_menus(
+			array('header-menu' => __( 'Header Menu' ) )
+		);
+	}
+	
+	/**
+	 * Register the custom taxonomies we're using
+	 */
+	function register_custom_taxonomies() {
+		
+		// Register the Locations taxonomy
+		$args = array(
+			'label' => 'Locations',
+			'labels' => array(
+				'name' => 'Locations',
+				'singular_name' => 'Location',
+				'search_items' => 'Search Locations',
+				'all_items' => 'All Locations',
+				'parent_item' => 'Parent Location',
+				'parent_item_colon' => 'Parent Location:',
+				'edit_item' => 'Edit Location',
+				'update_item' => 'Update Location',
+				'add_new_item' => 'Add New Location',
+				'new_item_name' => 'New Location',
+				'menu_name' => 'Locations',
+			),
+			'hierarchical' => true,
+			'show_tagcloud' => false,
+			'rewrite' => array(
+				'slug' => 'locations',
+				'hierarchical' => true,
+			),
+		);
+
+		$post_types = array(
+			'ona11_session',
+		);
+		register_taxonomy( 'ona11_locations', $post_types, $args );
+		$this->theme_taxonomies[] = 'ona11_locations';
+		
+		// Register the Locations taxonomy
+		$args = array(
+			'label' => 'Session Types',
+			'labels' => array(
+				'name' => 'Session Types',
+				'singular_name' => 'Session Type',
+				'search_items' => 'Search Session Types',
+				'all_items' => 'All Session Types',
+				'parent_item' => 'Parent Session Type',
+				'parent_item_colon' => 'Parent Session Type:',
+				'edit_item' => 'Edit Session Type',
+				'update_item' => 'Update Session Type',
+				'add_new_item' => 'Add New Session Type',
+				'new_item_name' => 'New Session Type',
+				'menu_name' => 'Session Types',
+			),
+			'hierarchical' => true,
+			'show_tagcloud' => false,
+			'rewrite' => array(
+				'slug' => 'session-type',
+				'hierarchical' => true,
+			),
+		);
+
+		$post_types = array(
+			'ona11_session',
+		);
+		register_taxonomy( 'ona11_session_types', $post_types, $args );
+		$this->theme_taxonomies[] = 'ona11_session_types';		
+		
+	}
+	
+	function associate_post_types() {
+		if ( !function_exists( 'p2p_register_connection_type' ) )
+	        return;
+
+		// Writers should be able to associate posts with sessions
+	    p2p_register_connection_type( array( 
+			'from' => 'post',
+	        'to' => 'ona11_session'
+	    ) );
+	
+		// Sessions should be able to have speakers
+		p2p_register_connection_type( array( 
+			'from' => 'ona11_session',
+	        'to' => 'ona11_person'
+	    ) );
+		
+		// Quotes should be able to be associated with sessions and people
+		p2p_register_connection_type( array( 
+			'from' => 'ona11_quote',
+	        'to' => 'ona11_session'
+	    ) );
+		p2p_register_connection_type( array( 
+			'from' => 'ona11_quote',
+	        'to' => 'ona11_person'
+	    ) );
+		
 	}
 	
 	/**
@@ -43,199 +180,6 @@ class ona11
 
 global $ona11;
 $ona11 = new ona11();
-
-// Produces a list of pages in the header without whitespace
-function sandbox_globalnav() {
-	if ( $menu = str_replace( array( "\r", "\n", "\t" ), '', wp_list_pages('title_li=&sort_column=menu_order&echo=0') ) )
-		$menu = '<ul>' . $menu . '</ul>';
-	$menu = '<div id="menu">' . $menu . "</div>\n";
-	echo apply_filters( 'globalnav_menu', $menu ); // Filter to override default globalnav: globalnav_menu
-}
-
-// Adds custom menu support
-function register_my_menus() {
-  register_nav_menus(
-    array('header-menu' => __( 'Header Menu' ) )
-  );
-}
-
-add_action( 'init', 'register_my_menus' );
-
-// Generates semantic classes for BODY element
-function sandbox_body_class( $print = true ) {
-	global $wp_query, $current_user;
-
-	// It's surely a WordPress blog, right?
-	$c = array('wordpress');
-
-	// Applies the time- and date-based classes (below) to BODY element
-	sandbox_date_classes( time(), $c );
-
-	// Generic semantic classes for what type of content is displayed
-	is_front_page()  ? $c[] = 'home'       : null; // For the front page, if set
-	is_home()        ? $c[] = 'blog'       : null; // For the blog posts page, if set
-	is_archive()     ? $c[] = 'archive'    : null;
-	is_date()        ? $c[] = 'date'       : null;
-	is_search()      ? $c[] = 'search'     : null;
-	is_paged()       ? $c[] = 'paged'      : null;
-	is_attachment()  ? $c[] = 'attachment' : null;
-	is_404()         ? $c[] = 'four04'     : null; // CSS does not allow a digit as first character
-
-	// Special classes for BODY element when a single post
-	if ( is_single() ) {
-		$postID = $wp_query->post->ID;
-		the_post();
-
-		// Adds 'single' class and class with the post ID
-		$c[] = 'single postid-' . $postID;
-
-		// Adds classes for the month, day, and hour when the post was published
-		if ( isset( $wp_query->post->post_date ) )
-			sandbox_date_classes( mysql2date( 'U', $wp_query->post->post_date ), $c, 's-' );
-
-		// Adds category classes for each category on single posts
-		if ( $cats = get_the_category() )
-			foreach ( $cats as $cat )
-				$c[] = 's-category-' . $cat->slug;
-
-		// Adds tag classes for each tags on single posts
-		if ( $tags = get_the_tags() )
-			foreach ( $tags as $tag )
-				$c[] = 's-tag-' . $tag->slug;
-
-		// Adds MIME-specific classes for attachments
-		if ( is_attachment() ) {
-			$mime_type = get_post_mime_type();
-			$mime_prefix = array( 'application/', 'image/', 'text/', 'audio/', 'video/', 'music/' );
-				$c[] = 'attachmentid-' . $postID . ' attachment-' . str_replace( $mime_prefix, "", "$mime_type" );
-		}
-
-		// Adds author class for the post author
-		$c[] = 's-author-' . sanitize_title_with_dashes(strtolower(get_the_author_login()));
-		rewind_posts();
-	}
-
-	// Author name classes for BODY on author archives
-	elseif ( is_author() ) {
-		$author = $wp_query->get_queried_object();
-		$c[] = 'author';
-		$c[] = 'author-' . $author->user_nicename;
-	}
-
-	// Category name classes for BODY on category archvies
-	elseif ( is_category() ) {
-		$cat = $wp_query->get_queried_object();
-		$c[] = 'category';
-		$c[] = 'category-' . $cat->slug;
-	}
-
-	// Tag name classes for BODY on tag archives
-	elseif ( is_tag() ) {
-		$tags = $wp_query->get_queried_object();
-		$c[] = 'tag';
-		$c[] = 'tag-' . $tags->slug;
-	}
-
-	// Page author for BODY on 'pages'
-	elseif ( is_page() ) {
-		$pageID = $wp_query->post->ID;
-		$page_children = wp_list_pages("child_of=$pageID&echo=0");
-		the_post();
-		$c[] = 'page pageid-' . $pageID;
-		$c[] = 'page-author-' . sanitize_title_with_dashes(strtolower(get_the_author('login')));
-		// Checks to see if the page has children and/or is a child page; props to Adam
-		if ( $page_children )
-			$c[] = 'page-parent';
-		if ( $wp_query->post->post_parent )
-			$c[] = 'page-child parent-pageid-' . $wp_query->post->post_parent;
-		if ( is_page_template() ) // Hat tip to Ian, themeshaper.com
-			$c[] = 'page-template page-template-' . str_replace( '.php', '-php', get_post_meta( $pageID, '_wp_page_template', true ) );
-		rewind_posts();
-	}
-
-	// Search classes for results or no results
-	elseif ( is_search() ) {
-		the_post();
-		if ( have_posts() ) {
-			$c[] = 'search-results';
-		} else {
-			$c[] = 'search-no-results';
-		}
-		rewind_posts();
-	}
-
-	// For when a visitor is logged in while browsing
-	if ( $current_user->ID )
-		$c[] = 'loggedin';
-
-	// Paged classes; for 'page X' classes of index, single, etc.
-	if ( ( ( $page = $wp_query->get('paged') ) || ( $page = $wp_query->get('page') ) ) && $page > 1 ) {
-		// Thanks to Prentiss Riddle, twitter.com/pzriddle, for the security fix below.
-		$page = intval($page); // Ensures that an integer (not some dangerous script) is passed for the variable
-		$c[] = 'paged-' . $page;
-		if ( is_single() ) {
-			$c[] = 'single-paged-' . $page;
-		} elseif ( is_page() ) {
-			$c[] = 'page-paged-' . $page;
-		} elseif ( is_category() ) {
-			$c[] = 'category-paged-' . $page;
-		} elseif ( is_tag() ) {
-			$c[] = 'tag-paged-' . $page;
-		} elseif ( is_date() ) {
-			$c[] = 'date-paged-' . $page;
-		} elseif ( is_author() ) {
-			$c[] = 'author-paged-' . $page;
-		} elseif ( is_search() ) {
-			$c[] = 'search-paged-' . $page;
-		}
-	}
-
-	// Separates classes with a single space, collates classes for BODY
-	$c = join( ' ', apply_filters( 'body_class',  $c ) ); // Available filter: body_class
-
-	// And tada!
-	return $print ? print($c) : $c;
-}
-
-// Generates semantic classes for each post DIV element
-function sandbox_post_class( $print = true ) {
-	global $post, $sandbox_post_alt;
-
-	// hentry for hAtom compliace, gets 'alt' for every other post DIV, describes the post type and p[n]
-	$c = array( 'hentry', "p$sandbox_post_alt", $post->post_type, $post->post_status );
-
-	// Author for the post queried
-	$c[] = 'author-' . sanitize_title_with_dashes(strtolower(get_the_author('login')));
-
-	// Category for the post queried
-	foreach ( (array) get_the_category() as $cat )
-		$c[] = 'category-' . $cat->slug;
-
-	// Tags for the post queried; if not tagged, use .untagged
-	if ( get_the_tags() == null ) {
-		$c[] = 'untagged';
-	} else {
-		foreach ( (array) get_the_tags() as $tag )
-			$c[] = 'tag-' . $tag->slug;
-	}
-
-	// For password-protected posts
-	if ( $post->post_password )
-		$c[] = 'protected';
-
-	// Applies the time- and date-based classes (below) to post DIV
-	sandbox_date_classes( mysql2date( 'U', $post->post_date ), $c );
-
-	// If it's the other to the every, then add 'alt' class
-	if ( ++$sandbox_post_alt % 2 )
-		$c[] = 'alt';
-
-	// Separates classes with a single space, collates classes for post DIV
-	$c = join( ' ', apply_filters( 'post_class', $c ) ); // Available filter: post_class
-
-	// And tada!
-	return $print ? print($c) : $c;
-}
 
 // Define the num val for 'alt' classes (in post DIV and comment LI)
 $sandbox_post_alt = 1;
@@ -333,73 +277,6 @@ function sandbox_commenter_link() {
 	echo $avatar . ' <span class="fn n">' . $commenter . '</span>';
 }
 
-// Function to filter the default gallery shortcode
-function sandbox_gallery($attr) {
-	global $post;
-	if ( isset($attr['orderby']) ) {
-		$attr['orderby'] = sanitize_sql_orderby($attr['orderby']);
-		if ( !$attr['orderby'] )
-			unset($attr['orderby']);
-	}
-
-	extract(shortcode_atts( array(
-		'orderby'    => 'menu_order ASC, ID ASC',
-		'id'         => $post->ID,
-		'itemtag'    => 'dl',
-		'icontag'    => 'dt',
-		'captiontag' => 'dd',
-		'columns'    => 3,
-		'size'       => 'thumbnail',
-	), $attr ));
-
-	$id           =  intval($id);
-	$orderby      =  addslashes($orderby);
-	$attachments  =  get_children("post_parent=$id&post_type=attachment&post_mime_type=image&orderby={$orderby}");
-
-	if ( empty($attachments) )
-		return null;
-
-	if ( is_feed() ) {
-		$output = "\n";
-		foreach ( $attachments as $id => $attachment )
-			$output .= wp_get_attachment_link( $id, $size, true ) . "\n";
-		return $output;
-	}
-
-	$listtag     =  tag_escape($listtag);
-	$itemtag     =  tag_escape($itemtag);
-	$captiontag  =  tag_escape($captiontag);
-	$columns     =  intval($columns);
-	$itemwidth   =  $columns > 0 ? floor(100/$columns) : 100;
-
-	$output = apply_filters( 'gallery_style', "\n" . '<div class="gallery">', 9 ); // Available filter: gallery_style
-
-	foreach ( $attachments as $id => $attachment ) {
-		$img_lnk = get_attachment_link($id);
-		$img_src = wp_get_attachment_image_src( $id, $size );
-		$img_src = $img_src[0];
-		$img_alt = $attachment->post_excerpt;
-		if ( $img_alt == null )
-			$img_alt = $attachment->post_title;
-		$img_rel = apply_filters( 'gallery_img_rel', 'attachment' ); // Available filter: gallery_img_rel
-		$img_class = apply_filters( 'gallery_img_class', 'gallery-image' ); // Available filter: gallery_img_class
-
-		$output  .=  "\n\t" . '<' . $itemtag . ' class="gallery-item gallery-columns-' . $columns .'">';
-		$output  .=  "\n\t\t" . '<' . $icontag . ' class="gallery-icon"><a href="' . $img_lnk . '" title="' . $img_alt . '" rel="' . $img_rel . '"><img src="' . $img_src . '" alt="' . $img_alt . '" class="' . $img_class . ' attachment-' . $size . '" /></a></' . $icontag . '>';
-
-		if ( $captiontag && trim($attachment->post_excerpt) ) {
-			$output .= "\n\t\t" . '<' . $captiontag . ' class="gallery-caption">' . $attachment->post_excerpt . '</' . $captiontag . '>';
-		}
-
-		$output .= "\n\t" . '</' . $itemtag . '>';
-		if ( $columns > 0 && ++$i % $columns == 0 )
-			$output .= "\n</div>\n" . '<div class="gallery">';
-	}
-	$output .= "\n</div>\n";
-
-	return $output;
-}
-
 // Widget: Search; to match the Sandbox style and replace Widget plugin default
 function widget_sandbox_search($args) {
 	extract($args);
@@ -467,8 +344,8 @@ function widget_sandbox_rsslinks($args) {
 		<?php echo $before_widget; ?>
 			<?php echo $before_title . $title . $after_title; ?>
 			<ul>
-				<li><a href="<?php bloginfo('rss2_url') ?>" title="<?php echo wp_specialchars( get_bloginfo('name'), 1 ) ?> <?php _e( 'Posts RSS feed', 'sandbox' ); ?>" rel="alternate" type="application/rss+xml"><?php _e( 'All posts', 'sandbox' ) ?></a></li>
-				<li><a href="<?php bloginfo('comments_rss2_url') ?>" title="<?php echo wp_specialchars(bloginfo('name'), 1) ?> <?php _e( 'Comments RSS feed', 'sandbox' ); ?>" rel="alternate" type="application/rss+xml"><?php _e( 'All comments', 'sandbox' ) ?></a></li>
+				<li><a href="<?php bloginfo('rss2_url') ?>" title="<?php echo esc_html( get_bloginfo('name'), 1 ) ?> <?php _e( 'Posts RSS feed', 'sandbox' ); ?>" rel="alternate" type="application/rss+xml"><?php _e( 'All posts', 'sandbox' ) ?></a></li>
+				<li><a href="<?php bloginfo('comments_rss2_url') ?>" title="<?php echo esc_html(bloginfo('name'), 1) ?> <?php _e( 'Comments RSS feed', 'sandbox' ); ?>" rel="alternate" type="application/rss+xml"><?php _e( 'All comments', 'sandbox' ) ?></a></li>
 			</ul>
 		<?php echo $after_widget; ?>
 <?php
@@ -539,9 +416,6 @@ load_theme_textdomain('sandbox');
 
 // Runs our code at the end to check that everything needed has loaded
 add_action( 'init', 'sandbox_widgets_init' );
-
-// Registers our function to filter default gallery shortcode
-add_filter( 'post_gallery', 'sandbox_gallery' );
 
 // Adds filters for the description/meta content in archives.php
 add_filter( 'archive_meta', 'wptexturize' );

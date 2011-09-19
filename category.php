@@ -1,9 +1,14 @@
 <?php get_header() ?>
 
-	<div id="container">
-		<div id="content">
+	<div class="main">
+		
+		<div class="wrap">
+			
+		<?php get_sidebar(); ?>			
+		
+		<div class="content">
 
-			<h1 class="page-title"><span><?php single_cat_title() ?></span></h1>
+			<h2 class="page-title"><span><?php single_cat_title() ?></span></h2>
 			<?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
 
 
@@ -14,7 +19,7 @@
 
 <?php while ( have_posts() ) : the_post() ?>
 
-			<div id="post-<?php the_ID() ?>" class="<?php sandbox_post_class() ?>">
+			<div id="post-<?php the_ID() ?>" <?php post_class(); ?>>
 				<h5 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php printf( __( 'Permalink to %s', 'sandbox' ), the_title_attribute('echo=0') ) ?>" rel="bookmark"><?php the_title() ?></a></h5>
 				<div class="entry-date"><abbr class="published" title="<?php the_time('Y-m-d\TH:i:sO') ?>"><?php unset($previousday); printf( __( '%1$s &#8211; %2$s', 'sandbox' ), the_date( '', '', '', false ), get_the_time() ) ?></abbr></div>
 				<div class="entry-content">
@@ -40,6 +45,8 @@
 			</div>
 
 		</div><!-- #content -->
-<?php get_sidebar() ?>
+
+		</div>
+
 	</div><!-- #container -->
 <?php get_footer() ?>

@@ -1,0 +1,159 @@
+h3.orange-callout {
+	background-image: url( '../images/ona11-orange-box.png' );
+    background-repeat: no-repeat;
+    color: white;
+    font-size: 20px;
+    font-weight: normal;
+    height: 47px;
+    padding-left: 15px;
+    padding-top: 12px;
+    width: 271px;
+}
+
+.ona11-main-featured {
+	width: 400px;
+}
+
+.ona11-main-featured a img.wp-post-image {
+	border: 5px solid #F3F3F3;	
+}
+
+.ona11-secondary-featured {
+	width: 235px;
+	margin-left: 20px;
+	background-color: #F9F9F9;	
+	padding: 5px;
+}
+
+.ona11-secondary-featured ul {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+.ona11-secondary-featured ul li {
+	border-top: 1px solid #BBB;
+}
+
+.ona11-secondary-featured ul li:first-child {
+	border-top: none;
+}
+
+.ona11-secondary-featured ul li {
+	display: block;
+	font-size: 16px;
+	line-height: 22px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.ona11-secondary-featured ul li a img.wp-post-image {
+	width: 50px;
+	height: 50px;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	border: 5px solid #F3F3F3;
+}
+
+.featured-sessions-row h3.section-title {
+	padding:0;
+	color: #faa11b;
+	text-transform: uppercase;
+}
+
+ul.featured-sessions {
+	list-style-type:none;
+    margin: 0;
+	padding-left:0;
+	padding-right:0;
+	padding-top: 12px;
+	padding-bottom: 10px;
+	margin-top: 5px;
+	width: 100%;
+	border-top: 3px solid #faa11b;
+	border-bottom: 3px solid #faa11b;	
+}
+
+ul.featured-sessions li {
+	display: inline;
+	float: left;
+	width: 200px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+ul.featured-sessions li .session-track {
+	padding: 2px 8px;
+	font-size: 11px;
+}
+
+ul.featured-sessions li .session-meta .label {
+	color: #BBB;
+	font-style: italic;
+}
+
+ul.featured-sessions li .session-meta .session-meta-text {
+	margin-left: 50px;
+	display: block;
+}
+
+ul.featured-sessions li .session-meta {
+	font-size: 12px;
+	line-height: 16px;
+}
+
+ul.featured-sessions li h3 a {
+	color: #415463;
+}
+
+.ona11-sponsors h4 {
+	color: #C8D1D4;
+	font-weight: normal;
+	border-bottom: 2px dotted #C8D1D4;
+}
+
+.ona11-sponsors img {
+	margin-top: 10px;
+}
+
+.home-row {
+	margin-top: 15px;
+	margin-bottom: 25px;
+}
+
+.ona11-sponsors.right-col {
+	width: 252px;
+}
+
+.ona11-latest-stories {
+	width: 600px;
+}
+
+.ona11-latest-stories h3.section-title {
+	color: #BBB;
+	padding-top: 2px;
+}
+
+.post .entry-excerpt {
+	font-size: 14px;
+	line-height: 22px;
+}
+
+.ona11-latest-stories .post {
+	border-bottom: 2px dotted #C8D1D4;
+	margin-bottom: 15px;
+}
+
+.ona11-latest-stories .post a img.wp-post-image {
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 5px solid #F3F3F3;
+}
+
+.sidebar .widget#tweets {
+	width: 250px;
+}

@@ -1,55 +1,79 @@
 <?php get_header() ?>
 
-	<div id="container">
-		<div id="content">
+	<div class="main">
+		
+		<div class="wrap">
+		
+		<div class="content">
 
-<?php the_post() ?>
+			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-			<h2 class="page-title"><a href="<?php echo get_permalink($post->post_parent) ?>" title="<?php printf( __( 'Return to %s', 'sandbox' ), wp_specialchars( get_the_title($post->post_parent), 1 ) ) ?>" rev="attachment"><?php echo get_the_title($post->post_parent) ?></a></h2>
+						<?php $image_id = get_the_id(); ?>
 
-			<div id="post-<?php the_ID() ?>" class="<?php sandbox_post_class() ?>">
-				<h3 class="entry-title"><?php the_title() ?></h3>
-				<div class="entry-content">
-					<div class="entry-attachment"><a href="<?php echo wp_get_attachment_url($post->ID); ?>" title="<?php echo wp_specialchars( get_the_title($post->ID), 1 ) ?>" rel="attachment"><?php echo wp_get_attachment_image( $post->ID, 'medium' ); ?></a></div>
-					<div class="entry-caption"><?php if ( !empty($post->post_excerpt) ) the_excerpt() ?></div>
-<?php the_content() ?>
+							<div class="image post" id="image-<?php echo $image_id; ?>">
+								
+								<div class="left-navigation navigation-link float-left">
+								<?php previous_image_link( false, '&larr;' ); ?>
+								</div>
 
-				</div>
+								<div class="right-navigation navigation-link float-right">
+									<?php next_image_link( false, '&rarr;' ); ?>
+								</div>
+								<h2 class="align-center"><?php the_title(); ?></h2>
+								<div class="align-center"><a href="<?php echo get_permalink($post->post_parent); ?>"><?php echo get_the_title($post->post_parent); ?></a></div>								
 
-				<div class="entry-meta">
-					<?php printf( __( 'Posted by %1$s on <abbr class="published" title="%2$sT%3$s">%4$s at %5$s</abbr>. Bookmark the <a href="%6$s" title="Permalink to %7$s" rel="bookmark">permalink</a>. Follow any comments here with the <a href="%8$s" title="Comments RSS to %7$s" rel="alternate" type="application/rss+xml">RSS feed for this post</a>.', 'sandbox' ),
-						'<span class="author vcard"><a class="url fn n" href="' . get_author_link( false, $authordata->ID, $authordata->user_nicename ) . '" title="' . sprintf( __( 'View all posts by %s', 'sandbox' ), $authordata->display_name ) . '">' . get_the_author() . '</a></span>',
-						get_the_time('Y-m-d'),
-						get_the_time('H:i:sO'),
-						the_date( '', '', '', false ),
-						get_the_time(),
-						get_permalink(),
-						the_title_attribute('echo=0'),
-						comments_rss() ) ?>
+								<div class="primary-image align-center"><?php echo wp_get_attachment_image( $post->ID, array( 600, 600 ) ); ?></div>
+								<?php echo edit_post_link( 'Edit this image', '<p>', '</p>' ); ?>
 
-<?php if ( ('open' == $post->comment_status) && ('open' == $post->ping_status) ) : // Comments and trackbacks open ?>
-					<?php printf( __( '<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a> or leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'sandbox' ), get_trackback_url() ) ?>
-<?php elseif ( !('open' == $post->comment_status) && ('open' == $post->ping_status) ) : // Only trackbacks open ?>
-					<?php printf( __( 'Comments are closed, but you can leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'sandbox' ), get_trackback_url() ) ?>
-<?php elseif ( ('open' == $post->comment_status) && !('open' == $post->ping_status) ) : // Only comments open ?>
-					<?php _e( 'Trackbacks are closed, but you can <a class="comment-link" href="#respond" title="Post a comment">post a comment</a>.', 'sandbox' ) ?>
-<?php elseif ( !('open' == $post->comment_status) && !('open' == $post->ping_status) ) : // Comments and trackbacks closed ?>
-					<?php _e( 'Both comments and trackbacks are currently closed.', 'sandbox' ) ?>
-<?php endif; ?>
-<?php edit_post_link( __( 'Edit', 'sandbox' ), "\n\t\t\t\t\t<span class=\"edit-link\">", "</span>" ) ?>
+								<?php if ( !empty( $post->post_excerpt ) ) : ?>
+								<div class="image-caption"><?php the_excerpt(); ?></div>
+								<?php endif; ?>
 
-				</div>
-			</div><!-- .post -->
+								<?php if ( !empty( $post->post_content ) ) : ?>			
+								<div class="image-description"><?php the_content(); ?></div>
+								<?php endif; ?>
 
-			<div id="nav-images" class="navigation">
-				<div class="nav-previous"><?php previous_image_link() ?></div>
-				<div class="nav-next"><?php next_image_link() ?></div>
-			</div>
+								<div style="clear:both;"></div>
 
-<?php comments_template() ?>
+							</div><!-- END - .image -->
 
-		</div><!-- #content -->
-<?php get_sidebar() ?>
+						<?php endwhile; else: ?>
+
+							<div class="message info">Sorry, no attachments matched your criteria.</div>
+
+						<?php endif; ?>
+
+						<div class="gallery-images">
+
+						<?php
+							$args = array(
+								'post_type' => 'attachment',
+								'post_parent' => $post->post_parent,
+								'posts_per_page' => -1,
+								'post_status' => 'inherit',
+								'order' => 'ASC',
+								'orderby' => 'menu_order ID'
+							);
+							$gallery_images = new WP_Query( $args );
+						?>
+						<?php if ( $gallery_images->have_posts() && $gallery_images->post_count > 1 ): ?>
+
+						<?php while ( $gallery_images->have_posts() ) : $gallery_images->the_post(); ?>
+
+						<div class="gallery-thumbnail float-left<?php if ( get_the_id() == $image_id ) { echo ' active'; } ?>">
+							<a href="<?php echo get_permalink( get_the_id() ); ?>"><?php echo wp_get_attachment_image( get_the_id(), array( 75, 75 ) ); ?></a>
+						</div>
+
+						<?php endwhile; endif; ?>
+
+						</div><!-- END .gallery-images -->
+
+					<div class="clear-both"></div>
+
+		</div><!-- .content -->
+		
+		<div>
+		
 	</div><!-- #container -->
 
 <?php get_footer() ?>
