@@ -135,12 +135,22 @@
 		
 		<div class="home-row">
 			
-			<div class="left-col float-left ona11-sponsors">
+			<div class="sidebar float-left">
+			
+				<div class="left-col ona11-sponsors widget">
 				
-				<h4>Sponsored content:</h4>
-				<a href="http://news.yahoo.com/">
-				<img src="<?php bloginfo( 'template_directory' ); ?>/images/yahoo_news_ona_250x250.png" width="250px" height="250px" />
-				</a>
+					<h4>Sponsored content:</h4>
+					<a href="http://news.yahoo.com/">
+					<img src="<?php bloginfo( 'template_directory' ); ?>/images/yahoo_news_ona_250x250.png" width="250px" height="250px" />
+					</a>
+				</div>
+				
+				<div id="tweets" class="widget">
+					<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ona11-twitter.gif" />
+					<div id="ttweets" class="tstream"></div> 
+					<p id="tmore" class="more"></p>
+				</div><!-- #tweets -->
+			
 			</div>
 			
 			<div class="right-col float-right ona11-latest-stories">

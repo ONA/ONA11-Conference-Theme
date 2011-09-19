@@ -675,6 +675,8 @@ body.archive .day-sessions .session-time-block ul li p {
 
 .sidebar .widget {
 	margin-bottom: 30px;
+	font-size: 13px;
+	line-height: 18px;
 }
 
 .sidebar .widget ul {
