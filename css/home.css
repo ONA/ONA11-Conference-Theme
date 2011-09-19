@@ -21,6 +21,8 @@ h3.orange-callout {
 .ona11-secondary-featured {
 	width: 235px;
 	margin-left: 20px;
+	background-color: #F9F9F9;	
+	padding: 5px;
 }
 
 .ona11-secondary-featured ul {
@@ -56,15 +58,23 @@ h3.orange-callout {
 	border: 3px solid #F3F3F3;
 }
 
+.featured-sessions-row h3.section-title {
+	padding:0;
+	color: #FF9900;
+	text-transform: uppercase;
+}
+
 ul.featured-sessions {
 	list-style-type:none;
     margin: 0;
-	padding-left: 5px;
-	padding-right: 5px;
-	padding-top: 15px;
-	padding-bottom: 5px;
+	padding-left:0;
+	padding-right:0;
+	padding-top: 12px;
+	padding-bottom: 10px;
+	margin-top: 5px;
 	width: 100%;
-	background-color: #F3F3F3;
+	border-top: 3px solid #FF9900;
+	border-bottom: 3px solid #FF9900;	
 }
 
 ul.featured-sessions li {
@@ -77,6 +87,21 @@ ul.featured-sessions li {
 
 ul.featured-sessions li .session-track {
 	padding: 2px 8px;
+	font-size: 11px;
+}
+
+ul.featured-sessions li .session-meta .label {
+	color: #BBB;
+	font-style: italic;
+}
+
+ul.featured-sessions li .session-meta {
+	font-size: 12px;
+	line-height: 16px;
+}
+
+ul.featured-sessions li h3 a {
+	color: #415463;
 }
 
 .ona11-sponsors h4 {
@@ -100,6 +125,11 @@ ul.featured-sessions li .session-track {
 
 .ona11-latest-stories {
 	width: 600px;
+}
+
+.ona11-latest-stories h3.section-title {
+	color: #BBB;
+	padding-top: 2px;
 }
 
 .post .entry-excerpt {

@@ -75,7 +75,7 @@
 			
 			<div class="right-col float-right ona11-sponsors">
 			
-				<h4>ONA is sponsored in part by:</h4>
+				<h4>ONA is sponsored by:</h4>
 				<a href="<?php echo get_site_url( null, '/sponsors-exhibitors/' ); ?>">
 				<img src="<?php bloginfo( 'template_directory' ); ?>/images/tier1_sponsor_logos.jpg" width="252px" height="248px" />
 				</a>
@@ -85,26 +85,45 @@
 			
 		</div>
 		
-		<div class="home-row">			
+		<div class="home-row featured-sessions-row">			
 			
 			<?php
 				$args = array(
 					'post_type' => 'ona11_session',
-					'orderby' => 'rand',
 					'posts_per_page' => 4,
 				);
 				$featured_sessions = new WP_Query( $args );
 			?>
+			<h3 class="section-title">Featured Sessions</h3>
 			<?php if ( $featured_sessions->have_posts() ): ?>
 			<ul class="featured-sessions float-right">
 			<?php while ( $featured_sessions->have_posts() ): $featured_sessions->the_post(); ?>
 				<li>
 					<?php
+					$start_timestamp = get_post_meta( get_the_id(), '_ona11_start_timestamp', true );					
+					if ( $start_timestamp )
+						$session_when = date( 'l, g:i a', $start_timestamp );
+					else
+						$session_when = 'Session start time coming soon';
+
+					$session_location = wp_get_post_terms( get_the_id(), 'ona11_locations' );
+					if ( count( $session_location ) ) {
+						$session_where = '<a href="' . get_term_link( $session_location[0] ) . '">' . esc_html( $session_location[0]->name ) . '</a>';
+						if ( $session_location[0]->parent ) {
+							$parent_location = get_term_by( 'id', $session_location[0]->parent, 'ona11_locations' );
+							$session_where .= ', <a href="' . get_term_link( $parent_location ) . '">' . esc_html( $parent_location->name ) . '</a>';
+						}
+					} else {
+						$session_where = 'Location tbd';
+					}
+					
 					$session_type_tax = wp_get_object_terms( get_the_id(), 'ona11_session_types' );	
 					if ( count( $session_type_tax ) )
 						echo '<h5 class="session-track blue-background">' . esc_html( $session_type_tax[0]->name ) . '</h5>';
 					?>
-					<h3><a class="highlight" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+					<div class="session-meta session-when"><span class="label">When:</span> <?php echo $session_when; ?></div>
+					<div class="session-meta session-where"><span class="label">Where:</span> <?php echo $session_where; ?></div>
 				</li>
 			<?php endwhile; ?>
 			</ul>
@@ -125,7 +144,7 @@
 			</div>
 			
 			<div class="right-col float-right ona11-latest-stories">
-				<h3 class="orange-callout">Latest Stories</h3>
+				<h3 class="section-title">Latest Stories</h3>
 			<?php
 				$args = array(
 					'posts_per_page' => 6,
