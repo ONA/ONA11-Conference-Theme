@@ -85,17 +85,17 @@
 			
 		</div>
 		
+		<?php
+			$args = array(
+				'post_type' => 'ona11_session',
+				'posts_per_page' => 4,
+			);
+			$featured_sessions = new WP_Query( $args );
+		?>
+		<?php if ( $featured_sessions->have_posts() ): ?>		
 		<div class="home-row featured-sessions-row">			
-			
-			<?php
-				$args = array(
-					'post_type' => 'ona11_session',
-					'posts_per_page' => 4,
-				);
-				$featured_sessions = new WP_Query( $args );
-			?>
+		
 			<h3 class="section-title">Featured Sessions</h3>
-			<?php if ( $featured_sessions->have_posts() ): ?>
 			<ul class="featured-sessions float-right">
 			<?php while ( $featured_sessions->have_posts() ): $featured_sessions->the_post(); ?>
 				<li>
@@ -122,16 +122,16 @@
 						echo '<h5 class="session-track blue-background">' . esc_html( $session_type_tax[0]->name ) . '</h5>';
 					?>
 					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-					<div class="session-meta session-when"><span class="label">When:</span> <?php echo $session_when; ?></div>
-					<div class="session-meta session-where"><span class="label">Where:</span> <?php echo $session_where; ?></div>
+					<div class="session-meta session-when"><span class="label float-left">When:</span> <span class="session-meta-text"><?php echo $session_when; ?></span></div>
+					<div class="session-meta session-where"><span class="label float-left">Where:</span> <span class="session-meta-text"><?php echo $session_where; ?></span></div>
 				</li>
 			<?php endwhile; ?>
 			</ul>
-			<?php endif; ?>
 			
 			<div class="clear-both"></div>
 			
 		</div>
+		<?php endif; ?>		
 		
 		<div class="home-row">
 			

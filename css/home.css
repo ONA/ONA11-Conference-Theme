@@ -95,6 +95,11 @@ ul.featured-sessions li .session-meta .label {
 	font-style: italic;
 }
 
+ul.featured-sessions li .session-meta .session-meta-text {
+	margin-left: 50px;
+	display: block;
+}
+
 ul.featured-sessions li .session-meta {
 	font-size: 12px;
 	line-height: 16px;
