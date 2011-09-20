@@ -727,10 +727,17 @@ body.archive .day-sessions .session-time-block ul li p {
 	margin-bottom: 10px;
 }
 
-.sidebar .widget .more {
+.more,
+.more a {
 	text-align: right;
-	margin-right: 10px;
 	color: #92A3AA;
+	text-decoration: none;
+	font-size: 13px;
+	font-style: italic;
+}
+
+.more a:hover {
+	text-decoration: underline;
 }
 
 .sidebar .widget#sidebar-sponsors ul li {

@@ -79,6 +79,7 @@
 				<a href="<?php echo get_site_url( null, '/sponsors-exhibitors/' ); ?>">
 				<img src="<?php bloginfo( 'template_directory' ); ?>/images/tier1_sponsor_logos.jpg" width="252px" height="248px" />
 				</a>
+				<p class="more"><a href="<?php echo get_site_url( null, '/sponsors-exhibitors/' ); ?>"><?php _e( 'See all sponsors &#0187;' ); ?></a></p>
 			</div>
 			
 			<div class="clear-both">

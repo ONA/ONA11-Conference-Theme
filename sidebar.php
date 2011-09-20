@@ -19,7 +19,7 @@
 			<?php endwhile; ?>
 			</ul>
 			<?php endif; ?>
- 			<p class="more"><a href="<?php bloginfo('url'); ?>/category/updates/"><strong>More updates &#0187;</strong></a></p>
+ 			<p class="more"><a href="<?php bloginfo('url'); ?>/category/updates/">More updates &#0187;</a></p>
 		</div>
 		
 	<div id="sidebar-sponsors" class="widget">
@@ -36,7 +36,7 @@
 			<li><a href="http://gannettfoundation.org/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_gannett_foundation_bw_88.jpg"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://thomsonreuters.com/products_services/media/reuters_america_for_publishers/"><img src="<?php echo get_bloginfo('template_directory'); ?>/images/sponsors/ona11_sponsor_reuters_bw_88.jpg"></a></li>
 		</ul>
 		<p>Reach the largest audience of digital journalists in the world at ONA11, hosted by the fastest-growing membership organization of online media.</p>
-		<p class="more"><a href="/overview"><strong>Learn more &#0187;</strong></a></p>
+		<p class="more"><a href="/overview/">Learn more &#0187;</a></p>
 	</div>
 			
 	<div id="tweets" class="widget">
