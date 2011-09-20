@@ -13,14 +13,22 @@
 			<div class="left-col float-left ona11-featured-stories">
 				<div class="ona11-main-featured float-left">
 				<?php
-					$args = array(
-						'posts_per_page' => 1,
-						'post__not_in' => $already_shown,						
-					);
-					$lead_story = new WP_Query( $args );
+					if ( function_exists( 'z_get_zone' ) && $featured_stories_zone = z_get_zone( 'featured-stories' ) ) {
+						$featured_stories = z_get_posts_in_zone( $featured_stories_zone );
+					} else {
+						$args = array(
+							'post_type' => 'post',
+							'numberposts' => 5,
+							'post__not_in' => $already_shown,
+						);
+						$featured_stories = get_posts( $args );
+					}
 				?>
-				<?php if ( $lead_story->have_posts() ):
-						while( $lead_story->have_posts() ): $lead_story->the_post();
+				<?php if ( count( $featured_stories ) ):
+						foreach( $featured_stories as $key => $post ):
+							if ( $key >= 1 )
+								continue;
+							setup_postdata( $post );
 						$already_shown[] = get_the_id();
 						?>
 						<div id="post-<?php the_id(); ?>" <?php post_class(); ?>>
@@ -40,21 +48,17 @@
 							<?php endif; ?>
 						</div>
 						<?php
-						endwhile;
+						endforeach;
+						wp_reset_query();
 					  endif;?>
 				</div>
 				
 				<div class="ona11-secondary-featured float-right">
-				<?php
-					$args = array(
-						'posts_per_page' => 4,
-						'post__not_in' => $already_shown,
-					);
-					$secondary_leads = new WP_Query( $args );
-				?>
-				<?php if ( $secondary_leads->have_posts() ):
+				<?php if ( count( $featured_stories ) ):
 							echo '<ul>';
-						while( $secondary_leads->have_posts() ): $secondary_leads->the_post();
+						foreach( $featured_stories as $key => $post ): setup_postdata( $post );
+						if ( $key < 1 || $key >= 5 )
+							continue;
 						$already_shown[] = get_the_id();
 						?>
 						<li id="post-<?php the_id(); ?>" <?php post_class(); ?>>
@@ -67,8 +71,9 @@
 							<h4 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 						</li>
 						<?php
-						endwhile;
+						endforeach;
 							echo '</ul>';
+							wp_reset_query();
 					  endif;?>
 				</div>
 			</div>
@@ -87,18 +92,26 @@
 		</div>
 		
 		<?php
-			$args = array(
-				'post_type' => 'ona11_session',
-				'posts_per_page' => 4,
-			);
-			$featured_sessions = new WP_Query( $args );
+			if ( function_exists( 'z_get_zone' ) && $featured_sessions_zone = z_get_zone( 'featured-sessions' ) ) {
+				$args = array(
+					'post_type' => 'ona11_session',
+					'posts_per_page' => 4,					
+				);
+				$featured_sessions = z_get_posts_in_zone( $featured_sessions_zone );
+			} else {
+				$args = array(
+					'post_type' => 'ona11_session',
+					'numberposts' => 4,
+				);
+				$featured_sessions = get_posts( $args );
+			}
 		?>
-		<?php if ( $featured_sessions->have_posts() ): ?>		
+		<?php if ( count( $featured_sessions ) ): ?>		
 		<div class="home-row featured-sessions-row">			
 		
 			<h3 class="section-title">Featured Sessions</h3>
 			<ul class="featured-sessions float-right">
-			<?php while ( $featured_sessions->have_posts() ): $featured_sessions->the_post(); ?>
+			<?php foreach( $featured_sessions as $post ) : setup_postdata( $post ); ?>
 				<li>
 					<?php
 					$start_timestamp = get_post_meta( get_the_id(), '_ona11_start_timestamp', true );					
@@ -126,7 +139,7 @@
 					<div class="session-meta session-when"><span class="label float-left">When:</span> <span class="session-meta-text"><?php echo $session_when; ?></span></div>
 					<div class="session-meta session-where"><span class="label float-left">Where:</span> <span class="session-meta-text"><?php echo $session_where; ?></span></div>
 				</li>
-			<?php endwhile; ?>
+			<?php endforeach; ?>
 			</ul>
 			
 			<div class="clear-both"></div>
