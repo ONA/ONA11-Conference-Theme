@@ -27,7 +27,8 @@ class ona11
 				
 		add_action( 'after_setup_theme', array( &$this, 'register_custom_taxonomies' ) );
 		add_action( 'after_setup_theme', array( &$this, 'associate_post_types' ) );
-		add_action( 'after_setup_theme', array( &$this, 'register_menus' ) );		
+		add_action( 'after_setup_theme', array( &$this, 'register_menus' ) );
+		add_action( 'admin_bar_menu', array( &$this, 'action_admin_bar_menu' ), 200 );	
 		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_resources' ) );
 		add_action( 'zoninator_pre_init', array( &$this, 'zoninator_pre_init' ) );	
 		
@@ -69,6 +70,17 @@ class ona11
 		register_nav_menus(
 			array('header-menu' => __( 'Header Menu' ) )
 		);
+	}
+	
+	/**
+	 * Modifications to be made to the admin bar
+	 */
+	function action_admin_bar_menu() {
+		global $wp_admin_bar;
+		
+		$wp_admin_bar->remove_menu( 'new-theme' );
+		$wp_admin_bar->remove_menu( 'new-plugin' );
+		
 	}
 	
 	/**
