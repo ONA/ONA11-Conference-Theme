@@ -116,6 +116,14 @@ h5 {
 	text-align: center;
 }
 
+.clear-right {
+	clear: right;
+}
+
+.clear-left {
+	clear: left;
+}
+
 .clear-both,
 .separator {
 	clear:both;
