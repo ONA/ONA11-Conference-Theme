@@ -116,7 +116,8 @@ h5 {
 	text-align: center;
 }
 
-.clear-both {
+.clear-both,
+.separator {
 	clear:both;
 }
 
