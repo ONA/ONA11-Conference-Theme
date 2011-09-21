@@ -109,12 +109,6 @@ ul.featured-sessions li h3 a {
 	color: #415463;
 }
 
-.ona11-sponsors h4 {
-	color: #C8D1D4;
-	font-weight: normal;
-	border-bottom: 2px dotted #C8D1D4;
-}
-
 .ona11-sponsors img {
 	margin-top: 10px;
 }
@@ -152,8 +146,4 @@ ul.featured-sessions li h3 a {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border: 5px solid #F3F3F3;
-}
-
-.sidebar .widget#tweets {
-	width: 250px;
 }

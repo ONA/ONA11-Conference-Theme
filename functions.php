@@ -1,10 +1,11 @@
 <?php
 
-define( 'ONA11_VERSION', '1.0.5a' );
+define( 'ONA11_VERSION', '1.0.5b' );
 
 require_once( 'php/class.ona11_session.php' );
 require_once( 'php/class.ona11_person.php' );
 require_once( 'php/class.ona11_quote.php' );
+require_once( 'php/widgets.php' );
 
 if ( !class_exists( 'ona11' ) ) {
 	
@@ -28,6 +29,8 @@ class ona11
 		add_action( 'after_setup_theme', array( &$this, 'register_custom_taxonomies' ) );
 		add_action( 'after_setup_theme', array( &$this, 'associate_post_types' ) );
 		add_action( 'after_setup_theme', array( &$this, 'register_menus' ) );
+		add_action( 'after_setup_theme', array( &$this, 'register_sidebars' ) );
+		add_action( 'widgets_init', array( &$this, 'action_widgets_init' ) );
 		add_action( 'admin_bar_menu', array( &$this, 'action_admin_bar_menu' ), 200 );	
 		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_resources' ) );
 		add_action( 'zoninator_pre_init', array( &$this, 'zoninator_pre_init' ) );	
@@ -70,6 +73,33 @@ class ona11
 		register_nav_menus(
 			array('header-menu' => __( 'Header Menu' ) )
 		);
+	}
+	
+	/**
+	 * Register the different sidebar zones we have
+	 */
+	function register_sidebars() {
+		
+		// Register a widget for the homepage
+		$args = array(
+			'name' => __( 'Home Page' ),
+			'id' => 'home',
+			'description' => __( 'Home Page for the ONA11 website' ),
+			'before_widget' => '<div class="widget home-page">',
+			'after_widget' => '</div>',
+		);
+		register_sidebar( $args );
+		
+	}
+ 	
+	/**
+	 * Register the custom widgets we have
+	 */
+	function action_widgets_init() {
+		
+		register_widget( 'ONA11_Twitter_Widget' );
+		register_widget( 'ONA11_Location_Widget' );
+		
 	}
 	
 	/**
@@ -307,133 +337,3 @@ function widget_sandbox_search($args) {
 			<?php echo $after_widget ?>
 <?php
 }
-
-// Widget: Search; element controls for customizing text within Widget plugin
-function widget_sandbox_search_control() {
-	$options = $newoptions = get_option('widget_sandbox_search');
-	if ( $_POST['search-submit'] ) {
-		$newoptions['title'] = strip_tags(stripslashes( $_POST['search-title']));
-		$newoptions['button'] = strip_tags(stripslashes( $_POST['search-button']));
-	}
-	if ( $options != $newoptions ) {
-		$options = $newoptions;
-		update_option( 'widget_sandbox_search', $options );
-	}
-	$title = attribute_escape($options['title']);
-	$button = attribute_escape($options['button']);
-?>
-	<p><label for="search-title"><?php _e( 'Title:', 'sandbox' ) ?> <input class="widefat" id="search-title" name="search-title" type="text" value="<?php echo $title; ?>" /></label></p>
-	<p><label for="search-button"><?php _e( 'Button Text:', 'sandbox' ) ?> <input class="widefat" id="search-button" name="search-button" type="text" value="<?php echo $button; ?>" /></label></p>
-	<input type="hidden" id="search-submit" name="search-submit" value="1" />
-<?php
-}
-
-// Widget: Meta; to match the Sandbox style and replace Widget plugin default
-function widget_sandbox_meta($args) {
-	extract($args);
-	$options = get_option('widget_meta');
-	$title = empty($options['title']) ? __( 'Meta', 'sandbox' ) : attribute_escape($options['title']);
-?>
-			<?php echo $before_widget; ?>
-				<?php echo $before_title . $title . $after_title; ?>
-				<ul>
-					<?php wp_register() ?>
-
-					<li><?php wp_loginout() ?></li>
-					<?php wp_meta() ?>
-
-				</ul>
-			<?php echo $after_widget; ?>
-<?php
-}
-
-// Widget: RSS links; to match the Sandbox style
-function widget_sandbox_rsslinks($args) {
-	extract($args);
-	$options = get_option('widget_sandbox_rsslinks');
-	$title = empty($options['title']) ? __( 'RSS Links', 'sandbox' ) : attribute_escape($options['title']);
-?>
-		<?php echo $before_widget; ?>
-			<?php echo $before_title . $title . $after_title; ?>
-			<ul>
-				<li><a href="<?php bloginfo('rss2_url') ?>" title="<?php echo esc_html( get_bloginfo('name'), 1 ) ?> <?php _e( 'Posts RSS feed', 'sandbox' ); ?>" rel="alternate" type="application/rss+xml"><?php _e( 'All posts', 'sandbox' ) ?></a></li>
-				<li><a href="<?php bloginfo('comments_rss2_url') ?>" title="<?php echo esc_html(bloginfo('name'), 1) ?> <?php _e( 'Comments RSS feed', 'sandbox' ); ?>" rel="alternate" type="application/rss+xml"><?php _e( 'All comments', 'sandbox' ) ?></a></li>
-			</ul>
-		<?php echo $after_widget; ?>
-<?php
-}
-
-// Widget: RSS links; element controls for customizing text within Widget plugin
-function widget_sandbox_rsslinks_control() {
-	$options = $newoptions = get_option('widget_sandbox_rsslinks');
-	if ( $_POST['rsslinks-submit'] ) {
-		$newoptions['title'] = strip_tags( stripslashes( $_POST['rsslinks-title'] ) );
-	}
-	if ( $options != $newoptions ) {
-		$options = $newoptions;
-		update_option( 'widget_sandbox_rsslinks', $options );
-	}
-	$title = attribute_escape($options['title']);
-?>
-	<p><label for="rsslinks-title"><?php _e( 'Title:', 'sandbox' ) ?> <input class="widefat" id="rsslinks-title" name="rsslinks-title" type="text" value="<?php echo $title; ?>" /></label></p>
-	<input type="hidden" id="rsslinks-submit" name="rsslinks-submit" value="1" />
-<?php
-}
-
-// Widgets plugin: intializes the plugin after the widgets above have passed snuff
-function sandbox_widgets_init() {
-	if ( !function_exists('register_sidebars') )
-		return;
-
-	// Formats the Sandbox widgets, adding readability-improving whitespace
-	$p = array(
-		'before_widget'  =>   "\n\t\t\t" . '<li id="%1$s" class="widget %2$s">',
-		'after_widget'   =>   "\n\t\t\t</li>\n",
-		'before_title'   =>   "\n\t\t\t\t". '<h3 class="widgettitle">',
-		'after_title'    =>   "</h3>\n"
-	);
-
-	// Table for how many? Two? This way, please.
-	register_sidebars( 2, $p );
-
-	// Finished intializing Widgets plugin, now let's load the Sandbox default widgets; first, Sandbox search widget
-	$widget_ops = array(
-		'classname'    =>  'widget_search',
-		'description'  =>  __( "A search form for your blog (Sandbox)", "sandbox" )
-	);
-	wp_register_sidebar_widget( 'search', __( 'Search', 'sandbox' ), 'widget_sandbox_search', $widget_ops );
-	wp_unregister_widget_control('search'); // We're being Sandbox-specific; remove WP default
-	wp_register_widget_control( 'search', __( 'Search', 'sandbox' ), 'widget_sandbox_search_control' );
-
-	// Sandbox Meta widget
-	$widget_ops = array(
-		'classname'    =>  'widget_meta',
-		'description'  =>  __( "Log in/out and administration links (Sandbox)", "sandbox" )
-	);
-	wp_register_sidebar_widget( 'meta', __( 'Meta', 'sandbox' ), 'widget_sandbox_meta', $widget_ops );
-	wp_unregister_widget_control('meta'); // We're being Sandbox-specific; remove WP default
-	wp_register_widget_control( 'meta', __( 'Meta', 'sandbox' ), 'wp_widget_meta_control' );
-
-	//Sandbox RSS Links widget
-	$widget_ops = array(
-		'classname'    =>  'widget_rss_links',
-		'description'  =>  __( "RSS links for both posts and comments (Sandbox)", "sandbox" )
-	);
-	wp_register_sidebar_widget( 'rss_links', __( 'RSS Links', 'sandbox' ), 'widget_sandbox_rsslinks', $widget_ops );
-	wp_register_widget_control( 'rss_links', __( 'RSS Links', 'sandbox' ), 'widget_sandbox_rsslinks_control' );
-}
-
-// Translate, if applicable
-load_theme_textdomain('sandbox');
-
-// Runs our code at the end to check that everything needed has loaded
-add_action( 'init', 'sandbox_widgets_init' );
-
-// Adds filters for the description/meta content in archives.php
-add_filter( 'archive_meta', 'wptexturize' );
-add_filter( 'archive_meta', 'convert_smilies' );
-add_filter( 'archive_meta', 'convert_chars' );
-add_filter( 'archive_meta', 'wpautop' );
-
-// Remember: the Sandbox is for play.
-?>
