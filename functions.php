@@ -1,6 +1,6 @@
 <?php
 
-define( 'ONA11_VERSION', '1.0.5a' );
+define( 'ONA11_VERSION', '1.0.5b' );
 
 require_once( 'php/class.ona11_session.php' );
 require_once( 'php/class.ona11_person.php' );
