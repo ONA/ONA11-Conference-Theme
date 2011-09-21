@@ -98,6 +98,7 @@ class ona11
 	function action_widgets_init() {
 		
 		register_widget( 'ONA11_Twitter_Widget' );
+		register_widget( 'ONA11_Location_Widget' );
 		
 	}
 	
