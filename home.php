@@ -159,11 +159,7 @@
 					</a>
 				</div>
 				
-				<div id="tweets" class="widget">
-					<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ona11-twitter.gif" />
-					<div id="ttweets" class="tstream"></div> 
-					<p id="tmore" class="more"></p>
-				</div><!-- #tweets -->
+				<?php dynamic_sidebar( 'home' ); ?>
 			
 			</div>
 			

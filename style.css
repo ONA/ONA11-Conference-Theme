@@ -499,8 +499,26 @@ margin:0.2em 0 0;
 padding:0;
 }
 
-.sidebar ul ul, #ttweets, #tmore {
-margin:0 0 0 1em;
+.sidebar .widget .tstream img {
+	border: 3px solid #F3F3F3;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+
+.sidebar .widget .tstream, .sidebar .widget .more {
+	width: 250px;
+	margin-left: 10px;
+}
+
+.sidebar .widget .tstream .tweet {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.sidebar .widget .tstream .timestamp {
+	text-align: right;
+	color: #888;
 }
 
 .sidebar ul ul li {

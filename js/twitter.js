@@ -1,27 +1,22 @@
-jQuery(document).ready( function() {
+function ona11_load_tweets( ona11_twitter_url, ona_twitter_more_text ) {
 	
-		var url = "http://twitter.com/status/user_timeline/ONAConf.json?count=3&callback=?";
-		jQuery.getJSON(url,
-        function(data){
-			jQuery.each(data, function(i, item) {
-				jQuery("img#tprofile").attr("src", item.user["profile_image_url"]);
-				jQuery("h2#tname").html('<a href="http://twitter.com/' + item.user["screen_name"] + '">@' + item.user["screen_name"]);
-				jQuery("h3#tname").text(item.user["name"]);
-				jQuery("#ttweets").append('<p><strong>@' + item.user["screen_name"] + "</strong>: " + item.text.replace(/(http\:\/\/[A-Za-z0-9\/\.\?\=\-]*)/g,'<a href="$1">$1</a>').replace(/@([A-Za-z0-9\/_]*)/g,'<a href="http://twitter.com/$1">@$1</a>').replace(/#([A-Za-z0-9\/\.]*)/g,'<a href="http://twitter.com/search?q=$1">#$1</a>') + "<br><i>" + relative_time(item.created_at) + "</i></p>");
-				jQuery("p#tmore").html('<a href="http://twitter.com/' + item.user["screen_name"] + '">More tweets from ONA &#0187;</a>');
-			});
-        });
-	});
- 
- 
-  function relative_time(time_value) {
+	jQuery.getJSON(ona11_twitter_url, function(data){
+		jQuery.each(data.results, function(i, item) {
+			jQuery("#ttweets").append('<div class="tweet"><img width="48px" height="48px" class="float-left" src="' + item["profile_image_url"] + '" /><strong>@<a href="http://twitter.com/' + item["from_user"] + '">' + item["from_user"] + "</a></strong>: " + item.text.replace(/(http\:\/\/[A-Za-z0-9\/\.\?\=\-]*)/g,'<a href="$1">$1</a>').replace(/@([A-Za-z0-9\/_]*)/g,'<a href="http://twitter.com/$1">@$1</a>').replace(/#([A-Za-z0-9\/\.]*)/g,'<a href="http://twitter.com/search?q=$1">#$1</a>') + "<div class='timestamp'><em>" + relative_time(item.created_at) + "</em></div></div>");
+			jQuery("p#tmore").html( ona_twitter_more_text );
+		});
+    });
+
+}
+	
+function relative_time(time_value) {
 	  var values = time_value.split(" ");
 	  time_value = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
 	  var parsed_date = Date.parse(time_value);
 	  var relative_to = (arguments.length > 1) ? arguments[1] : new Date();
 	  var delta = parseInt((relative_to.getTime() - parsed_date) / 1000);
 	  delta = delta + (relative_to.getTimezoneOffset() * 60);
-	  
+
 	  var r = '';
 	  if (delta < 60) {
 	    r = 'a minute ago';
@@ -38,9 +33,10 @@ jQuery(document).ready( function() {
 	  } else {
 	    r = (parseInt(delta / 86400)).toString() + ' days ago';
 	  }
-	  
+
 	  return r;
 }
+
 function twitter_callback ()
 {
 	return true;
