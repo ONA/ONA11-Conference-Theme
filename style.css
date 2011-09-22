@@ -650,6 +650,29 @@ body.single .session-navigation {
 	color: #888888;	
 }
 
+body.single .post .entry-bios {
+	background-color: #F3F3F3;
+	padding-top: 5px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+body.single .post .entry-bios .avatar {
+	float: left;
+	margin-right: 15px;
+	margin-top: 5px;
+}
+
+body.single .post .entry-bios .coauthor-bio {
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+body.single .post .entry-bios .coauthor-bio p {
+	margin: 0px;
+}
+
 body.single .session-navigation a {
 
 }
