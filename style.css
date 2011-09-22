@@ -505,6 +505,10 @@ padding:0;
 	border-bottom: 2px dotted #C8D1D4;
 }
 
+.sidebar .widget h4.entry-title {
+	border-bottom: none;
+}
+
 .sidebar .widget .tstream img {
 	border: 3px solid #DDD;
 	margin-right: 5px;
