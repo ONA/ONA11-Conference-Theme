@@ -18,6 +18,13 @@
 
 <body <?php body_class(); ?>>
 
+<div class="primary-navigation">
+	<div class="wrap">
+	<?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
+	<div class="ona-logo-menu float-right"><a href="http://journalists.org/"><img src="<?php bloginfo('template_directory'); ?>/images/bg-ona-logo.gif" /></a></div>
+	</div><!-- .center -->
+</div><!-- #menu -->
+
 <div id="wrapper">
 
 	<div class="header">
@@ -29,10 +36,3 @@
 			<?php endif; ?>
 		</div>
 	</div><!--	#header -->
-
-	<div class="primary-navigation">
-		<div class="wrap">
-		<?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
-		<div class="ona-logo-menu float-right"><a href="http://journalists.org/"><img src="<?php bloginfo('template_directory'); ?>/images/bg-ona-logo.gif" /></a></div>
-		</div><!-- .center -->
-	</div><!-- #menu -->
