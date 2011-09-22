@@ -635,6 +635,16 @@ body.single .person-meta {
 	line-height: 26px;
 }
 
+body.archive .person-meta {
+	font-size: 16px;
+	line-height: 24px;
+}
+
+body.post-type-archive-ona11_person .content .post {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
 body.single .session-navigation {
 	margin-bottom: 5px;
 	color: #888888;	
