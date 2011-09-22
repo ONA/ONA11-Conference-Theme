@@ -130,6 +130,11 @@ h5 {
 	clear:both;
 }
 
+#content {
+	position: absolute;
+	top: 135px;
+}
+
 a img {
 	border: none;
 }
@@ -258,12 +263,33 @@ div.content {
 	width:618px;
 	margin:20px 0 0 0;
 	border-right: dotted 2px #C8D1D4;
-	padding:0 10px 0 10px;
+	padding-left: 10px;
+	padding-right: 10px;
 	line-height:1.4;
+}
+
+div.content.full-width {
+	width: auto;
+	border-right: 0;
 }
 
 .content {
 	
+}
+
+body.single-attachment .gallery-images {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+body.single-attachment .gallery-images .gallery-thumbnail a img {
+	border: 3px solid #DDD;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+body.single-attachment .gallery-images .gallery-thumbnail.active a img {
+	border-color: #415463;
 }
 
 div#maintop {
@@ -360,34 +386,17 @@ font-size:14px;
 font-weight:bold;
 }
 
-.post.image {
-	position: relative;
+body.single-attachment .navigation {
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+body.single-attachment .navigation .navigation-link {
+	margin-right: 10px;
 }
 
 .post.image .navigation-link a {
-	min-height: 400px;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	width: 30px;
-	text-decoration: none;
-	display: block;
-	background-color: #BBBBBB;
-	color: #FFFFFF;
-	text-align: center;
-	vertical-align: center;
-}
 
-.post.image .right-navigation a {
-	right: 0;
-}
-
-.post.image .left-navigation a {
-	left: 0;
-}
-
-.post.image .navigation-link a:hover {
-	background-color: #999999;
 }
 
 h3.postcomment {

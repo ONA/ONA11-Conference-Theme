@@ -26,8 +26,10 @@
 </div><!-- #menu -->
 
 <div id="wrapper">
+	
+	<a id="content" name="content"></a>	
 
-	<div class="header">
+	<div class="header">		
 		<div class="wrap">
 			<?php if ( is_home() ): ?>
 			<a href="<?php bloginfo('url') ?>/"><img height="331px" src="<?php bloginfo('template_directory'); ?>/images/header_h927.jpg" /></a>
