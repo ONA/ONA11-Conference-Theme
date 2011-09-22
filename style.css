@@ -729,7 +729,7 @@ body.archive .day-sessions .session-time-block ul li h4 .session-type {
 body.archive .day-sessions .session-time-block ul li h4 .session-location a,
 body.archive .day-sessions .session-time-block ul li h4 .session-type a {
 	text-decoration: none;
-	color: #666;	
+	color: #888;	
 }
 
 body.archive .day-sessions .session-time-block ul li h4 .session-location a:hover,
@@ -745,6 +745,26 @@ body.archive .day-sessions .session-time-block ul li .session-description {
 
 body.archive .day-sessions .session-time-block ul li p {
 	margin: 0;
+}
+
+body.archive .day-sessions .session-time-block ul li .session-presenters {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+body.archive .day-sessions .session-time-block ul li .session-presenters span {
+	margin-right: 5px;
+}
+
+body.archive .day-sessions .session-time-block ul li .session-presenters .label {
+	color: #888;
+	margin-right: 10px;
+}
+
+body.archive .day-sessions .session-time-block ul li .session-presenter img.post-thumbnail {
+	height: 14px;
+	width: 14px;
+	vertical-align: middle;
 }
 
 .sidebar a {
