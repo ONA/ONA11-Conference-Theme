@@ -777,6 +777,11 @@ body.archive .day-sessions .session-time-block ul li p {
 	font-family:Helvetica, Arial, sans-serif;
 }
 
+.sidebar .widget.session-presenters ul li {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
 .sidebar .widget.session-presenters ul li .post-thumbnail {
 	border: 3px solid #DDD;
 	margin-top: 5px;
@@ -785,6 +790,7 @@ body.archive .day-sessions .session-time-block ul li p {
 }
 
 .sidebar .widget.session-presenters ul li h4 {
+	
 }
 
 .sidebar .widget.session-presenters ul li .person-meta {
