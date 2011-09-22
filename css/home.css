@@ -109,6 +109,14 @@ ul.featured-sessions li h3 a {
 	color: #415463;
 }
 
+ul.featured-sessions li img.mini-avatar {
+	height: 12px;
+	width: 12px;
+	vertical-align: middle;
+	margin-right: 3px;
+	border: 1px solid #DDD;
+}
+
 .ona11-sponsors img {
 	margin-top: 10px;
 }

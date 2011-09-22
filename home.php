@@ -152,7 +152,10 @@
 						$all_presenters = '';
 						while ( $presenters->have_posts() ) {
 							$presenters->the_post();
-							$all_presenters .= get_the_title() . ', ';
+ 							if ( has_post_thumbnail() ) {
+ 								$all_presenters .= get_the_post_thumbnail( get_the_id(), 'small-square', array( 'class' => 'post-thumbnail mini-avatar' ) );
+							}
+							$all_presenters .= '<a href="' . get_permalink() . '">' . get_the_title() . '</a>, ';
 						} ?>
 						<span class="session-meta-text"><?php echo rtrim( $all_presenters, ', ' ); ?></span>
 						</div>
