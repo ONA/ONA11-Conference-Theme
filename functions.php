@@ -111,6 +111,15 @@ class ona11
 		$wp_admin_bar->remove_menu( 'new-theme' );
 		$wp_admin_bar->remove_menu( 'new-plugin' );
 		
+		if ( current_user_can( 'edit_published_posts' ) ) {
+			$args = array(
+				'id' => 'zoninator',
+				'title' => __( 'Zoninator' ),
+				'href' => add_query_arg( 'page', 'zoninator', get_admin_url( null, 'admin.php' ) ),
+				'parent' => 'appearance',
+			);
+			$wp_admin_bar->add_menu( $args );
+		}
 	}
 	
 	/**
