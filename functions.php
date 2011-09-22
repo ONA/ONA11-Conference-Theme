@@ -24,7 +24,8 @@ class ona11
 		$this->quote = new ona11_quote();
 		
 		add_theme_support( 'post-thumbnails' );
-		add_image_size( 'home-featured', 400, 300, true );		
+		add_image_size( 'home-featured', 400, 300, true );
+		add_image_size( 'small-square', 64, 64, true );				
 				
 		add_action( 'after_setup_theme', array( &$this, 'register_custom_taxonomies' ) );
 		add_action( 'after_setup_theme', array( &$this, 'associate_post_types' ) );

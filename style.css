@@ -616,9 +616,21 @@ div.content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 }
 
 /**
+ * External: Presenter
+ */
+
+.post.ona11_person .post-thumbnail {
+	margin-right: 15px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 5px solid #DDD;
+}
+
+/**
  * External: Session
  */
-body.single .session-meta {
+body.single .session-meta,
+body.single .person-meta {
 	font-size: 20px;
 	line-height: 26px;
 }
@@ -763,6 +775,21 @@ body.archive .day-sessions .session-time-block ul li p {
 	line-height: 20px;
 	margin:8px 0 4px 0;	
 	font-family:Helvetica, Arial, sans-serif;
+}
+
+.sidebar .widget.session-presenters ul li .post-thumbnail {
+	border: 3px solid #DDD;
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.sidebar .widget.session-presenters ul li h4 {
+}
+
+.sidebar .widget.session-presenters ul li .person-meta {
+	font-size: 13px;
+	line-height: 21px;
 }
 
 .sidebar .widget h4.orange-callout {

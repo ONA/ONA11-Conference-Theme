@@ -229,7 +229,7 @@ class ona11_session
 		$query = $wpdb->prepare( "SELECT p2p_from FROM $wpdb->p2p WHERE p2p_to=$post->ID;" );
 		$results = $wpdb->get_results( $query );
 		
-		echo "<p>Posts associated with this session:</p>";
+		echo "<p>Content associated with this session:</p>";
 		
 		if ( count( $results ) ) {
 			$post_ids = array();
@@ -237,18 +237,18 @@ class ona11_session
 				$post_ids[] = $result->p2p_from;
 			$results_str = implode( ', ', $post_ids );
 			$query = $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE ID in(%s);", $results_str );
-			$posts = $wpdb->get_results( $query );
+			$associated_posts = $wpdb->get_results( $query );
 			echo '<ul class="show-list">';
-			foreach( $posts as $post ) {
-				echo '<li><strong>' . esc_html( $post->post_title ) . '</strong>';
-				echo ' <a href="' . get_edit_post_link( $post->ID ) . '">Edit</a> |';
-				echo ' <a target="_blank" href="' . get_permalink( $post->ID ) . '">View</a>';				
+			foreach( $associated_posts as $associated_post ) {
+				echo '<li><strong>' . esc_html( $associated_post->post_title ) . '</strong>';
+				echo ' <a href="' . get_edit_post_link( $associated_post->ID ) . '">Edit</a> |';
+				echo ' <a target="_blank" href="' . get_permalink( $associated_post->ID ) . '">View</a>';				
 				echo '</li>';
 			}
 			echo '</ul>';
 		} else {
 			?>
-			<div class="message info">No posts have been associated with this session yet</div>
+			<div class="message info">No content has been associated with this session yet</div>
 			<?php
 		}
 	}
