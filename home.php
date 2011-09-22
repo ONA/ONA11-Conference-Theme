@@ -138,6 +138,27 @@
 					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 					<div class="session-meta session-when"><span class="label float-left">When:</span> <span class="session-meta-text"><?php echo $session_when; ?></span></div>
 					<div class="session-meta session-where"><span class="label float-left">Where:</span> <span class="session-meta-text"><?php echo $session_where; ?></span></div>
+					<?php if ( ona11_p2p_enabled() ):
+						$args = array(
+						    'post_type' => 'ona11_person',
+						    'connected_from' => get_the_id()
+						);
+						$presenters = new WP_Query( $args );
+						if ( $presenters->have_posts() ) :
+						?>
+						<div class="session-meta session-who"><span class="label float-left"><?php _e( 'Who' ); ?>:</span>
+						
+						<?php
+						$all_presenters = '';
+						while ( $presenters->have_posts() ) {
+							$presenters->the_post();
+							$all_presenters .= get_the_title() . ', ';
+						} ?>
+						<span class="session-meta-text"><?php echo rtrim( $all_presenters, ', ' ); ?></span>
+						</div>
+						<?php wp_reset_postdata(); ?>
+					<?php endif; ?>
+					<?php endif; ?>
 				</li>
 			<?php endforeach; ?>
 			</ul>
