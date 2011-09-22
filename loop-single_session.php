@@ -3,7 +3,7 @@
 <div class="session-navigation">
 	<a href="<?php echo get_site_url( null, '/sessions/' ); ?>"><?php _e( 'All Sessions' ); ?></a>
 	<?php
-	$session_types = wp_get_post_terms( get_the_id(), 'ona11_session_types' );
+	$session_types = wp_get_post_terms( get_queried_object_id(), 'ona11_session_types' );
 	if ( count( $session_types ) ) {
 		$session_types_html = ' &rarr; <a href="' . get_term_link( $session_types[0] ) . '">' . esc_html( $session_types[0]->name ) . '</a>';
 		if ( $session_types[0]->parent ) {

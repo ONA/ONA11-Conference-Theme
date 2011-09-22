@@ -2,7 +2,7 @@
 Theme name: ONA11
 Theme URI: http://ona11.journalists.org/
 Description: First ONA11 theme--based on Sandbox
-Version: 1.0.5d
+Version: 1.0.5e
 Author: Daniel Bachhuber, Sean Connolly
 Author URI:
 Tags: white, microformats, fixed-width, flexible-width, one-column, two-columns, three-columns, four-columns, left-sidebar, right-sidebar
@@ -635,6 +635,16 @@ body.single .person-meta {
 	line-height: 26px;
 }
 
+body.archive .person-meta {
+	font-size: 16px;
+	line-height: 24px;
+}
+
+body.post-type-archive-ona11_person .content .post {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
 body.single .session-navigation {
 	margin-bottom: 5px;
 	color: #888888;	
@@ -729,7 +739,7 @@ body.archive .day-sessions .session-time-block ul li h4 .session-type {
 body.archive .day-sessions .session-time-block ul li h4 .session-location a,
 body.archive .day-sessions .session-time-block ul li h4 .session-type a {
 	text-decoration: none;
-	color: #666;	
+	color: #888;	
 }
 
 body.archive .day-sessions .session-time-block ul li h4 .session-location a:hover,
@@ -745,6 +755,26 @@ body.archive .day-sessions .session-time-block ul li .session-description {
 
 body.archive .day-sessions .session-time-block ul li p {
 	margin: 0;
+}
+
+body.archive .day-sessions .session-time-block ul li .session-presenters {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+body.archive .day-sessions .session-time-block ul li .session-presenters span {
+	margin-right: 5px;
+}
+
+body.archive .day-sessions .session-time-block ul li .session-presenters .label {
+	color: #888;
+	margin-right: 10px;
+}
+
+body.archive .day-sessions .session-time-block ul li .session-presenter img.post-thumbnail {
+	height: 14px;
+	width: 14px;
+	vertical-align: middle;
 }
 
 .sidebar a {
@@ -777,6 +807,11 @@ body.archive .day-sessions .session-time-block ul li p {
 	font-family:Helvetica, Arial, sans-serif;
 }
 
+.sidebar .widget.session-presenters ul li {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
 .sidebar .widget.session-presenters ul li .post-thumbnail {
 	border: 3px solid #DDD;
 	margin-top: 5px;
@@ -785,6 +820,7 @@ body.archive .day-sessions .session-time-block ul li p {
 }
 
 .sidebar .widget.session-presenters ul li h4 {
+	
 }
 
 .sidebar .widget.session-presenters ul li .person-meta {

@@ -111,6 +111,27 @@
 				<li>
 					<h4 class="session-title"><?php echo $session_where; ?><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a><?php echo $session_types_html; ?></h4>
 					<div class="session-description"><?php the_excerpt(); ?></div>
+					<?php if ( ona11_p2p_enabled() ):
+						$args = array(
+						    'post_type' => 'ona11_person',
+						    'connected_from' => get_the_id()
+						);
+						$presenters = new WP_Query( $args );
+						if ( $presenters->have_posts() ) :
+						?>
+						<div class="session-presenters">
+						<span class="label"><?php _e( 'Presenters' ); ?></span>
+						<?php while ( $presenters->have_posts() ) : $presenters->the_post(); ?>
+						    <span class="session-presenter">
+								<?php if ( has_post_thumbnail() ): ?>
+									<?php the_post_thumbnail( 'small-square', array( 'class' => 'post-thumbnail' ) ); ?>
+								<?php endif; ?>
+								<span class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></span>						
+							</span>
+						<?php endwhile; ?>
+						</div>
+					<?php endif; ?>
+				<?php endif; ?>
 				</li>
 			<?php endforeach; ?>
 			</ul>
