@@ -120,7 +120,7 @@
 						if ( $presenters->have_posts() ) :
 						?>
 						<div class="session-presenters">
-						<span class="label"><?php _e( 'Presenters' ); ?></span>
+						<span class="label"><?php _e( 'Presenters' ); ?>:</span>
 						<?php while ( $presenters->have_posts() ) : $presenters->the_post(); ?>
 						    <span class="session-presenter">
 								<?php if ( has_post_thumbnail() ): ?>
