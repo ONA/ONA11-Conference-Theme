@@ -94,7 +94,8 @@ class ona11_person
 		// post_content are included in the post object
 		
 		$title = get_post_meta( $post->ID, '_ona11_person_title', true );
-		$organization = get_post_meta( $post->ID, '_ona11_person_organization', true );		
+		$organization = get_post_meta( $post->ID, '_ona11_person_organization', true );	
+		$twitter = get_post_meta( $post->ID, '_ona11_person_twitter', true );				
 		
 		?>
 		
@@ -110,6 +111,12 @@ class ona11_person
 				<h4>Organization</h4>
 				<input type="text" size="40" id="ona11-person-organization" name="ona11-person-organization" value="<?php esc_html_e( $organization ); ?>" />
 				<p class="description">Links are allowed but optional.</p>
+			</div>
+			
+			<div class="option-item">
+				<h4>Twitter Username</h4>
+				<input type="text" size="40" id="ona11-person-twitter" name="ona11-person-twitter" value="<?php echo $twitter; ?>" />
+				<p class="description">Just the username, no URL.</p>
 			</div>			
 			
 			<div class="option-item">
@@ -177,7 +184,10 @@ class ona11_person
 		update_post_meta( $post_id, '_ona11_person_title', $title );
 		
 		$organization = strip_tags( $_POST['ona11-person-organization'], '<a>' );
-		update_post_meta( $post_id, '_ona11_person_organization', $organization );		
+		update_post_meta( $post_id, '_ona11_person_organization', $organization );	
+		
+		$twitter = sanitize_key( $_POST['ona11-person-twitter'] );
+		update_post_meta( $post_id, '_ona11_person_twitter', $twitter );			
 		
 	}
 	
