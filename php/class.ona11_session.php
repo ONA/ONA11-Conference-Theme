@@ -146,7 +146,7 @@ class ona11_session
 					);
 					echo ( $location_dropdown = wp_dropdown_categories( $args ) ) ? $location_dropdown : 'Please add locations before selecting';
 				?>
-				<p><span class="description">You can easily <a href="<?php echo add_query_arg( array( 'post_type' => 'ona11_session', 'taxonomy' => 'ona11_session_types' ), get_admin_url( null, 'edit-tags.php' ) ); ?>">add or edit session types</a>.</span></p>
+				<p><span class="description">You can easily <a href="<?php echo add_query_arg( array( 'post_type' => 'ona11_session', 'taxonomy' => 'ona11_locations' ), get_admin_url( null, 'edit-tags.php' ) ); ?>">add or edit locations</a>.</span></p>
 			</div>
 			
 			<div class="clear-both"></div>

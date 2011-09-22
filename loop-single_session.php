@@ -1,7 +1,7 @@
 <?php if ( have_posts() ): ?>
 
 <div class="session-navigation">
-	<a href="<?php echo get_site_url( null, '/sessions/' ); ?>"><?php _e( 'All' ); ?></a>
+	<a href="<?php echo get_site_url( null, '/sessions/' ); ?>"><?php _e( 'All Sessions' ); ?></a>
 	<?php
 	$session_types = wp_get_post_terms( get_the_id(), 'ona11_session_types' );
 	if ( count( $session_types ) ) {
