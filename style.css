@@ -135,6 +135,13 @@ h5 {
 	top: 132px;
 }
 
+.message {
+	padding-left: 10px;
+	padding-right: 10px;
+	background: #F3F3F3;
+	border: 1px solid #888;
+}
+
 a img {
 	border: none;
 }
@@ -640,6 +647,18 @@ div.content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 .content .post .session-content {
 	font-size: 14px;
 	line-height: 20px;
+}
+
+.content .session-updates .post {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.content .post.format-status .entry-content,
+.content .post.format-aside .entry-content,
+.content .post.format-quote .entry-content {
+	font-size: 16px;
+	line-height: 22px;
 }
 
 /**

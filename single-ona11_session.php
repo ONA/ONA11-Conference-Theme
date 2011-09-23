@@ -10,6 +10,8 @@
 		
 		<?php get_template_part( 'loop', 'single_session' ); ?>
 		
+		<?php get_template_part( 'loop', 'session_updates' ); ?>
+		
 	</div>
 	
 	</div>
