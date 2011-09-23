@@ -414,6 +414,15 @@ body.single-attachment .navigation .navigation-link {
 	clear: left !important;
 }
 
+.embedly_twitter {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.embedly_twitter p span.metadata {
+	clear: none !important;
+}
+
 h3.postcomment {
 font-family:Helvetica, Arial, sans-serif;
 }
@@ -1052,7 +1061,6 @@ padding:0.2em;
 }
 
 div#comments {
-clear:both;
 border-top:dotted 2px #C8D1D4;
 }
 
@@ -1121,15 +1129,14 @@ width:19%;
 }
 
 div#nav-above {
-clear:both;
-margin-bottom:1em;
-height:60px;
+	margin-bottom:1em;
+	height:60px;
 }
 
 
 div#nav-below {
-clear:both;
-margin-top:1em;
+
+	margin-top:1em;
 }
 
 div#nav-images {
@@ -1139,7 +1146,6 @@ margin:1em 0;
 
 
 div.navigation div.nav-previous {
-clear:left;
 float:left;
 text-align:left;
 width:300px;
@@ -1148,12 +1154,11 @@ font-size:14px;
 }
 
 div.navigation div.nav-next {
-clear:right;
-float:right;
-text-align:right;
-width:300px;
-margin:20px 0 20px 0;
-font-size:14px;
+	float:right;
+	text-align:right;
+	width:300px;
+	margin:20px 0 20px 0;
+	font-size:14px;
 }
 
 /*
