@@ -652,6 +652,15 @@ div.content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 .content .session-updates .post {
 	padding-top: 10px;
 	padding-bottom: 10px;
+	border-top: 2px dotted #C8D1D4;	
+}
+
+.content h3.section-title {
+   text-transform: uppercase;
+}
+
+.content .session-updates .post:first-child {
+	border-top: none;
 }
 
 .content .post.format-status .entry-content,
@@ -659,6 +668,10 @@ div.content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 .content .post.format-quote .entry-content {
 	font-size: 16px;
 	line-height: 22px;
+}
+
+.content .post blockquote {
+	color: #888;
 }
 
 /**
