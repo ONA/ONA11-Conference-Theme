@@ -9,7 +9,7 @@
 		);
 		$sessions = new WP_Query( $args );
 		if ( $sessions->have_posts() ) {
-			$sessions_text = '&mdash; <span class="entry-session">Session: ';
+			$sessions_text = '<span class="entry-session">Session: ';
 			while ( $sessions->have_posts() ) {
 				$sessions->the_post();
 				$sessions_text .= '<a href="' . get_permalink() . '">' . get_the_title() . '</a>, ';
