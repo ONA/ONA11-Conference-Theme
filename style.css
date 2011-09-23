@@ -2,7 +2,7 @@
 Theme name: ONA11
 Theme URI: http://ona11.journalists.org/
 Description: First ONA11 theme--based on Sandbox
-Version: 1.0.5m
+Version: 1.0.5n
 Author: Daniel Bachhuber, Sean Connolly
 Author URI:
 Tags: white, microformats, fixed-width, flexible-width, one-column, two-columns, three-columns, four-columns, left-sidebar, right-sidebar
@@ -402,6 +402,11 @@ body.single-attachment .navigation .navigation-link {
 
 .post.image .navigation-link a {
 
+}
+
+.session-livestream {
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 .post .entry-content .gallery,
