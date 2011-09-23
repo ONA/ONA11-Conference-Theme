@@ -404,6 +404,11 @@ body.single-attachment .navigation .navigation-link {
 
 }
 
+.session-livestream {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
 .post .entry-content .gallery,
 .post .entry-content .gallery br {
 	clear: left !important;

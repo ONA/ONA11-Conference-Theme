@@ -50,7 +50,7 @@
 	<?php
 		$current_time = current_time( 'timestamp' );
 		global $ona11;
-		if ( $current_time >= $start_timestamp && $current_time <= $end_timestamp && isset( $ona11->livestreams[$current_track] ) ): 
+		if ( $current_time >= ( $start_timestamp - 600 ) && $current_time <= ( $end_timestamp + 900 ) && isset( $ona11->livestreams[$current_track] ) ): 
 	?>
 		<div class="session-livestream"><?php echo $ona11->livestreams[$current_track]; ?></div>
 	<?php endif; ?>
