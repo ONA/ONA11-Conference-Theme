@@ -8,7 +8,7 @@
 
 <?php if ( $session_updates->have_posts() ): ?>
 	
-	<h3 class="orange-callout">Session Updates</h3>
+	<h3 class="section-title">Session Updates</h3>
 	
 	<div class="session-updates">
 
@@ -22,11 +22,11 @@
 	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		
 		<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
-		<h2 class="entry-title"><?php the_title() ?></h2>
+		<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 		<?php endif; ?>
 		
 		<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
-		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp(); ?></span></div>
+		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'short', false ); ?></span></div>
 		<?php endif; ?>
 		
 		<?php if ( !in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		

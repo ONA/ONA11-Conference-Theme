@@ -8,6 +8,8 @@
 			
 	<div class="wrap">
 		
+		<div class="content full-width">
+		
 		<div class="home-row">
 			
 			<div class="left-col float-left ona11-featured-stories">
@@ -188,7 +190,7 @@
 			</div>
 			
 			<div class="right-col float-right ona11-latest-stories">
-				<h3 class="section-title">Latest Stories</h3>
+				<h3 class="section-title">Latest Updates</h3>
 			<?php
 				$args = array(
 					'posts_per_page' => 6,
@@ -198,6 +200,31 @@
 				
 				if ( $latest_stories->have_posts() ):
 				while ( $latest_stories->have_posts() ): $latest_stories->the_post();
+					$post_format = get_post_format();
+					if ( !$post_format )
+						$post_format = 'standard';
+					$sessions_text = '';
+					if ( ona11_p2p_enabled() ) {
+						global $wpdb;
+
+						$post_id = get_the_id();
+						$query = $wpdb->prepare( "SELECT p2p_to FROM $wpdb->p2p WHERE p2p_from=$post_id;" );
+						$results = $wpdb->get_results( $query );
+
+						if ( count( $results ) ) {
+							$post_ids = array();
+							foreach( $results as $result )
+								$post_ids[] = $result->p2p_to;
+							$results_str = implode( ', ', $post_ids );
+							$query = $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE ID in(%s);", $results_str );
+							$associated_posts = $wpdb->get_results( $query );
+							$sessions_text = '&mdash; <span class="entry-session">Session: ';
+							foreach( $associated_posts as $associated_post ) {
+								$sessions_text .= '<a href="' . get_permalink( $associated_post->ID ) . '">' . get_the_title( $associated_post->ID ) . '</a>, ';
+							}
+							$sessions_text = rtrim( $sessions_text, ', ' ) . '</span>';
+						}
+					}
 			?>
 				<div id="post-<?php the_id(); ?>" <?php post_class(); ?>>
 					<?php if ( has_post_thumbnail() ) {
@@ -205,13 +232,33 @@
 						the_post_thumbnail( 'thumbnail', array( 'class' => 'float-right' ) );
 						echo '</a>';
 					}
-					?>					
-					<h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-					<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span></div>
+					?>	
+					<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
+					<h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h3>
+					<?php endif; ?>
 
+					<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		
+					<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span>
+						<?php if ( $sessions_text ) echo $sessions_text; ?>
+					</div>
+					<?php endif; ?>		
+					
+					<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
 					<div class="entry-excerpt">
 						<?php the_excerpt() ?>
 					</div>
+					<?php else: ?>
+					<div class="entry-content">
+						<?php the_content() ?>
+					</div>
+					<?php endif; ?>
+
+					<?php if ( !in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		
+					<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <a href="<?php the_permalink(); ?>">Link</a> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span>
+						<?php if ( $sessions_text ) echo $sessions_text; ?>	
+					</div>
+					<?php endif; ?>
+									
 				</div>
 			<?php
 				endwhile;
@@ -220,6 +267,8 @@
 			</div>
 			
 			<div class="clear-both"></div>
+			
+			</div>
 			
 		</div>
 				
