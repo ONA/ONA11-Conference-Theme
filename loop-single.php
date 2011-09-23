@@ -24,6 +24,8 @@
 		if ( !$post_format )
 			$post_format = 'standard';
 	?>
+	
+	<div class="post-wrap">
 
 	<div id="post-<?php the_ID() ?>" <?php post_class() ?>>
 		<div class="entry-meta"><?php if ( $sessions_text ) echo $sessions_text; ?></div>
@@ -41,7 +43,7 @@
 		</div>
 		
 		<?php if ( !in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		
-		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <a href="<?php the_permalink(); ?>"><?php echo ucfirst( $post_format ); ?></a> &mdash; <span class="entry-timestamp"><?php ona11_timestamp(); ?></span>
+		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <a href="<?php the_permalink(); ?>"><?php echo ucfirst( $post_format ); ?></a> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( null, false ); ?></span>
 		</div>
 		<?php endif; ?>	
 		
@@ -69,6 +71,8 @@
 		<?php endif; ?>
 	
 	</div><!-- .post -->
+	
+	</div>
 	
 <?php endwhile; ?>
 
