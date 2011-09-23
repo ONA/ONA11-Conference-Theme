@@ -4,6 +4,9 @@
 	    'connected_to' => get_queried_object_id(),
 		'posts_per_page' => -1,
 	);
+	$end_timestamp = get_post_meta( get_queried_object_id(), '_ona11_end_timestamp', true );
+	if ( current_time( 'timestamp' ) > ( $end_timestamp + 900 ) )
+		$args['order'] = 'ASC';
 	$session_updates = new WP_Query( $args );
 ?>
 
