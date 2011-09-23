@@ -770,6 +770,11 @@ body.single .session-updates-wrap {
 body.single .session-updates-wrap h3.section-title {
 	color: #415463;
 	padding-top: 0;
+	padding-bottom: 8px;
+}
+
+body.single .session-updates-wrap h3.section-title span {
+	color: #888;
 }
 
 body.single .session-updates .post {

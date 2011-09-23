@@ -14,7 +14,7 @@
 	
 	<div class="session-updates-wrap">
 	
-	<h3 class="section-title">Session Updates</h3>
+	<h3 class="section-title">Session Updates <span>(<?php echo $session_updates->post_count; ?>)</span></h3>
 	
 	<div class="session-updates">
 
@@ -27,17 +27,17 @@
 	
 	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		
-		<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
+		<?php if ( 'standard' == $post_format ): ?>
 		<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 		<?php endif; ?>
 		
-		<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
+		<?php if ( 'standard' == $post_format ): ?>
 		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'short', false ); ?></span></div>
 		<?php endif; ?>
 		
-		<?php if ( !in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		
-		<div class="entry-content">
-			<?php the_content() ?>
+		<?php if ( 'standard' == $post_format ): ?>		
+		<div class="entry-excerpt">
+			<?php the_excerpt() ?>
 		</div>
 		<?php elseif ( 'gallery' == $post_format ): ?>
 		<div class="entry-content">
@@ -49,7 +49,7 @@
 		</div>
 		<?php endif; ?>
 		
-		<?php if ( !in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
+		<?php if ( 'standard' != $post_format ): ?>
 		<div class="entry-meta"><a href="<?php the_permalink(); ?>">&#8734; Permalink</a> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'short', false ); ?></span> &mdash; <span class="entry-author">Posted by <?php ona11_author_posts_link(); ?></span></div>
 		<?php endif; ?>
 	

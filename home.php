@@ -258,9 +258,8 @@
 					</div>
 					<?php endif; ?>
 
-					<?php if ( 'standard' != $post_format ): ?>		
-					<div class="entry-meta"><span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span> &mdash; <a href="<?php the_permalink(); ?>"><?php echo ucfirst( $post_format ); ?></a> &mdash; <span class="entry-author">Posted by <?php ona11_author_posts_link(); ?></span>
-					</div>
+					<?php if ( 'standard' != $post_format ): ?>
+					<div class="entry-meta"><a href="<?php the_permalink(); ?>">&#8734; Permalink</a> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'short', false ); ?></span> &mdash; <span class="entry-author">Posted by <?php ona11_author_posts_link(); ?></span></div>
 					<?php endif; ?>
 									
 				</div>
