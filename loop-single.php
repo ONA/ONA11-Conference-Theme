@@ -1,6 +1,7 @@
 <?php if ( have_posts() ): ?>
 	
 	<?php
+	$sessions_text = '';
 	if ( ona11_p2p_enabled() ) {
 		$args = array(
 			'post_type' => 'ona11_session',
@@ -15,14 +16,13 @@
 			}
 			$sessions_text = rtrim( $sessions_text, ', ' ) . '</span>';
 		}
-	} else {
-		$sessions_text = '';
 	}
 	?>
 	
 <?php while ( have_posts() ): the_post(); ?>
 	<?php $post_format = get_post_format();
-
+		if ( !$post_format )
+			$post_format = 'standard';
 	?>
 
 	<div id="post-<?php the_ID() ?>" <?php post_class() ?>>
