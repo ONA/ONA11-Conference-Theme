@@ -26,7 +26,7 @@
 		<?php endif; ?>
 		
 		<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
-		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp(); ?></span></div>
+		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'short', false ); ?></span></div>
 		<?php endif; ?>
 		
 		<?php if ( !in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		

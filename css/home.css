@@ -147,6 +147,7 @@ ul.featured-sessions li img.mini-avatar {
 .ona11-latest-stories .post {
 	border-bottom: 2px dotted #C8D1D4;
 	margin-bottom: 15px;
+	padding-bottom: 15px;
 }
 
 .ona11-latest-stories .post a img.wp-post-image {
