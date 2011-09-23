@@ -26,13 +26,13 @@
 	?>
 
 	<div id="post-<?php the_ID() ?>" <?php post_class() ?>>
+		<div class="entry-meta"><?php if ( $sessions_text ) echo $sessions_text; ?></div>
 		<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
 		<h2 class="entry-title"><?php the_title() ?></h2>
 		<?php endif; ?>
 		
 		<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		
 		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp(); ?></span>
-			<?php if ( $sessions_text ) echo $sessions_text; ?>
 		</div>
 		<?php endif; ?>		
 		
@@ -41,8 +41,7 @@
 		</div>
 		
 		<?php if ( !in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		
-		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp(); ?></span>
-			<?php if ( $sessions_text ) echo $sessions_text; ?>	
+		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <a href="<?php the_permalink(); ?>"><?php echo ucfirst( $post_format ); ?></a> &mdash; <span class="entry-timestamp"><?php ona11_timestamp(); ?></span>
 		</div>
 		<?php endif; ?>		
 		
