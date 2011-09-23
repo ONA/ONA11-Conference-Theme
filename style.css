@@ -653,6 +653,7 @@ div.content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 	font-size: 12px;
 	color: #92A3AA;
 	line-height: 18px;
+	margin-bottom: 5px;
 }
 
 .post .entry-meta a {
@@ -741,10 +742,37 @@ body.single .post .entry-bios {
 	margin-bottom: 15px;
 }
 
-body.single-post .content .post, 
+body.single-post .content .post,
+body.single-ona11_session .content .post,
 body.single-post .content #nav-below, 
 body.single-post .content #comments {
 	margin-right: 15px;
+}
+
+body.single-format-status .post-wrap,
+body.single-format-quote .post-wrap,
+body.single-format-aside .post-wrap {
+	background-color: #F3F3F3;
+	padding-top: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+	width: 580px;
+}
+
+body.single-format-status .content .post-wrap .post,
+body.single-format-aside .content .post-wrap .post,
+body.single-format-quote .content .post-wrap .post {
+	background-color: white;	
+	margin-bottom: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 15px;
+	padding-left: 15px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin-right: 0;
 }
 
 body.single .post .entry-bios .avatar {
