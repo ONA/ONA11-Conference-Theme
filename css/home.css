@@ -40,6 +40,7 @@ h3.orange-callout {
 }
 
 .ona11-secondary-featured ul li {
+	clear: right;	
 	display: block;
 	font-size: 16px;
 	line-height: 22px;
@@ -52,7 +53,6 @@ h3.orange-callout {
 .ona11-secondary-featured ul li a img.wp-post-image {
 	width: 50px;
 	height: 50px;
-	margin-top: 5px;
 	margin-left: 5px;
 	margin-bottom: 5px;
 	border: 5px solid #F3F3F3;
