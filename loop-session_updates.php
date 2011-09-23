@@ -14,7 +14,10 @@
 
 <?php while ( $session_updates->have_posts() ): $session_updates->the_post(); ?>
 	
-	<?php $post_format = get_post_format(); ?>
+	<?php $post_format = get_post_format();
+		if ( !$post_format )
+			$post_format = 'standard';
+	?>
 	
 	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		
