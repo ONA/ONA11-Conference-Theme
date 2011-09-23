@@ -218,7 +218,7 @@
 							$results_str = implode( ', ', $post_ids );
 							$query = $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE ID in(%s);", $results_str );
 							$associated_posts = $wpdb->get_results( $query );
-							$sessions_text = '<div class="entry-meta align-right"><span class="entry-session">Session &rarr; ';
+							$sessions_text = '<div class="entry-meta align-right"><span class="entry-session">&rarr; ';
 							foreach( $associated_posts as $associated_post ) {
 								$sessions_text .= '<a href="' . get_permalink( $associated_post->ID ) . '">' . get_the_title( $associated_post->ID ) . '</a>, ';
 							}

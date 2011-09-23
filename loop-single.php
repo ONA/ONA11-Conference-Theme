@@ -9,12 +9,12 @@
 		);
 		$sessions = new WP_Query( $args );
 		if ( $sessions->have_posts() ) {
-			$sessions_text = '<span class="entry-session">Session: ';
+			$sessions_text = '<div class="entry-meta align-right"><span class="entry-session">&rarr; ';
 			while ( $sessions->have_posts() ) {
 				$sessions->the_post();
 				$sessions_text .= '<a href="' . get_permalink() . '">' . get_the_title() . '</a>, ';
 			}
-			$sessions_text = rtrim( $sessions_text, ', ' ) . '</span>';
+			$sessions_text = rtrim( $sessions_text, ', ' ) . '</span></div>';
 		}
 	}
 	?>
@@ -43,7 +43,9 @@
 		<?php if ( !in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		
 		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <a href="<?php the_permalink(); ?>"><?php echo ucfirst( $post_format ); ?></a> &mdash; <span class="entry-timestamp"><?php ona11_timestamp(); ?></span>
 		</div>
-		<?php endif; ?>		
+		<?php endif; ?>	
+		
+		<div class="clear-left"></div>
 		
 		<?php if ( function_exists( 'get_coauthors' ) && in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
 		<div class="entry-bios">
