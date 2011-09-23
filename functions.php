@@ -1,6 +1,6 @@
 <?php
 
-define( 'ONA11_VERSION', '1.0.5l' );
+define( 'ONA11_VERSION', '1.0.5m' );
 
 require_once( 'php/class.ona11_session.php' );
 require_once( 'php/class.ona11_person.php' );
@@ -15,6 +15,13 @@ class ona11
 	var $options_group = 'ona11_';
 	var $options_group_name = 'ona11_options';
 	var $settings_page = 'ona11_settings';
+	
+	var $livestreams = array(
+		'keynote' => '<iframe width="560" height="340" src="http://cdn.livestream.com/embed/onlinenewsassociation?layout=4&amp;height=340&amp;width=560&amp;autoplay=false" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe>',
+		'track-1' => '<iframe width="560" height="340" src="http://cdn.livestream.com/embed/onlinenewsassociation?layout=4&amp;height=340&amp;width=560&amp;autoplay=false" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe>',
+		'track-2' => '<iframe width="560" height="340" src="http://cdn.livestream.com/embed/ona09frontendsessions?layout=4&amp;height=340&amp;width=560&amp;autoplay=false" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe>',
+		'track-3' => '<iframe width="560" height="340" src="http://cdn.livestream.com/embed/ona09backendsessions?layout=4&amp;height=340&amp;width=560&amp;autoplay=false" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe>',
+	);
 	
 	function __construct() {
 		
