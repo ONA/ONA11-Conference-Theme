@@ -10,8 +10,9 @@
 		
 		<?php get_template_part( 'loop', 'single_session' ); ?>
 		
+		<?php if ( ona11_p2p_enabled() ): ?>
 		<?php get_template_part( 'loop', 'session_updates' ); ?>
-		
+		<?php endif; ?>
 	</div>
 	
 	</div>

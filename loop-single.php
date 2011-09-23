@@ -1,7 +1,29 @@
 <?php if ( have_posts() ): ?>
 	
+	<?php
+	if ( ona11_p2p_enabled() ) {
+		$args = array(
+			'post_type' => 'ona11_session',
+		    'connected_from' => get_queried_object_id(),
+		);
+		$sessions = new WP_Query( $args );
+		if ( $sessions->have_posts() ) {
+			$sessions_text = '&mdash; <span class="entry-session">Session: ';
+			while ( $sessions->have_posts() ) {
+				$sessions->the_post();
+				$sessions_text .= '<a href="' . get_permalink() . '">' . get_the_title() . '</a>, ';
+			}
+			$sessions_text = rtrim( $sessions_text, ', ' ) . '</span>';
+		}
+	} else {
+		$sessions_text = '';
+	}
+	?>
+	
 <?php while ( have_posts() ): the_post(); ?>
-	<?php $post_format = get_post_format(); ?>
+	<?php $post_format = get_post_format();
+
+	?>
 
 	<div id="post-<?php the_ID() ?>" <?php post_class() ?>>
 		<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
@@ -9,7 +31,9 @@
 		<?php endif; ?>
 		
 		<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		
-		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp(); ?></span></div>
+		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp(); ?></span>
+			<?php if ( $sessions_text ) echo $sessions_text; ?>
+		</div>
 		<?php endif; ?>		
 		
 		<div class="entry-content">
@@ -17,7 +41,9 @@
 		</div>
 		
 		<?php if ( !in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		
-		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp(); ?></span></div>
+		<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp(); ?></span>
+			<?php if ( $sessions_text ) echo $sessions_text; ?>	
+		</div>
 		<?php endif; ?>		
 		
 		<?php if ( function_exists( 'get_coauthors' ) && in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
