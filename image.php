@@ -10,9 +10,9 @@
 
 				<?php $image_id = get_queried_object_id(); ?>
 				<div class="navigation">
-					<span class="previous-image navigation-link left-navigation"><?php previous_image_link( false, '&larr;' ); ?></span>
+					<span class="previous-image navigation-link left-navigation"><?php previous_image_link( false, '&laquo; Previous' ); ?></span>
 					<a class="navigation-link" href="<?php echo get_permalink( $post->post_parent ); ?>"><?php echo get_the_title( $post->post_parent ); ?></a>	
-					<span class="next-image navigation-link right-navigation"><?php next_image_link( false, '&rarr;' ); ?></span>					
+					<span class="next-image navigation-link right-navigation"><?php next_image_link( false, 'Next &raquo;' ); ?></span>					
 				</div>
 				
 			 	<?php while (have_posts()) : the_post(); ?>

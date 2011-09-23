@@ -2,7 +2,7 @@
 Theme name: ONA11
 Theme URI: http://ona11.journalists.org/
 Description: First ONA11 theme--based on Sandbox
-Version: 1.0.5r
+Version: 1.0.5q
 Author: Daniel Bachhuber, Sean Connolly
 Author URI:
 Tags: white, microformats, fixed-width, flexible-width, one-column, two-columns, three-columns, four-columns, left-sidebar, right-sidebar
@@ -741,6 +741,12 @@ body.single .post .entry-bios {
 	margin-bottom: 15px;
 }
 
+body.single-post .content .post, 
+body.single-post .content #nav-below, 
+body.single-post .content #comments {
+	margin-right: 15px;
+}
+
 body.single .post .entry-bios .avatar {
 	float: left;
 	margin-right: 15px;
@@ -806,6 +812,10 @@ body.single .session-updates .post.format-gallery .gallery img {
 }
 
 body.single .session-updates .post.format-gallery .gallery-item .gallery-caption {
+	display: none;
+}
+
+body.single-post .post.format-gallery .gallery-item .gallery-caption {
 	display: none;
 }
 
@@ -1203,37 +1213,27 @@ div#nav-above {
 
 
 div#nav-below {
-
-	margin-top:1em;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 div#nav-images {
-height:150px;
-margin:1em 0;
+	height:150px;
+	margin:1em 0;
 }
 
 
-div.navigation div.nav-previous {
-float:left;
-text-align:left;
-width:300px;
-margin:20px 0 20px 0;
-font-size:14px;
-}
-
-div.navigation div.nav-next {
-	float:right;
-	text-align:right;
+div.navigation span.nav-previous {
 	width:300px;
-	margin:20px 0 20px 0;
 	font-size:14px;
 }
 
-/*
-div.primary-navigation ul li,div.gallery dl,div.navigation div.nav-previous {
-float:left;
+div.navigation span.nav-next {
+	width:300px;
+	margin-left: 300px;
+	margin:20px 0 20px 0;
+	font-size:14px;
 }
-*/
 
 input#author,input#email,input#url {
 width:50%;
