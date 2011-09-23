@@ -173,7 +173,7 @@
 		</div>
 		<?php endif; ?>		
 		
-		<div class="home-row">
+		<div class="home-row ona11-latest-stories-row">
 			
 			<div class="sidebar float-left">
 			
@@ -218,11 +218,11 @@
 							$results_str = implode( ', ', $post_ids );
 							$query = $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE ID in(%s);", $results_str );
 							$associated_posts = $wpdb->get_results( $query );
-							$sessions_text = '&mdash; <span class="entry-session">Session: ';
+							$sessions_text = '<div class="entry-meta align-right"><span class="entry-session">Session &rarr; ';
 							foreach( $associated_posts as $associated_post ) {
 								$sessions_text .= '<a href="' . get_permalink( $associated_post->ID ) . '">' . get_the_title( $associated_post->ID ) . '</a>, ';
 							}
-							$sessions_text = rtrim( $sessions_text, ', ' ) . '</span>';
+							$sessions_text = rtrim( $sessions_text, ', ' ) . '</span></div>';
 						}
 					}
 			?>
@@ -232,20 +232,25 @@
 						the_post_thumbnail( 'thumbnail', array( 'class' => 'float-right' ) );
 						echo '</a>';
 					}
-					?>	
-					<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
+					?>
+					<?php if ( $sessions_text ) echo $sessions_text; ?>						
+					<?php if ( 'standard' == $post_format ): ?>
 					<h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h3>
 					<?php endif; ?>
 
-					<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		
+					<?php if ( 'standard' == $post_format ): ?>		
 					<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span>
 						<?php if ( $sessions_text ) echo $sessions_text; ?>
 					</div>
 					<?php endif; ?>		
 					
-					<?php if ( in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>
+					<?php if ( 'standard' == $post_format ): ?>
 					<div class="entry-excerpt">
 						<?php the_excerpt() ?>
+					</div>
+					<?php elseif ( 'gallery' == $post_format ): ?>
+					<div class="entry-content">
+						<?php echo do_shortcode( '[gallery size="thumbnail" columns="0"]' ); ?>
 					</div>
 					<?php else: ?>
 					<div class="entry-content">
@@ -253,9 +258,8 @@
 					</div>
 					<?php endif; ?>
 
-					<?php if ( !in_array( $post_format, array( 'gallery', 'standard' ) ) ): ?>		
-					<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <a href="<?php the_permalink(); ?>"><?php echo ucfirst( $post_format ); ?></a> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span>
-						<?php if ( $sessions_text ) echo $sessions_text; ?>	
+					<?php if ( 'standard' != $post_format ): ?>		
+					<div class="entry-meta"><span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span> &mdash; <a href="<?php the_permalink(); ?>"><?php echo ucfirst( $post_format ); ?></a> &mdash; <span class="entry-author">Posted by <?php ona11_author_posts_link(); ?></span>
 					</div>
 					<?php endif; ?>
 									

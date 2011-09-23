@@ -2,7 +2,7 @@
 Theme name: ONA11
 Theme URI: http://ona11.journalists.org/
 Description: First ONA11 theme--based on Sandbox
-Version: 1.0.5p
+Version: 1.0.5q
 Author: Daniel Bachhuber, Sean Connolly
 Author URI:
 Tags: white, microformats, fixed-width, flexible-width, one-column, two-columns, three-columns, four-columns, left-sidebar, right-sidebar
@@ -115,6 +115,14 @@ h5 {
 
 .align-center {
 	text-align: center;
+}
+
+.align-right {
+	text-align: right;
+}
+
+.align-left {
+	text-align: left;
 }
 
 .clear-right {
@@ -661,12 +669,6 @@ div.content h5.entry-title a:active {color:rgb(26,167,223); text-decoration:none
 	line-height: 20px;
 }
 
-.content .session-updates .post {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-top: 2px dotted #C8D1D4;	
-}
-
 .content h3.section-title {
    text-transform: uppercase;
 }
@@ -746,6 +748,56 @@ body.single .post .entry-bios .coauthor-bio p {
 
 body.single .session-navigation a {
 
+}
+
+body.single .session-updates-wrap {
+	width: 580px;
+	padding: 15px;
+	background-color: #F3F3F3;
+}
+
+body.single .session-updates-wrap h3.section-title {
+	color: #415463;
+	padding-top: 0;
+}
+
+body.single .session-updates .post {
+	background-color: white;	
+	margin-bottom: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 15px;
+	padding-left: 15px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+body.single .session-updates .post.format-gallery .gallery {
+	height: auto;
+}
+
+body.single .session-updates .post.format-gallery .gallery-item {
+	float: left;
+	width: auto !important;
+	margin-top: 15px !important;
+	margin-right: 15px;
+}
+
+body.single .session-updates .post.format-gallery .gallery img {
+	height: 48px;
+	width: 48px;
+}
+
+body.single .session-updates .post.format-gallery .gallery-item .gallery-caption {
+	display: none;
+}
+
+body.single .session-updates .post a img.wp-post-image {
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 5px solid #F3F3F3;
 }
 
 body.archive .term-description {

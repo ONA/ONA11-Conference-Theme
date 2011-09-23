@@ -2,11 +2,14 @@
 	$args = array(
 		'post_type' => 'post',
 	    'connected_to' => get_queried_object_id(),
+		'posts_per_page' => -1,
 	);
 	$session_updates = new WP_Query( $args );
 ?>
 
 <?php if ( $session_updates->have_posts() ): ?>
+	
+	<div class="session-updates-wrap">
 	
 	<h3 class="section-title">Session Updates</h3>
 	
@@ -33,6 +36,10 @@
 		<div class="entry-content">
 			<?php the_content() ?>
 		</div>
+		<?php elseif ( 'gallery' == $post_format ): ?>
+		<div class="entry-content">
+			<?php echo do_shortcode( '[gallery size="thumbnail" columns="0"]' ); ?>
+		</div>
 		<?php else: ?>
 		<div class="entry-content">
 			<?php the_excerpt(); ?>
@@ -47,6 +54,8 @@
 	
 <?php endwhile; ?>
 
+	</div>
+	
 	</div>
 
 <?php else: ?>
