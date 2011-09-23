@@ -399,6 +399,11 @@ body.single-attachment .navigation .navigation-link {
 
 }
 
+.post .entry-content .gallery,
+.post .entry-content .gallery br {
+	clear: left !important;
+}
+
 h3.postcomment {
 font-family:Helvetica, Arial, sans-serif;
 }
