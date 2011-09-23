@@ -267,6 +267,7 @@ div#container {
 }
 
 div.content {
+	margin-top: 15px;
 	width:618px;
 	border-right: dotted 2px #C8D1D4;
 	line-height:1.4;
