@@ -2,6 +2,7 @@
 	$args = array(
 		'post_type' => 'post',
 	    'connected_to' => get_queried_object_id(),
+		'posts_per_page' => -1,
 	);
 	$session_updates = new WP_Query( $args );
 ?>
