@@ -1,6 +1,6 @@
 <?php
 
-define( 'ONA11_VERSION', '1.0.5s' );
+define( 'ONA11_VERSION', '1.0.5t' );
 
 require_once( 'php/class.ona11_session.php' );
 require_once( 'php/class.ona11_person.php' );
@@ -57,7 +57,8 @@ class ona11
 		if ( !is_admin() ) {
 			require_once( 'php/template_tags.php' );
 			add_action( 'wp_head', 'ona11_head_title' );
-			add_action( 'wp_head', array( &$this, 'wp_head' ) );			
+			add_action( 'wp_head', array( &$this, 'wp_head' ) );
+			add_action( 'wp_footer', array( &$this, 'wp_footer' ) );						
 		}
 		
 	}
@@ -73,6 +74,8 @@ class ona11
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'ona11', get_bloginfo( 'template_directory' ) . '/js/ona11.js', array( 'jquery' ), ONA11_VERSION );
 			wp_enqueue_script( 'ona11_twitter', get_bloginfo( 'template_directory' ) . '/js/twitter.js', array( 'jquery' ), ONA11_VERSION );
+			if ( is_category( 'newsroom' ) )
+				wp_enqueue_script( 'jquery-masonry', get_bloginfo( 'template_directory' ) . '/js/jquery.masonry.min.js', array( 'jquery' ), ONA11_VERSION );			
 		} else {
 			wp_enqueue_style( 'ona_admin_css', get_bloginfo( 'template_url' ) . '/css/admin.css', false, ONA11_VERSION, 'all' );
 		}
@@ -245,6 +248,24 @@ class ona11
 	function wp_head() {
 		echo '<script type="text/javascript" src="http://use.typekit.com/fey8mly.js"></script>';
 		echo '<script type="text/javascript">try{Typekit.load();}catch(e){}</script>';
+	}
+	
+	/**
+	 * Load Masonry in the footer
+	 */
+	function wp_footer() {
+		?>
+		<script type="text/javascript">
+		
+		jQuery(document).ready(function(){
+			jQuery('.newsroom-updates').masonry({
+				// options
+				itemSelector : '.post',
+			});
+		});
+		
+		</script>
+		<?php
 	}
 	
 	function post_gallery( $attr ) {
