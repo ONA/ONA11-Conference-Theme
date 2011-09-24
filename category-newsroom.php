@@ -28,6 +28,28 @@
 		$post_format = get_post_format();
 		if ( !$post_format )
 			$post_format = 'standard';
+			
+		if ( ona11_p2p_enabled() ) {
+			global $wpdb;
+
+			$post_id = get_the_id();
+			$query = $wpdb->prepare( "SELECT p2p_to FROM $wpdb->p2p WHERE p2p_from=$post_id;" );
+			$results = $wpdb->get_results( $query );
+
+			if ( count( $results ) ) {
+				$post_ids = array();
+				foreach( $results as $result )
+					$post_ids[] = $result->p2p_to;
+				$results_str = implode( ', ', $post_ids );
+				$query = $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE ID in(%s);", $results_str );
+				$associated_posts = $wpdb->get_results( $query );
+				$sessions_text = '<div class="entry-meta align-right"><span class="entry-session">&rarr; ';
+				foreach( $associated_posts as $associated_post ) {
+					$sessions_text .= '<a href="' . get_permalink( $associated_post->ID ) . '">' . get_the_title( $associated_post->ID ) . '</a>, ';
+				}
+				$sessions_text = rtrim( $sessions_text, ', ' ) . '</span></div>';
+			}
+		}
 ?>
 	<div id="post-<?php the_id(); ?>" <?php post_class(); ?>>	
 		<?php if ( has_post_thumbnail() ) {
@@ -62,7 +84,7 @@
 		<?php if ( 'standard' != $post_format ): ?>
 		<div class="entry-meta"><a href="<?php the_permalink(); ?>">&#8734; Permalink</a> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'short', false ); ?></span> &mdash; <span class="entry-author">Posted by <?php ona11_author_posts_link(); ?></span></div>
 		<?php endif; ?>
-						
+		<?php if ( $sessions_text ) echo $sessions_text; ?>
 	</div>
 		
 	<?php endwhile; ?>

@@ -59,7 +59,7 @@
 				<?php if ( count( $featured_stories ) ):
 							echo '<ul>';
 						foreach( $featured_stories as $key => $post ): setup_postdata( $post );
-						if ( $key < 1 || $key >= 5 )
+						if ( $key < 1 || $key >= 7 )
 							continue;
 						$already_shown[] = get_the_id();
 						?>
@@ -77,6 +77,7 @@
 							echo '</ul>';
 							wp_reset_query();
 					  endif;?>
+					<div class="align-right more"><a href="<?php echo get_site_url( null, '/category/newsroom/' ); ?>">All newsroom coverage &#0187;</a></div>									
 				</div>
 			</div>
 			
@@ -89,9 +90,7 @@
 				<p class="more"><a href="<?php echo get_site_url( null, '/sponsors-exhibitors/' ); ?>"><?php _e( 'See all sponsors &#0187;' ); ?></a></p>
 			</div>
 			
-			<div class="clear-both">
-				
-			<div class="align-right more"><a href="<?php echo get_site_url( null, '/category/newsroom/' ); ?>">Newsroom Coverage &#0187;</a></div>				
+			<div class="clear-both"></div>
 			
 		</div>
 		

@@ -93,6 +93,7 @@ h5 {
 }
 
 .main {
+	padding-top: 15px;
 	padding-bottom: 30px;
 }
 
@@ -275,7 +276,6 @@ div#container {
 }
 
 div.content {
-	margin-top: 15px;
 	width:618px;
 	border-right: dotted 2px #C8D1D4;
 	line-height:1.4;
@@ -995,16 +995,31 @@ body.archive .day-sessions .session-time-block ul li .session-presenter img.post
 	vertical-align: middle;
 }
 
+body.category-newsroom .main {
+	background-color: #F3F3F3;
+}
+
 body.category-newsroom .main .wrap {
 	width: 1000px;
+	
 }
 
 body.category-newsroom .newsroom-updates .post {
 	float: left;
-	margin-right: 15px;
-	margin-left: 15px;	
-	margin-bottom: 20px;
+	margin-right: 5px;
+	margin-left: 5px;	
+	margin-bottom: 5px;
 	width: 300px;
+	background-color: white;	
+	margin-bottom: 15px;
+	padding-top: 10px;
+	padding-bottom: 8px;
+	padding-right: 10px;
+	padding-left: 10px;
+	border: 1px solid #BBB;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;	
 }
 
 .sidebar a {
