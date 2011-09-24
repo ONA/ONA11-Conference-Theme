@@ -20,15 +20,18 @@ h3.orange-callout {
 
 .ona11-secondary-featured {
 	width: 235px;
-	margin-left: 20px;
-	background-color: #F9F9F9;	
-	padding: 5px;
+	margin-left: 25px;
+}
+
+.ona11-secondary-featured .more {
+	padding-top: 8px;
 }
 
 .ona11-secondary-featured ul {
 	list-style-type: none;
 	margin:0;
-	padding:0;
+	background-color: #F9F9F9;	
+	padding: 5px;
 }
 
 .ona11-secondary-featured ul li {
@@ -124,6 +127,10 @@ ul.featured-sessions li img.mini-avatar {
 .home-row {
 	margin-top: 15px;
 	margin-bottom: 25px;
+}
+
+.content .home-row:first-child {
+	margin-top: 0;
 }
 
 .ona11-sponsors.right-col {

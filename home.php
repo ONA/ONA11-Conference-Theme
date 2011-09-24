@@ -34,7 +34,11 @@
 						$already_shown[] = get_the_id();
 						?>
 						<div id="post-<?php the_id(); ?>" <?php post_class(); ?>>
-							<?php if ( has_post_thumbnail() ) {
+							<?php if ( $homepage_embed = get_post_meta( get_the_id(), 'homepage_embed', true ) ) { ?>
+							<div class="homepage-embed">
+								<?php echo $$homepage_embed; ?>
+							</div>
+							<?php } else if ( has_post_thumbnail() ) {
 								echo '<a href="' . get_permalink() . '">';							
 								the_post_thumbnail( 'home-featured' );
 								echo '</a>';
