@@ -431,6 +431,10 @@ body.single-attachment .navigation .navigation-link {
 	clear: none !important;
 }
 
+.sfywdgt_StorifyWidget {
+	clear: none !important;
+}
+
 h3.postcomment {
 font-family:Helvetica, Arial, sans-serif;
 }

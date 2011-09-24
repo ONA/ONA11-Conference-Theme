@@ -50,6 +50,7 @@ class ona11
 		add_action( 'admin_bar_menu', array( &$this, 'action_admin_bar_menu' ), 200 );	
 		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_resources' ) );
 		add_action( 'zoninator_pre_init', array( &$this, 'zoninator_pre_init' ) );
+		add_shortcode( 'storify', array( &$this, 'storify_shortcode' ) );
 		
 		//add_filter( 'post_gallery', array( &$this, 'post_gallery' ) );	
 		
@@ -223,6 +224,19 @@ class ona11
 	        'to' => 'ona11_person'
 	    ) );
 		
+	}
+	
+	/**
+	 * Storify shortcode
+	 * Example: [storify url="http://storify.com/ugonnaokpalaoka/10-techier-trendier-tech-trends"]
+	 */
+	function storify_shortcode( $atts ) {
+		extract( $atts );
+		
+		if ( !preg_match( '/^http\:\/\/storify\.com/', $url ) )
+			return;
+		
+		return '<script src="' . $url . '.js"></script>';
 	}
 	
 	/**
