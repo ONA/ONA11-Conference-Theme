@@ -240,7 +240,6 @@
 
 					<?php if ( 'standard' == $post_format ): ?>		
 					<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span>
-						<?php if ( $sessions_text ) echo $sessions_text; ?>
 					</div>
 					<?php endif; ?>		
 					
