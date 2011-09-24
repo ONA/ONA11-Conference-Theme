@@ -129,8 +129,8 @@ ul.featured-sessions li img.mini-avatar {
 	margin-bottom: 25px;
 }
 
-.content .home-row:first-child {
-	margin-top: 0;
+body.home .main {
+	padding-top: 0;
 }
 
 .ona11-sponsors.right-col {
