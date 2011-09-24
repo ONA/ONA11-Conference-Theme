@@ -90,6 +90,8 @@
 			</div>
 			
 			<div class="clear-both">
+				
+			<div class="align-right more"><a href="<?php echo get_site_url( null, '/category/newsroom/' ); ?>">Newsroom Coverage &#0187;</a></div>				
 			
 		</div>
 		
