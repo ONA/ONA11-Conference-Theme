@@ -981,6 +981,13 @@ body.archive .day-sessions .session-time-block ul li .session-presenter img.post
 	vertical-align: middle;
 }
 
+body.category-newsroom .newsroom-updates .post {
+	width: 300px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
 .sidebar a {
 	text-decoration: none;
 }
