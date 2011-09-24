@@ -190,7 +190,9 @@
 			
 			</div>
 			
-			<div class="right-col float-right ona11-latest-stories">
+			<div class="right-col float-right">
+			
+			<div class="ona11-latest-stories">
 				<h3 class="section-title">Latest Updates</h3>
 			<?php
 				$args = array(
@@ -264,10 +266,15 @@
 									
 				</div>
 			<?php
-				endwhile;
-				endif;
-			?>
+				endwhile; ?>
+												
+			<?php endif; ?>
+					
 			</div>
+			
+				<div class="pagination align-right more"><a href="<?php echo get_site_url( null, '/category/session-updates/' ); ?>">All session updates &#0187;</a></div>
+				
+			</div>			
 			
 			<div class="clear-both"></div>
 			
