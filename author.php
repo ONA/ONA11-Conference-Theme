@@ -8,42 +8,97 @@
 		
 		<div class="content">
 
-<?php the_post() ?>
+		<?php if ( have_posts() ): ?>
+			
+			<?php $author = get_queried_object(); ?>
 
-			<h2 class="page-title author"><?php printf( __( 'Author Archives: <span class="vcard">%s</span>', 'sandbox' ), "<a class='url fn n' href='$authordata->user_url' title='$authordata->display_name' rel='me'>$authordata->display_name</a>" ) ?></h2>
-			<?php $authordesc = $authordata->user_description; if ( !empty($authordesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $authordesc . '</div>' ); ?>
+			<?php $avatar_url = get_avatar( $author->ID, '64' ); ?>
+			<div class="author-avatar float-left"><?php echo $avatar_url; ?></div>
+			<h2 class="page-title author"><?php esc_html_e( $author->display_name ); ?></h2>
+			<?php if ( !empty( $author->description ) ): ?>
+				<div class="author-description"><?php echo wpautop( $author->description ); ?></div>
+			<?php endif;?>
+			
+			<div class="all-posts">
 
-			<div id="nav-above" class="navigation">
-				<div class="nav-previous"><?php next_posts_link(__( '<span class="meta-nav">&laquo;</span> Older posts', 'sandbox' )) ?></div>
-				<div class="nav-next"><?php previous_posts_link(__( 'Newer posts <span class="meta-nav">&raquo;</span>', 'sandbox' )) ?></div>
-			</div>
+			<?php while ( have_posts() ) : the_post() ?>
 
-<?php rewind_posts() ?>
+				<?php
+					$post_format = get_post_format();
+					if ( !$post_format )
+						$post_format = 'standard';
+					$sessions_text = '';
+					if ( ona11_p2p_enabled() ) {
+						global $wpdb;
 
-<?php while ( have_posts() ) : the_post() ?>
+						$post_id = get_the_id();
+						$query = $wpdb->prepare( "SELECT p2p_to FROM $wpdb->p2p WHERE p2p_from=$post_id;" );
+						$results = $wpdb->get_results( $query );
 
-			<div id="post-<?php the_ID() ?>" <?php post_class(); ?>>
-				<h3 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php printf( __( 'Permalink to %s', 'sandbox' ), the_title_attribute('echo=0') ) ?>" rel="bookmark"><?php the_title() ?></a></h3>
-				<div class="entry-date"><abbr class="published" title="<?php the_time('Y-m-d\TH:i:sO') ?>"><?php unset($previousday); printf( __( '%1$s &#8211; %2$s', 'sandbox' ), the_date( '', '', '', false ), get_the_time() ) ?></abbr></div>
-				<div class="entry-content">
-<?php the_excerpt(__( 'Read More <span class="meta-nav">&raquo;</span>', 'sandbox' )) ?>
+						if ( count( $results ) ) {
+							$post_ids = array();
+							foreach( $results as $result )
+								$post_ids[] = $result->p2p_to;
+							$results_str = implode( ', ', $post_ids );
+							$query = $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE ID in(%s);", $results_str );
+							$associated_posts = $wpdb->get_results( $query );
+							$sessions_text = '<div class="entry-meta align-right"><span class="entry-session">&rarr; ';
+							foreach( $associated_posts as $associated_post ) {
+								$sessions_text .= '<a href="' . get_permalink( $associated_post->ID ) . '">' . get_the_title( $associated_post->ID ) . '</a>, ';
+							}
+							$sessions_text = rtrim( $sessions_text, ', ' ) . '</span></div>';
+						}
+					}
+				?>
+				<div id="post-<?php the_id(); ?>" <?php post_class(); ?>>
+					<?php if ( has_post_thumbnail() ) {
+						echo '<a href="' . get_permalink() . '">';
+						the_post_thumbnail( 'thumbnail', array( 'class' => 'float-right' ) );
+						echo '</a>';
+					}
+					?>
+					<?php if ( $sessions_text ) echo $sessions_text; ?>						
+					<?php if ( 'standard' == $post_format ): ?>
+					<h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h3>
+					<?php endif; ?>
+
+					<?php if ( 'standard' == $post_format ): ?>		
+					<div class="entry-meta"><span class="entry-author">By <?php ona11_author_posts_link(); ?></span> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'long', false ); ?></span>
+					</div>
+					<?php endif; ?>		
+
+					<?php if ( 'standard' == $post_format ): ?>
+					<div class="entry-excerpt">
+						<?php the_excerpt() ?>
+					</div>
+					<?php elseif ( 'gallery' == $post_format ): ?>
+					<div class="entry-content">
+						<?php echo do_shortcode( '[gallery size="thumbnail" columns="0"]' ); ?>
+					</div>
+					<?php else: ?>
+					<div class="entry-content">
+						<?php the_content() ?>
+					</div>
+					<?php endif; ?>
+
+					<?php if ( 'standard' != $post_format ): ?>
+					<div class="entry-meta"><a href="<?php the_permalink(); ?>">&#8734; Permalink</a> &mdash; <span class="entry-timestamp"><?php ona11_timestamp( 'short', false ); ?></span> &mdash; <span class="entry-author">Posted by <?php ona11_author_posts_link(); ?></span></div>
+					<?php endif; ?>
 
 				</div>
-				<div class="entry-meta">
-					<span class="cat-links"><?php printf( __( 'Posted in %s', 'sandbox' ), get_the_category_list(', ') ) ?></span>
-					<span class="meta-sep">|</span>
-					<?php the_tags( __( '<span class="tag-links">Tagged ', 'sandbox' ), ", ", "</span>\n\t\t\t\t\t<span class=\"meta-sep\">|</span>\n" ) ?>
-<?php edit_post_link(__('Edit', 'sandbox'), "\t\t\t\t\t<span class=\"edit-link\">", "</span>\n\t\t\t\t\t<span class=\"meta-sep\">|</span>\n"); ?>
-					<span class="comments-link"><?php comments_popup_link( __( 'Comments (0)', 'sandbox' ), __( 'Comments (1)', 'sandbox' ), __( 'Comments (%)', 'sandbox' ) ) ?></span>
-				</div>
-			</div><!-- .post -->
 
-<?php endwhile ?>
-
-			<div id="nav-below" class="navigation">
-				<div class="nav-previous"><?php next_posts_link(__( '<span class="meta-nav">&laquo;</span> Older posts', 'sandbox' )) ?></div>
-				<div class="nav-next"><?php previous_posts_link(__( 'Newer posts <span class="meta-nav">&raquo;</span>', 'sandbox' )) ?></div>
+			<?php endwhile ?>
+			
 			</div>
+
+			<div class="navigation">
+				<span class="nav-previous"><?php next_posts_link(__( '<span class="meta-nav">&laquo;</span> Older posts', 'sandbox' )) ?></div>
+				<span class="nav-next"><?php previous_posts_link(__( 'Newer posts <span class="meta-nav">&raquo;</span>', 'sandbox' )) ?></div>
+			</div>
+			
+		<?php endif; ?>
+			
+		</div>
 
 		</div><!-- #content -->
 		
