@@ -9,9 +9,13 @@
 		<div class="content">
 
 			<h2 class="page-title"><?php single_cat_title() ?></h2>
-			<?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
+			<?php if ( $queried_object->description ): ?>
+			<div class="term-description">
+			<?php echo wpautop( $queried_object->description ); ?>	
+			</div>
+			<?php endif; ?>
 
-			<?php get_template_part( 'loop', 'archive' ); ?>
+			<?php get_template_part( 'loop', 'index' ); ?>
 
 		</div><!-- #content -->
 

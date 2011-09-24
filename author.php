@@ -91,7 +91,7 @@
 			
 			</div>
 
-			<div class="navigation">
+			<div class="navigation pagination">
 				<span class="nav-previous"><?php next_posts_link(__( '<span class="meta-nav">&laquo;</span> Older posts', 'sandbox' )) ?></div>
 				<span class="nav-next"><?php previous_posts_link(__( 'Newer posts <span class="meta-nav">&raquo;</span>', 'sandbox' )) ?></div>
 			</div>

@@ -1101,13 +1101,15 @@ body.category-newsroom .newsroom-updates .post {
 }
 
 
-body.archive .all-posts {
+body.archive .all-posts,
+body.search .all-posts {
 	width: 580px;
 	padding: 15px;
 	background-color: #F3F3F3;
 }
 
-body.archive .all-posts h3.section-title {
+body.archive .all-posts h3.section-title,
+body.search .all-posts h3.section-title {
 	color: #415463;
 	padding-top: 0;
 }
@@ -1117,7 +1119,8 @@ body.archive .all-posts h3.section-title {
 	line-height: 22px;
 }
 
-body.archive .all-posts .post {
+body.archive .all-posts .post,
+body.search .all-posts .post {
 	background-color: white;	
 	margin-bottom: 15px;
 	padding-top: 10px;
@@ -1129,31 +1132,41 @@ body.archive .all-posts .post {
 	border-radius: 5px;
 }
 
-body.archive .all-posts .post.format-gallery .gallery {
+body.archive .all-posts .post.format-gallery .gallery,
+body.search .all-posts .post.format-gallery .gallery {
 	height: auto;
 }
 
-body.archive .all-posts .post.format-gallery .gallery-item {
+body.archive .all-posts .post.format-gallery .gallery-item,
+body.search .all-posts .post.format-gallery .gallery-item {
 	float: left;
 	width: auto !important;
 	margin-top: 15px !important;
 	margin-right: 15px;
 }
 
-body.archive .all-posts .post.format-gallery .gallery img {
+body.archive .all-posts .post.format-gallery .gallery img,
+body.search .all-posts .post.format-gallery .gallery img {
 	height: 48px;
 	width: 48px;
 }
 
-body.archive .all-posts .post.format-gallery .gallery-item .gallery-caption {
+body.archive .all-posts .post.format-gallery .gallery-item .gallery-caption,
+body.search .all-posts .post.format-gallery .gallery-item .gallery-caption {
 	display: none;
 }
 
-body.archive .all-posts .post a img.wp-post-image {
+body.archive .all-posts .post a img.wp-post-image,
+body.search .all-posts .post a img.wp-post-image {
 	margin-left: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border: 5px solid #F3F3F3;
+}
+
+.pagination {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 /* Footer */

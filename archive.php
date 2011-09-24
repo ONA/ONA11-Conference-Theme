@@ -17,7 +17,7 @@
 			<h2 class="page-title"><?php _e( 'Blog Archives', 'sandbox' ) ?></h2>
 <?php endif; ?>
 
-			<?php get_template_part( 'loop', 'archive' ); ?>
+			<?php get_template_part( 'loop', 'index' ); ?>
 	
 		</div><!-- #content .hfeed -->
 		

@@ -229,13 +229,13 @@
 					}
 			?>
 				<div id="post-<?php the_id(); ?>" <?php post_class(); ?>>
+					<?php if ( $sessions_text ) echo $sessions_text; ?>							
 					<?php if ( has_post_thumbnail() ) {
 						echo '<a href="' . get_permalink() . '">';
 						the_post_thumbnail( 'thumbnail', array( 'class' => 'float-right' ) );
 						echo '</a>';
 					}
-					?>
-					<?php if ( $sessions_text ) echo $sessions_text; ?>						
+					?>				
 					<?php if ( 'standard' == $post_format ): ?>
 					<h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h3>
 					<?php endif; ?>
